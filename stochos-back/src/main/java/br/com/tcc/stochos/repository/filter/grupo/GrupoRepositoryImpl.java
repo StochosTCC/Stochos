@@ -6,6 +6,7 @@ import br.com.tcc.stochos.repository.filter.GrupoFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
@@ -31,12 +32,25 @@ public class GrupoRepositoryImpl implements GrupoRepositoryQuery {
 
         Predicate[] predicate = criarWhere(builder, root, grupoFilter);
         criteria.where(predicate);
-        criteria.orderBy(builder.asc(root.get("nomesetor")));
+        criteria.orderBy(builder.asc(root.get("nomegrupo")));
 
         TypedQuery<Grupo> query = manager.createQuery(criteria);
         adicionarRestricaoParaPaginacao(query, pageable);
 
-        return null;
+        return new PageImpl<>(query.getResultList(), pageable, total(grupoFilter));
+    }
+
+    private Long total(GrupoFilter grupoFilter) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
+        Root<Grupo> root = criteria.from(Grupo.class);
+
+        Predicate[] predicate = criarWhere(builder, root, grupoFilter);
+        criteria.where(predicate);
+        criteria.orderBy(builder.asc(root.get("nomegrupo")));
+        criteria.select(builder.count(root));
+
+        return manager.createQuery(criteria).getSingleResult();
     }
 
     private void adicionarRestricaoParaPaginacao(TypedQuery<Grupo> query, Pageable pageable)
@@ -45,7 +59,8 @@ public class GrupoRepositoryImpl implements GrupoRepositoryQuery {
         int totalRegistroPorPagina = pageable.getPageSize();
         int primeiroRegistroDaPagina = paginaatual * totalRegistroPorPagina;
 
-        query.set
+        query.setFirstResult(primeiroRegistroDaPagina);
+        query.setMaxResults(totalRegistroPorPagina);
     }
 
     private Predicate[] criarWhere(CriteriaBuilder builder, Root<Grupo> root, GrupoFilter grupoFilter)
