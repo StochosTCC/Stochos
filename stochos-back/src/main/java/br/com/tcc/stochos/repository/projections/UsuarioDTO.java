@@ -1,9 +1,11 @@
-package br.com.tcc.stochos.repository.filter;
+package br.com.tcc.stochos.repository.projections;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class UsuarioFilter {
+@AllArgsConstructor
+public class UsuarioDTO {
     private String nomeusuario;
     private String email;
     private String phone;
