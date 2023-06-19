@@ -3,20 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas/metas.component';
-import { GruposComponent } from './grupos/grupos.component';
-import { MetaScreenComponent } from './meta-screen/meta-screen.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MetasComponent,
-    GruposComponent,
-    MetaScreenComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
