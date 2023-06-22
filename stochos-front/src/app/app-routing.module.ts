@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path:'', pathMatch: 'full', redirectTo: "grupos"},
   {path:"metas", loadChildren: () => import('./metas/metas.module').then(m => m.MetasModule)},
   {path:"grupos", loadChildren: () => import('./grupos/grupos.module').then(m => m.GruposModule)},
   {path:"criar-meta", loadChildren: () => import('./criar-meta/criar-meta.module').then(m => m.CriarMetaModule)},
