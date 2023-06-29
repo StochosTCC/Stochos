@@ -1,10 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { navbarData } from './nav-data';
 
-interface SideNavToggle{
-  screenWidth: number;
-  collapsed: boolean;
-}
 
 @Component({
   selector: 'app-sidenav',
@@ -13,30 +8,25 @@ interface SideNavToggle{
 })
 export class SidenavComponent implements OnInit {
 
+  data = [
+    {
+      number: '1',
+      name: 'Grupos',
+      icon: 'fa-solid fa-people-group'
+    },
+    {
+      number: '2',
+      name: 'Metas',
+      icon: 'fa-solid fa-bullseye'
+    }
+
+  ]
+
   constructor() { }
 
-  @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
-  collapsed = false;
-  screenWidth = 0;
-  navData = navbarData;
 
   ngOnInit(): void {
   }
 
-  toggleCollapse(): void{
-    this.collapsed = !this.collapsed;
-    this.onToggleSideNav.emit({
-      collapsed: this.collapsed,
-      screenWidth: this.screenWidth
-    })
-  }
-
-  closeSidenav(): void{
-    this.collapsed = false;
-    this.onToggleSideNav.emit({
-      collapsed: this.collapsed,
-      screenWidth: this.screenWidth
-    })
-  }
 
 }
