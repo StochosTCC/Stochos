@@ -30,13 +30,15 @@ app-sidenav{
 
 .spacing{
   transition: margin-left 250ms ease;
-  margin-top: 20px;
-}
+  // margin-top: 20px;
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.spacing-short{
-  margin-left: 230px;
-}
-
-.spacing-toggle{
-  margin-left: 95px;
+  .container {
+    position: relative;
+    width: calc(100% - 4rem);
+    left: 4rem;
+  }
 }

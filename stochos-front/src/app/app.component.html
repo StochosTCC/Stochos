@@ -2,10 +2,12 @@
   <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
 
   <main>
-    <app-sidenav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}"></app-sidenav>
 
-    <div class="spacing container" [ngClass]="{'spacing-toggle': !sideNavStatus, 'spacing-short': sideNavStatus}">
-      <router-outlet></router-outlet>
+    <div class="spacing" [ngClass]="{'spacing-toggle': !sideNavStatus, 'spacing-short': sideNavStatus}">
+      <app-sidenav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}"></app-sidenav>
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </main>
 
