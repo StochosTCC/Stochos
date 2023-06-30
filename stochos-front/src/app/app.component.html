@@ -1,8 +1,13 @@
 <div class="conteiner-fluid g-0">
-  <app-header></app-header>
+  <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
 
   <main>
-    <app-sidenav class="black-border"></app-sidenav>
+    <app-sidenav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}"></app-sidenav>
+
+    <div class="spacing" [ngClass]="{'spacing-toggle': !sideNavStatus, 'spacing-short': sideNavStatus}">
+      <router-outlet></router-outlet>
+    </div>
   </main>
+
 </div>
 

@@ -7,18 +7,36 @@ app-header{
 }
 
 main{
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 4rem;
   z-index: 1;
 }
 
 app-sidenav{
-  position: absolute;
+  position: fixed;
   left: 0rem;
-  width: 180px;
+  width: 65px;
   height: calc(100vh - 4rem);
   box-shadow: 0px 0px 10px #000;
   background-color: rgba(34,34,34, 1);
   border-top: 1px solid #FFF;
+  transition: width 250ms ease;
+}
+
+.app-side-nav-open{
+  width: 200px;
+}
+
+.spacing{
+  transition: margin-left 250ms ease;
+  margin-top: 20px;
+}
+
+.spacing-short{
+  margin-left: 230px;
+}
+
+.spacing-toggle{
+  margin-left: 95px;
 }
