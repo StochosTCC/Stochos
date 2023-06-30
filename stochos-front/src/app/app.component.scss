@@ -7,14 +7,14 @@ app-header{
 }
 
 main{
-  position: fixed;
+  position: absolute;
   width: 100%;
   top: 4rem;
   z-index: 1;
 }
 
 app-sidenav{
-  position: fixed;
+  position: absolute;
   left: 0rem;
   width: 65px;
   height: calc(100vh - 4rem);
