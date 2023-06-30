@@ -17,7 +17,11 @@ app-sidenav{
   position: absolute;
   left: 0rem;
   width: 65px;
+  top: 0;
   height: calc(100vh - 4rem);
+  @media screen and (min-height: 1201px) {
+    height: calc(160vh - 4rem);
+  }
   box-shadow: 0px 0px 10px #000;
   background-color: rgba(34,34,34, 1);
   border-top: 1px solid #FFF;

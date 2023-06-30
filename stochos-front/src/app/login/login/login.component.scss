@@ -1,9 +1,11 @@
 .container{
   width: 100%;
   display: flex;
+  position: relative;
   @media screen and (max-width: 1201px){
     padding-top: 4rem;
     flex-direction: column;
+    top: 14rem;
   }
  justify-content: center;
  align-items: center;
@@ -15,6 +17,7 @@
   width: 60%;
   height: 720px;
 
+
   .logo-content{
     width: calc(100% - 2.4343rem);
     height: 100%;
@@ -22,7 +25,7 @@
     padding-bottom: 1.4343rem;
     padding-left: 6.4343rem;
 
-    @media screen and (max-width: 991px){
+    @media screen and (max-width: 1201px){
       padding-left: 2rem;
     }
     display: flex;
@@ -46,6 +49,12 @@
 }
 
 .readme{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.readme-span{
   margin-top: 10px;
   border: 3px solid #fff;
   padding: 15px 40px;
@@ -69,7 +78,7 @@
   border: 1px solid #000;
   height: 720px;
   width: 40%;
-  @media screen and (max-width: 1201){
+  @media screen and (max-width: 1201px){
     width: 60%;
   }
   display: flex;
