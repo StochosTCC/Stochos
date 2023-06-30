@@ -4,7 +4,7 @@
   <main>
     <app-sidenav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}"></app-sidenav>
 
-    <div class="spacing" [ngClass]="{'spacing-toggle': !sideNavStatus, 'spacing-short': sideNavStatus}">
+    <div class="spacing container" [ngClass]="{'spacing-toggle': !sideNavStatus, 'spacing-short': sideNavStatus}">
       <router-outlet></router-outlet>
     </div>
   </main>

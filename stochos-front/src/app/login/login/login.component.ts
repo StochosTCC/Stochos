@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
-  host: {
-    class: 'spacing'
-  },
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
