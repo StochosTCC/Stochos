@@ -6,6 +6,7 @@ import br.com.tcc.stochos.repository.filter.MetaFilter;
 import br.com.tcc.stochos.repository.filter.UsuarioFilter;
 import br.com.tcc.stochos.repository.projections.MetaDTO;
 import br.com.tcc.stochos.repository.projections.UsuarioDTO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioRepositoryImpl implements UsuarioRepositoryQuery{
     @PersistenceContext
@@ -56,13 +59,35 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryQuery{
 
         Predicate[] predicates = criarRestricoes(builder, root, usuarioFilter);
         criteria.where(predicates);
-        criteria.orderBy(builder.asc(root.get("nomemeta")));
+        criteria.orderBy(builder.asc(root.get("nomeusuario")));
         criteria.select(builder.count(root));
         return entityManager.createQuery(criteria).getSingleResult();
     }
 
     private Predicate[] criarRestricoes(CriteriaBuilder builder, Root<Usuario> root, UsuarioFilter usuarioFilter) {
-        return null;
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (!StringUtils.isEmpty(usuarioFilter.getNomeusuario()))
+        {
+            predicates.add(builder.like(builder.lower(root.get("nomeusuario")), "%" + usuarioFilter.getNomeusuario() + "%"));
+        }
+
+        if (!StringUtils.isEmpty(usuarioFilter.getEmail()))
+        {
+            predicates.add(builder.like(builder.lower(root.get("email")), "%" + usuarioFilter.getEmail() + "%"));
+        }
+
+        if (!StringUtils.isEmpty(usuarioFilter.getNomesetor()))
+        {
+            predicates.add(builder.like(builder.lower(root.get("setor").get("nomesetor")), "%" + usuarioFilter.getNomesetor() + "%"));
+        }
+
+        if (!StringUtils.isEmpty(usuarioFilter.getPhone()))
+        {
+            predicates.add(builder.like(builder.lower(root.get("phone")), "%" + usuarioFilter.getPhone() + "%"));
+        }
+
+        return predicates.toArray(new Predicate[predicates.size()]);
     }
 
     private void adicionarRestricoesDePaginacao(TypedQuery<?> query, Pageable pageable) {
