@@ -8,4 +8,5 @@ public class UsuarioFilter {
     private String email;
     private String phone;
     private String nomesetor;
+    private String nomegrupo;
 }

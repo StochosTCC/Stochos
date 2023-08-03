@@ -1,10 +1,7 @@
 package br.com.tcc.stochos.repository.filter.usuario;
 
-import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.model.Usuario;
-import br.com.tcc.stochos.repository.filter.MetaFilter;
 import br.com.tcc.stochos.repository.filter.UsuarioFilter;
-import br.com.tcc.stochos.repository.projections.MetaDTO;
 import br.com.tcc.stochos.repository.projections.UsuarioDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -18,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,25 +24,27 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryQuery{
     private EntityManager entityManager;
 
     @Override
-    public Page<UsuarioDTO> filtrar(UsuarioFilter usuarioFilter, Pageable pageable) {
+    public Page<Usuario> filtrar(UsuarioFilter usuarioFilter, Pageable pageable) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<UsuarioDTO> criteria = builder.createQuery(UsuarioDTO.class);
+        CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
         Root<Usuario> root = criteria.from(Usuario.class);
 
-        criteria.select(builder.construct(
+      /* criteria.select(builder.construct(
                 UsuarioDTO.class,
+                root.get("id"),
                 root.get("nomeusuario"),
                 root.get("email"),
                 root.get("phone"),
-                root.get("setor").get("nomesetor")
-        ));
+                root.get("setor").get("nomesetor"),
+                root.get("grupos").get("nomegrupo")
+        ));*/
 
         Predicate[] predicates = criarRestricoes(builder, root, usuarioFilter);
 
         criteria.where(predicates);
         criteria.orderBy(builder.asc(root.get("nomeusuario")));
 
-        TypedQuery<UsuarioDTO> query = entityManager.createQuery(criteria);
+        TypedQuery<Usuario> query = entityManager.createQuery(criteria);
         adicionarRestricoesDePaginacao(query, pageable);
 
         return new PageImpl<>(query.getResultList(), pageable, total(usuarioFilter));
@@ -85,6 +85,10 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryQuery{
         if (!StringUtils.isEmpty(usuarioFilter.getPhone()))
         {
             predicates.add(builder.like(builder.lower(root.get("phone")), "%" + usuarioFilter.getPhone() + "%"));
+        }
+
+        if(!StringUtils.isEmpty(usuarioFilter.getNomegrupo())){
+            predicates.add(builder.like(builder.lower(root.get("grupos")), "%" + usuarioFilter.getNomegrupo() + "%"));
         }
 
         return predicates.toArray(new Predicate[predicates.size()]);
