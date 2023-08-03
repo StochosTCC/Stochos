@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @Data
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping()
-    public Page<UsuarioDTO> filtrar(UsuarioFilter usuarioFilter, Pageable pageable)
+    public Page<Usuario> filtrar(UsuarioFilter usuarioFilter, Pageable pageable)
     {
         return usuarioRepository.filtrar(usuarioFilter, pageable);
     }

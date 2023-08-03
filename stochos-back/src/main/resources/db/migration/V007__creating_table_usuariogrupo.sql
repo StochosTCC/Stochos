@@ -16,5 +16,7 @@ alter table usuario_grupo add constraint fk_usuario_grupo_grupo foreign key(idgr
 alter table usuario_cargo add constraint f_usuario_cargo_usuario foreign key(idusuario) references usuario(id);
 alter table usuario_cargo add constraint fk_usuario_cargo_usuario foreign key(idcargo) references usuario(id);
 
-insert into usuario_grupo values(1,1),(2,2);
+insert into usuario_grupo values(1,1),(2,2),(1,2);
 insert into usuario_cargo values(1,1),(2,2);
+
+
