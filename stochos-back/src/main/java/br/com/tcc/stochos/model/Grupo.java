@@ -24,6 +24,9 @@ public class Grupo {
     @OneToMany(mappedBy = "grupo")
     private List<Meta> metas = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "grupo")
+    private List<UsuarioGrupo> usuarioGrupos = new ArrayList<>();
 
 
 }

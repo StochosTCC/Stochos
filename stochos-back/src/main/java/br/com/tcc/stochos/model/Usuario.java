@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,9 @@ public class Usuario {
     @JoinColumn(name = "idsetor")
     private Setor setor;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "idusuario"),
-            inverseJoinColumns = @JoinColumn(name = "idgrupo"))
-    private List<Grupo> grupos;
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioGrupo> usuarioGrupos = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "idusuario")
