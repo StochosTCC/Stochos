@@ -32,10 +32,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioGrupo> usuarioGrupos = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "idusuario")
-            , inverseJoinColumns = @JoinColumn(name = "idcargo"))
-    private List<Cargo> cargos;
+
 
 
 
