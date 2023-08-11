@@ -5,9 +5,9 @@
 );
 
 create table usuario_cargo(
+    id int not null auto_increment primary key,
     idusuario int not null,
-    idcargo int not null,
-    primary key(idusuario, idcargo)
+    idcargo int not null
 );
 
 alter table usuario_grupo add constraint fk_usuario_grupo_usuario foreign key(idusuario) references usuario(id);
@@ -17,6 +17,6 @@ alter table usuario_cargo add constraint fk_usuario_cargo_usuario foreign key(id
 alter table usuario_cargo add constraint fk_usuario_cargo_cargo foreign key(idcargo) references cargo(id);
 
 insert into usuario_grupo values(0, 1, 1),(0, 1, 2);
-insert into usuario_cargo values(1,1),(2,2);
+insert into usuario_cargo values(0, 1, 1),(0, 1,2);
 
 
