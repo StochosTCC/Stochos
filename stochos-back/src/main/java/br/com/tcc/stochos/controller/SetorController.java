@@ -41,9 +41,18 @@ public class SetorController {
     }
 
     @PutMapping("/mudar-setor/{id}")
-    public ResponseEntity<Setor> mudarSetor(@PathVariable Integer id, @RequestBody Setor setorDetail){
+    public HttpStatus mudarSetor(@PathVariable Integer id, @RequestBody Setor setorDetail){
 
-      Setor setor = setorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id)););
+        return setorRepository.findById(id).map(
+          setor -> {
+            setor.setNomesetor(setorDetail.getNomesetor());
+            setor.setUsuarios(setorDetail.getUsuarios());
+            setorRepository.save(setor);
+            return HttpStatus.OK;
+          }
+        ).orElseGet(() -> {
+          return HttpStatus.NOT_FOUND;
+        });
 
     }
 }
