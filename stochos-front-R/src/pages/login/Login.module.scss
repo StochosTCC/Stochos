@@ -1,34 +1,15 @@
-.titulo {
- text-align: center;
-margin-top: 2rem;
-color: azure;
-}
+.grid {
 
-.blocoA{
+  justify-items: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 
-  margin-top: 5rem;
-
-  background-color: #312F2F;
-
-  margin-left: 5rem;
-  margin-right: 5rem;
-
-  border-radius: 10px;
-
-}
-
-.boasVindas{
-
-  margin-left: 2%;
-  margin-right: 2%;
-
-  color: azure;
-
-  .boasVindasTitulo{
-
+  .componentes{
     
-
-
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
   }
-
 }
