@@ -1,0 +1,40 @@
+@import "../../styles/variaveis";
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $branco;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.nav{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.logo{
+  width: 33.33%;
+}
+
+.logofoto{
+  width: 40%;
+  min-width: 200px;
+}
+
+.grupometa{
+  width: 33.33%;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.usuarioinfo{
+  width: 33.33%;
+  display: flex;
+  justify-content: end;
+}
