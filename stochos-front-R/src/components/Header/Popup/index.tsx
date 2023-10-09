@@ -1,28 +1,72 @@
-import { Popover } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import React, {useState} from "react";
+import { Popover, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Fragment } from 'react'
 
-export default function Popup(){
+const grupo = [
+  {
+    name: 'Grupo',
+    href: '##',
+  },
+  {
+    name: 'Criar Grupo',
+    href: '##',
+  },
+  {
+    name: 'Deletar Grupo',
+    href: '##',
+  },
+]
 
-
+export default function Example() {
   return (
-    <div>
-      <Popover>
-      {({ open }) => (
-        /* Use the `open` state to conditionally change the direction of the chevron icon. */
-        <>
-          <Popover.Button>
-            Solutions
-            <ChevronDownIcon className={open ? 'rotate-180 transform' : ''} />
-          </Popover.Button>
-          <Popover.Panel>
-            <a href="/insights">Insights</a>
-            <a href="/automations">Automations</a>
-            <a href="/reports">Reports</a>
-          </Popover.Panel>
-        </>
-      )}
-    </Popover>
+    <div className="">
+      <Popover className="fixed">
+        {({ open }) => (
+          <>
+            <Popover.Button>
+              <span>Grupo</span>
+              <ChevronDownIcon/>
+            </Popover.Button>
+           
+              <Popover.Panel >
+                <div>
+                  <div>
+                    {grupo.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                      >
+                        
+                        <div>
+                          <p>
+                            {item.name}
+                          </p>
+                          
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                  <div>
+                    <a
+                      href="##"
+                    >
+                      <span >
+                        <span >
+                          Documentation
+                        </span>
+                      </span>
+                      <span>
+                        Start integrating products and tools
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </Popover.Panel>
+          </>
+        )}
+      </Popover>
     </div>
-  );
+  )
 }
+
+
