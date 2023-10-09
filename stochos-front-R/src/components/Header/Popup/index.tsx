@@ -1,6 +1,11 @@
-import { Popover, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Fragment } from 'react'
+import * as React from 'react';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+interface Props{
+  type: string
+}
 
 const grupo = [
   {
@@ -17,56 +22,39 @@ const grupo = [
   },
 ]
 
-export default function Example() {
-  return (
-    <div className="">
-      <Popover className="fixed">
-        {({ open }) => (
-          <>
-            <Popover.Button>
-              <span>Grupo</span>
-              <ChevronDownIcon/>
-            </Popover.Button>
-           
-              <Popover.Panel >
-                <div>
-                  <div>
-                    {grupo.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                      >
-                        
-                        <div>
-                          <p>
-                            {item.name}
-                          </p>
-                          
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                  <div>
-                    <a
-                      href="##"
-                    >
-                      <span >
-                        <span >
-                          Documentation
-                        </span>
-                      </span>
-                      <span>
-                        Start integrating products and tools
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </Popover.Panel>
-          </>
-        )}
-      </Popover>
-    </div>
-  )
+export default function Popup({type}: Props) {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
+  if( type === "grupo"){
+    return  <>
+        <Button aria-describedby={id} variant="text" onClick={handleClick}>Grupos</Button>
+        <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+        >
+        </Popover>
+      </>
+  }else{
+    return null;
+  }
 }
 
 

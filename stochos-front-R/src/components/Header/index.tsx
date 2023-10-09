@@ -14,7 +14,7 @@ export default function Header(){
           </div>
 
           <div >
-            <Popup/>
+            <Popup type="grupo"/>
           </div>
 
           <div className={style.usuarioinfo}>
