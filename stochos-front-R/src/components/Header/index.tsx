@@ -1,6 +1,7 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/longlogo.png";
 import Popup from "./Popup";
+import { GrupoMeta } from '../../enums/GrupoMeta/GrupoMeta';
 
 
 export default function Header(){
@@ -13,8 +14,10 @@ export default function Header(){
           <img  className={style.logofoto} src={logo} alt="Logo"/>
           </div>
 
-          <div >
-            <Popup type="grupo"/>
+          <div className={style.grupometa}>
+            <Popup type={GrupoMeta.GRUPO}/>
+            <Popup type={GrupoMeta.META}/>
+
           </div>
 
           <div className={style.usuarioinfo}>

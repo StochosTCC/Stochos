@@ -1,9 +1,13 @@
-import estilos from './Login.module.scss'
+import style from "./Login.module.scss";
 
-
-
-export default function Login() {
+export default function Login(){
   return (
-    <h1>login</h1>
-  );
+    <div className={style.container}>
+      <div className={`${style.subcontainer}`}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  )
 }
