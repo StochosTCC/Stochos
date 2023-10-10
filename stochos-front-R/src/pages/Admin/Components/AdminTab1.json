@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nomeusuario": "Gabriel",
+    "email": "gabirelHsantos2018@hmail.com",
+    "password": "Viniciusmiratorta2005",
+    "phone": "40028666",
+    "idsetor": 18
+  },
+
+  {
+    "id": 2,
+    "nomeusuario": "Raul",
+    "email": "naotomobanho@protonmail.com",
+    "password": "senha321",
+    "phone": "2345678",
+    "idsetor": 3
+  },
+
+  {
+    "id": 3,
+    "nomeusuario": "João Erik",
+    "email": "campeaodecomergramade2018@outook.com",
+    "password": "Tamanduá",
+    "phone": "98765432",
+    "idsetor": 7
+  },
+
+  {
+    "id": 4,
+    "nomeusuario": "Lucas",
+    "email": "tiktokerpro2023@baidu.com.cn",
+    "password": "max123",
+    "phone": "29384756",
+    "idsetor": 9
+  }
+]

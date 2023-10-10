@@ -1,0 +1,39 @@
+@import "../../styles/variaveis";
+
+.tabs{
+
+ 
+    background-color: $azul-padrao ;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 20px;
+
+
+
+}
+
+.tabsbutton{
+
+    color: $branco;
+
+    margin-top: 1vh;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    padding: 1rem;
+
+    background-color: $azul-botao;
+
+    border-radius: 25px;
+
+    .selecao:hover{
+        
+    }
+    
+   
+}
+
