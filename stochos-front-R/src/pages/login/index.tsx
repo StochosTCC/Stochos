@@ -10,10 +10,14 @@ export default function Login() {
             <h1 className={style.titulo}>STOCHOS</h1>
           </div>
           <div className={style.subcontainerdiv}>
-            <p className={style.descricao}>Uma nova forma <br/> de organização</p>
+            <p className={style.descricao}>
+              Uma nova forma <br /> de organização
+            </p>
           </div>
           <div className={style.subcontainerdiv}>
-            <button className={style.botao} type="button">Saiba mais</button>
+            <button className={style.botao} type="button">
+              Saiba mais
+            </button>
           </div>
         </div>
 
@@ -24,16 +28,17 @@ export default function Login() {
           <div className={style.login}>
             <div className={style.formulariodiv}>
               <form className={style.formulario} action="">
-                <label className={style.formulariolabel}>Email</label>
+                <label className={style.formulariolabel}>Usuario</label>
                 <input className={style.formularioinput} type="text" />
                 <label className={style.formulariolabel}> Senha</label>
                 <input className={style.formularioinput} type="password" />
               </form>
             </div>
-
           </div>
           <div className={style.botaologindiv}>
-            <button className={style.botaologin}>Login</button>
+            <button className={style.botaologin}>
+              <a href="/metas">Login</a>
+            </button>
           </div>
         </div>
       </div>
