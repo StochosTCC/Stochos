@@ -1,0 +1,76 @@
+@import "../../../../styles/variaveis";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 500px;
+  height: 600px;
+}
+
+.formcima {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 90%;
+  height: 20px;
+  border-radius: 100px;
+  padding: 20px;
+  border: 1px solid $cinza-texto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.textarea {
+  width: 90%;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid $cinza-texto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-left: 2rem;
+}
+
+.urgenciadiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radioGroup {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  input{
+    display: none;
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid rgb(255, 0, 0);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 3px;
+  }
+
+  input:checked{
+    background-color: rgb(247, 5, 5);
+    box-sizing: border-box;
+    border: 5px solid red;
+    padding: 4px;
+  }
+}
+
+.radio {
+  width: 6rem;
+  height: 6rem;
+  cursor: pointer;
+}
+

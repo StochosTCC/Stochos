@@ -30,7 +30,7 @@ export default function Card({ type, nome, nomeremetente, data, urgencia }: Prop
         <div className={style.card}>
             <div className={style.cardcima}>
                 <div>
-                    <p className={style.nomemeta}>{nome}</p>
+                    <p className={`${style.nomemeta} ${style.textolimitado}`}>{nome}</p>
                     <p className={style.nomeremetente}>{nomeremetente}</p>
                 </div>
                 <div>

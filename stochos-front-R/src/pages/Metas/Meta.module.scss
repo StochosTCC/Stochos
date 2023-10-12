@@ -1,10 +1,17 @@
 @import "../../styles/variaveis";
 
+.page{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-between;
+}
+
 .metascriadas {
     display: flex;
     flex-direction: column;
     margin: 1rem 0rem 0rem 1rem;
-
+    
     .titulo {
         font-size: 2rem;
         width: 95%;
@@ -15,14 +22,29 @@
     .metas {
         display: flex;
         overflow: auto;
+        
         .meta{
             margin-left: 2rem;
         }
     }
+    
 }
 
 .divbotao{
+    width: 100%;
+    display: flex;
+    justify-content: center;
     .botao{
         background-color: $azul-botao;
+        padding: 2rem 3rem;
+        border-radius: 13px;
+        color: $branco;
+        font-size: 1.5rem;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px; 
+        margin: 30px;   
+    }
+    .botao:hover{
+        background-color: $azul-padrao;
     }
 }
