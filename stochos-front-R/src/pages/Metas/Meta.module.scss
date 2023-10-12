@@ -1,0 +1,28 @@
+@import "../../styles/variaveis";
+
+.metascriadas {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0rem 0rem 1rem;
+
+    .titulo {
+        font-size: 2rem;
+        width: 95%;
+        border-bottom: 1px solid $cinza-texto;
+        margin-bottom: 1rem;
+    }
+
+    .metas {
+        display: flex;
+        overflow: auto;
+        .meta{
+            margin-left: 2rem;
+        }
+    }
+}
+
+.divbotao{
+    .botao{
+        background-color: $azul-botao;
+    }
+}

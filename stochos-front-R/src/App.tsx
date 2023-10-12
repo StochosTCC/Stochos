@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Admin from "./pages/Admin";
 import Login from "./pages/Login/index";
-import Metas from "./pages/metas";
+import Metas from "./pages/Metas";
 
 export default function App() {
   return (
