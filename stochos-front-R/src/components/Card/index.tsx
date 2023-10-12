@@ -53,7 +53,7 @@ export default function Card({ type, nome, nomeremetente, data, urgencia }: Prop
 function randomColor(nomeremetente: string) {
     let random = Math.floor(Math.random() * 4)
     let size = 46
-    let fontSize = 30
+    let fontSize = 25
     switch (random) {
         case 1:
             return <Avatar sx={{ bgcolor: deepPurple[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
