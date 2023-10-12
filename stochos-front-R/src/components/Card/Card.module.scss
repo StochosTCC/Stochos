@@ -1,0 +1,66 @@
+@import "../../styles/variaveis";
+
+.card {
+    width: 322px;
+    height: 195px;
+    background-color: $azul-padrao;
+    border-radius: 30px;
+    color: $branco;
+    padding: 22px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.urgencia1 {
+    background-color: $vierde;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+}
+
+.urgencia2 {
+    background-color: $amarelo;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+}
+
+.urgencia3 {
+    background-color: $vermelho;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+}
+
+.cardcima {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .nomemeta {
+        font-size: 1.5rem;
+    }
+}
+
+.cardbaixo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .urg_e_data {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-left: 1rem;
+        }
+    }
+
+    .icon:hover {
+        cursor: pointer;
+        transform: rotate(360deg);
+        transition: transform 1s;
+    }
+}
