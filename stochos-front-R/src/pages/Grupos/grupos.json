@@ -1,0 +1,40 @@
+[
+    {
+        "nome": "Programadores",
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis.",
+        "funcionarios": [
+            "Raul Dangio",
+            "Vinicius Nogueira"
+        ],
+        "criador": "Administrador"
+    },
+    {
+        "nome": "Designers",
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis.",
+        "funcionarios": [
+            "Raul Dangio",
+            "Vinicius Nogueira"
+        ],
+        "criador": "Administrador"
+    },
+    {
+        "nome": "Administradores",
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis.",
+        "funcionarios": [
+            "Raul Dangio",
+            "Vinicius Nogueira",
+            "Lucas Indiano",
+            "Joao Erik"
+        ],
+        "criador": "Raul Dangio"
+    },
+    {
+        "nome": "Administradores2",
+        "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis.",
+        "funcionarios": [
+            "Raul Dangio",
+            "Vinicius Nogueira"
+        ],
+        "criador": "Raul Dangio"
+    }
+]

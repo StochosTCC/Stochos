@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "../../components/Card/CardMeta";
 import dataMeta from "./meta.json";
 import dataUser from "../usuario/userinfo.json";
 import style from "./Meta.module.scss";
@@ -7,6 +7,8 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import Formulario from "./components/Formulario";
 import { Modal } from "@mui/material";
+import { GrupoMeta } from "../../enums/GrupoMeta/GrupoMeta";
+import CardMeta from "../../components/Card/CardMeta";
 
 export default function Metas() {
   let userinfo = dataUser[0];
@@ -34,8 +36,7 @@ export default function Metas() {
             if (value.remetente === userinfo.nome) {
               return (
                 <div className={style.meta}>
-                  <Card
-                    type="meta"
+                  <CardMeta
                     data={value.data}
                     nome={value.nome}
                     remetente={value.remetente}
@@ -59,8 +60,7 @@ export default function Metas() {
             if (value.remetente !== userinfo.nome) {
               return (
                 <div className={style.meta}>
-                  <Card
-                    type="meta"
+                  <CardMeta
                     data={value.data}
                     nome={value.nome}
                     remetente={value.remetente}
