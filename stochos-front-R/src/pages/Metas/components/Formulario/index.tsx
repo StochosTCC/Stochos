@@ -1,7 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import style from "./Formulario.module.scss";
-import { RadioGroup } from "@headlessui/react";
-import { FormControlLabel, Radio } from "@mui/material";
 
 export default function Formulario() {
   const [dados, setDados] = useState({
@@ -12,7 +10,7 @@ export default function Formulario() {
     urgencia: 1,
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
     // Verifica se o campo é 'funcionarios' e trata os valores como um array
@@ -32,6 +30,22 @@ export default function Formulario() {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(dados);
+  };
+
+  const [value, setValue] = useState(1);
+
+  const handleChangeRange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(parseInt(e.target.value));
+    console.log(getBackgroundColor())
+  };
+  const getBackgroundColor = () => {
+    if (value === 1) {
+      return `#4CD60F`;
+    } else if (value === 2) {
+      return `#FDF427`;
+    } else if (value === 3) {
+      return `#F92E2E`;
+    }
   };
 
   return (
@@ -55,32 +69,17 @@ export default function Formulario() {
           <input className={style.input} type="text" />
         </div>
         <div className={style.urgenciadiv}>
-          <label className={style.urgenciatext}>Urgência</label>
-          <div className={style.radioGroup}>
-            
-              <input
-                className={`${style.radio1} ${style.radio}`}
-                value={1}
-                type="radio"
-                name="urgencia"
-                id="radio1"
-              />
-         
-            <input
-              className={`${style.radio2} ${style.radio}`}
-              value={2}
-              type="radio"
-              name="urgencia"
-              id="radio2"
-            />
-            <input
-              className={`${style.radio3} ${style.radio}`}
-              value={3}
-              type="radio"
-              name="urgencia"
-              id="radio3"
-            />
-          </div>
+          <label htmlFor="urg" className={style.urgenciatext}>
+            Urgência
+          </label>
+          <input
+            type="range"
+            min="1"
+            max="3"
+            value={value}
+            onChange={handleChangeRange}
+            style={{ accentColor: getBackgroundColor(), width: "80%" }}
+          />
         </div>
         <button className={style.botao} type="submit">
           Criar Meta

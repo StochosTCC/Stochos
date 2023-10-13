@@ -46,31 +46,17 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-  input{
-    display: none;
-    content: '';
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid rgb(255, 0, 0);
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 8px;
-    margin-bottom: 3px;
-  }
+ 
 
-  input:checked{
-    background-color: rgb(247, 5, 5);
-    box-sizing: border-box;
-    border: 5px solid red;
-    padding: 4px;
-  }
+  
 }
 
 .radio {
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
   cursor: pointer;
 }
 
+.range{
+  width: 80%;
+}
