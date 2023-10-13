@@ -26,8 +26,8 @@ export default function CardPopup({remetente, descricao, destinatarios}: Props){
                     })}
                 </select>
             </div>
-            <div>
-                <button>Concluir</button>
+            <div className={style.botaodiv}>
+                <button className={style.botao}>Concluir</button>
             </div>
         </div>
     )
