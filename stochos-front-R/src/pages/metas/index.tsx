@@ -10,8 +10,7 @@ import { Modal } from "@mui/material";
 
 export default function Metas() {
   let userinfo = dataUser[0];
-  console.log(userinfo);
-  console.log(dataUser);
+
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -32,15 +31,18 @@ export default function Metas() {
         <h1 className={style.titulo}>Metas Criadas</h1>
         <div className={style.metas}>
           {dataMeta.map((value) => {
-            if (value.nomeremetente === userinfo.nome) {
+            if (value.remetente === userinfo.nome) {
               return (
                 <div className={style.meta}>
                   <Card
                     type="meta"
                     data={value.data}
                     nome={value.nome}
-                    nomeremetente={value.nomeremetente}
+                    remetente={value.remetente}
                     urgencia={value.urgencia}
+                    descricao={value.descricao}
+                    destinatarios={value.destinatarios}
+                    config={true}
                   />
                 </div>
               );
@@ -54,15 +56,18 @@ export default function Metas() {
         <h1 className={style.titulo}>Metas Para Fazer</h1>
         <div className={style.metas}>
           {dataMeta.map((value) => {
-            if (value.nomeremetente !== userinfo.nome) {
+            if (value.remetente !== userinfo.nome) {
               return (
                 <div className={style.meta}>
                   <Card
                     type="meta"
                     data={value.data}
                     nome={value.nome}
-                    nomeremetente={value.nomeremetente}
+                    remetente={value.remetente}
                     urgencia={value.urgencia}
+                    descricao={value.descricao}
+                    destinatarios={value.destinatarios}
+                    config={false}
                   />
                 </div>
               );

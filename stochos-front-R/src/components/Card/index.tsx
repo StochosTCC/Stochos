@@ -1,68 +1,103 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Popover } from "@mui/material";
 import style from "./Card.module.scss";
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { deepOrange, deepPurple, pink, red } from "@mui/material/colors";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import { deepOrange, deepPurple, pink, red, teal } from "@mui/material/colors";
+import { useState } from "react";
+import CardPopup from "../CardPopup";
 
 interface Props {
-    type: string
-    nome: string
-    nomeremetente: string,
-    urgencia: number,
-    data: string
+  type: string;
+  nome: string;
+  remetente: string;
+  urgencia: number;
+  data: string;
+  descricao: string,
+  destinatarios: string[]
+  config: boolean;
 }
 
-
-
-export default function Card({ type, nome, nomeremetente, data, urgencia }: Props) {
-    let color = ""
-    if (type === "meta") {
-        if (urgencia === 1) {
-            color = style.urgencia1
-        }
-        else if (urgencia === 2) {
-            color = style.urgencia2
-        }
-        else if (urgencia === 3) {
-            color = style.urgencia3
-        }
+export default function Card({
+  type,
+  nome,
+  remetente,
+  data,
+  urgencia,
+  config,descricao,destinatarios
+}: Props) {
+  let color = "";
+  if (type === "meta") {
+    if (urgencia === 1) {
+      color = style.urgencia1;
+    } else if (urgencia === 2) {
+      color = style.urgencia2;
+    } else if (urgencia === 3) {
+      color = style.urgencia3;
     }
-    return (
-        <div className={style.card}>
-            <div className={style.cardcima}>
-                <div>
-                    <p className={`${style.nomemeta} ${style.textolimitado}`}>{nome}</p>
-                    <p className={style.nomeremetente}>{nomeremetente}</p>
-                </div>
-                <div>
-                    {randomColor(nomeremetente)}
-                </div>
-            </div>
+  }
 
-            <div className={style.cardbaixo}>
-                <SettingsOutlinedIcon className={style.icon} sx={{ fontSize: 40 }}></SettingsOutlinedIcon>
-                <div className={style.urg_e_data}>
-                    <div className={color}></div>
-                    <p>{data}</p>
-                </div>
-            </div>
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(
+    null
+  );
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    <>
+    <div className={style.card} aria-describedby={id} onClick={handleClick}>
+      <div className={style.cardcima}>
+        <div>
+          <p className={`${style.nomemeta} ${style.textolimitado}`}>{nome}</p>
+          <p className={style.nomeremetente}>{remetente}</p>
         </div>
-    )
+        <div>{randomColor(remetente)}</div>
+      </div>
+
+      <div className={`${config ? style.cardbaixoconfig : style.cardbaixo}`}>
+        {config && (
+          <SettingsOutlinedIcon
+            className={style.icon}
+            sx={{ fontSize: 40 }}
+          ></SettingsOutlinedIcon>
+        )}
+        <div className={style.urg_e_data}>
+          <div className={color}></div>
+          <p>{data}</p>
+        </div>
+      </div>
+    </div>
+    <Popover
+    id={id}
+    open={open}
+    anchorEl={anchorEl}
+    onClose={handleClose}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}>
+        <CardPopup remetente={remetente} descricao={descricao} destinatarios={destinatarios} />
+    </Popover>
+    </>
+  );
 }
 
+function randomColor(remetente: string) {
+  let size = 46;
+  let fontSize = 25;
 
-function randomColor(nomeremetente: string) {
-    let random = Math.floor(Math.random() * 4)
-    let size = 46
-    let fontSize = 25
-    switch (random) {
-        case 1:
-            return <Avatar sx={{ bgcolor: deepPurple[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
-        case 2:
-            return <Avatar sx={{ bgcolor: deepOrange[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
-        case 3:
-            return <Avatar sx={{ bgcolor: pink[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
-        case 4:
-            return <Avatar sx={{ bgcolor: red[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
-    }
-    return <Avatar sx={{ bgcolor: red[500], width: size, height: size, fontSize:fontSize }}>{nomeremetente[0]}</Avatar>
+  return (
+    <Avatar
+      sx={{ bgcolor: teal[500], width: size, height: size, fontSize: fontSize }}
+    >
+      {remetente[0]}
+    </Avatar>
+  );
 }

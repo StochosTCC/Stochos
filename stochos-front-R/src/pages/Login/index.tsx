@@ -36,9 +36,9 @@ export default function Login() {
             </div>
           </div>
           <div className={style.botaologindiv}>
-            <button className={style.botaologin}>
-              <a href="/metas">Login</a>
-            </button>
+            <a href="/metas">
+              <button className={style.botaologin}>Login</button>
+            </a>
           </div>
         </div>
       </div>
