@@ -85,6 +85,7 @@ export default function CardMeta({
       >
         <CardPopup
           remetente={remetente}
+          nomemeta={nome}
           descricao={descricao}
           destinatarios={destinatarios}
         />
