@@ -3,7 +3,7 @@ import style from "./Login.module.scss";
 
 export default function Login() {
   return (
-    <div className={`${style.page} h-full `}>
+    <div className={`${style.page} `}>
       <div className={style.container}>
         <div className={`${style.subcontainer}`}>
           <div className={style.subcontainerdiv}>
@@ -28,10 +28,14 @@ export default function Login() {
           <div className={style.login}>
             <div className={style.formulariodiv}>
               <form className={style.formulario} action="">
-                <label className={style.formulariolabel}>Usuario</label>
-                <input className={style.formularioinput} type="text" />
-                <label className={style.formulariolabel}> Senha</label>
-                <input className={style.formularioinput} type="password" />
+                <div className={style.miniform}>
+                  <label className={style.formulariolabel}>Usuario</label>
+                  <input className={style.formularioinput} type="text" />
+                </div>
+                <div className={style.miniform}>
+                  <label className={style.formulariolabel}> Senha</label>
+                  <input className={style.formularioinput} type="password" />
+                </div>
               </form>
             </div>
           </div>
