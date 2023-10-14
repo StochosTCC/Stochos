@@ -3,7 +3,7 @@ import style from "./CardMeta.module.scss";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { deepOrange, deepPurple, pink, red, teal } from "@mui/material/colors";
 import { useState } from "react";
-import CardPopup from "../../CardPopup";
+import CardPopup from "../../CardPopup/CardMetaPopup";
 
 interface Props {
   nome: string;

@@ -31,6 +31,7 @@ export default function Grupos() {
                 <div className={style.meta}>
                   <CardGrupo
                     nomegrupo={grupo.nome}
+                    descricao={grupo.descricao}
                     funcionariosgrupo={grupo.funcionarios}
                     config={true}
                   />
@@ -45,12 +46,13 @@ export default function Grupos() {
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Seus Grupos</h1>
         <div className={style.metas}>
-        {grupoData.map((grupo) => {
+          {grupoData.map((grupo) => {
             if (grupo.criador !== userInfo[0].nome) {
               return (
                 <div className={style.meta}>
                   <CardGrupo
                     nomegrupo={grupo.nome}
+                    descricao={grupo.descricao}
                     funcionariosgrupo={grupo.funcionarios}
                     config={false}
                   />
