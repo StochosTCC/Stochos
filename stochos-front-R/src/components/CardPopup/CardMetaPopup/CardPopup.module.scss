@@ -1,10 +1,10 @@
-@import "../../styles/variaveis";
+@import "../../../styles/variaveis";
 
 .cardpopup{
     display: flex;
     flex-direction: column;
     width: 805px;
-    height: 530px;
+    height: 600px;
     overflow: auto;
     justify-content: center;
     
@@ -44,6 +44,7 @@
     border-radius: 10px;
     padding: 5px 10px;
     overflow: auto;
+    margin-bottom: 1rem;
 }
 
 .botao{
@@ -52,6 +53,10 @@
     margin-top: 1rem;
     color: $branco;
     border-radius: 10px;
+    &:disabled{
+        background-color: $cinza-escuro;
+
+    }
 }
 
 .botaodiv{

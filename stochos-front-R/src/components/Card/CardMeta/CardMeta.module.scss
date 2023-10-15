@@ -1,4 +1,4 @@
-@import "../../styles/variaveis";
+@import "../../../styles/variaveis";
 
 .card {
   width: 322px;
@@ -11,6 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .card:hover {
   background-color: $azul-botao;
   cursor: pointer;

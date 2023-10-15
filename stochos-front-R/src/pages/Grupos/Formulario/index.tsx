@@ -1,13 +1,16 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import userData from "../../usuario/userinfo.json";
 import style from "./Formulario.module.scss";
+import { Avatar } from "@mui/material";
+import { teal } from "@mui/material/colors";
+
+
 
 export default function Formulario() {
   const [dados, setDados] = useState({
-    nomemeta: "",
+    nomegrupo: "",
     descricao: "",
-    prazo: "",
     funcionarios: [] as string[],
-    urgencia: 1,
   });
 
   const handleInputChange = (
@@ -20,7 +23,6 @@ export default function Formulario() {
       ...dados,
       [name]: name === "urgency" ? parseInt(value, 10) : value,
     });
-    getBackgroundColor(dados.urgencia)
   };
 
   const handleEmployeesChange = (
@@ -36,98 +38,74 @@ export default function Formulario() {
     });
   };
 
+  const criador = userData[0].nome;
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify(dados);
+    const formDataJSON = JSON.stringify({ dados, criador });
     console.log(formDataJSON);
 
     // Aqui você pode fazer o que quiser com o JSON, como enviar para um servidor, exibir na página, etc.
   };
-  const getBackgroundColor = (value: number) => {
-    value = Number(value)
-    if (value === 1) {
-      return `#4CD60F`;
-    } else if (value === 2) {
-      return `#FDF427`;
-    } else if (value === 3) {
-      return `#F92E2E`;
-    }
-    return '#ffffff'
-  };
 
   return (
-      <form onSubmit={handleSubmit} className={style.form}>
-        <div className={style.formcima}>
-          <label className={style.label}>Nome da Meta</label>
+    <form className={style.form} onSubmit={handleSubmit}>
+      <div className={style.formdiv}>
+        <Avatar
+          className={style.avatar}
+          sx={{
+            width: 150,
+            height: 150,
+            bgcolor: teal[500],
+            fontSize: 94,
+          }}
+        >
+          {dados.nomegrupo[0]}
+        </Avatar>
+        <div className={style.forminputdiv}>
+          <label className={style.label}>Nome do Grupo</label>
           <input
-            className={style.input}
             type="text"
-            name="nomemeta"
-            id="nomemeta"
-            defaultValue={dados.nomemeta}
+            name="nomegrupo"
+            id="nomegrupo"
+            defaultValue={dados.nomegrupo}
             onChange={handleInputChange}
             required
+            className={style.input}
           />
+        </div>
+        <div className={style.forminputdiv}>
           <label className={style.label}>Descricao</label>
           <textarea
             onChange={handleInputChange}
-            className={style.textarea}
             rows={4}
             cols={50}
             name="descricao"
             id="descricao"
             value={dados.descricao}
             required
+            className={style.textarea}
           ></textarea>
-          <label className={style.label}>Prazo</label>
-          <input
-            className={style.input}
-            onChange={handleInputChange}
-            type="datetime-local"
-            name="prazo"
-            id="prazo"
-            value={dados.prazo}
-            required
-          />
-          <label className={style.label}>
-            Funcionários
-          </label>
+        </div>
+        <div className={style.forminputdiv}>
+          <label className={style.label}>Funcionários (separar por virgula)</label>
           <select
             id="funcionarios"
             name="funcionarios"
             value={dados.funcionarios}
             multiple
             onChange={handleEmployeesChange}
-            className={style.funcionarios}
             required
+            className={style.select}
           >
             <option value="Funcionário 1">Funcionário 1</option>
             <option value="Funcionário 2">Funcionário 2</option>
             <option value="Funcionário 3">Funcionário 3</option>
           </select>
         </div>
-        <div className={style.urgenciadiv}>
-          <label htmlFor="urgencia" className={style.urgenciatext}>
-            Urgência
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="3"
-            id="urgencia"
-            name="urgencia"
-            value={dados.urgencia}
-            onChange={handleInputChange}
-            style={{
-              accentColor: getBackgroundColor(dados.urgencia),
-              width: "80%",
-              marginBottom: "1rem",
-            }}
-          />
-        </div>
-        <button className={style.botao} type="submit">
-          Criar Meta
-        </button>
-      </form>
+      </div>
+
+      <button className={style.botao} type="submit">Criar Grupo</button>
+    </form>
   );
 }

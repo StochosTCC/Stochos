@@ -1,0 +1,49 @@
+@import "../../../styles/variaveis";
+
+.card {
+  width: 322px;
+  height: 195px;
+  background-color: $azul-padrao;
+  border-radius: 30px;
+  color: $branco;
+  padding: 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover {
+    background-color: $azul-botao;
+    cursor: pointer;
+  }
+}
+
+.cardcima {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.funclimitado{
+    max-height: 70px;
+    overflow: hidden;
+    position: relative;
+}
+
+.icon:hover{
+    transform: rotate(360deg);
+    transition: transform 1s;
+}
+
+.func{
+    width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

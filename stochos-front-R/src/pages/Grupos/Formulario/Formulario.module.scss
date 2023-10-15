@@ -1,0 +1,76 @@
+@import "../../../styles/variaveis";
+
+.form {
+  width: 500px;
+  height: 780px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.formdiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.input {
+  width: 100%;
+  height: 20px;
+  border-radius: 100px;
+  padding: 20px;
+  border: 1px solid $cinza-texto;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  height: 150px;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid $cinza-texto;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.forminputdiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  overflow: auto;
+  border: 1px solid $cinza-texto;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 1rem;
+
+}
+
+.label {
+  margin-left: 1.3rem;
+}
+
+.botao {
+  background-color: $azul-botao;
+  padding: 1rem 2rem;
+  border-radius: 18px;
+  color: $branco;
+  font-size: 2rem;
+  font-weight: lighter;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  min-width: 60%;
+  max-width: 60%;
+  white-space: nowrap;
+  margin: auto;
+}
