@@ -66,7 +66,7 @@ export default function CardGrupo({
           horizontal: "center",
         }}
       >
-        <CardGrupoPopup nome={nomegrupo} descricao={descricao} funcionarios={funcionariosgrupo} />
+        <CardGrupoPopup nome={nomegrupo} descricao={descricao} funcionarios={funcionariosgrupo} disable={config} />
       </Popover>
     </div>
   );

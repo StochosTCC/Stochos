@@ -88,6 +88,7 @@ export default function CardMeta({
           nomemeta={nome}
           descricao={descricao}
           destinatarios={destinatarios}
+          disable={config}
         />
       </Popover>
     </>

@@ -1,0 +1,46 @@
+@import "../../../styles/variaveis";
+
+.cardpopup{
+    display: flex;
+    flex-direction: column;
+    width: 805px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 20px;
+    .divinput{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        input{
+            border: 1px solid $cinza-texto;
+            width: 95%;
+            height: 40px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .desc{
+            border: 1px solid $cinza-texto;
+            border-radius: 20px;
+            padding: 10px 20px;
+            height: 160px;
+            overflow: auto;
+        }
+
+        .select{
+            border: 1px solid $cinza-texto;
+            border-radius: 20px;
+            padding: 10px 20px;
+            overflow: auto;           
+        }
+
+        
+        label{
+            margin-left: 1.3rem;
+        }
+    }
+    .botao{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+}

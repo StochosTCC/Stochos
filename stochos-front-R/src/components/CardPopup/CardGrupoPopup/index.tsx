@@ -1,16 +1,36 @@
+import { Button, Popover } from "@mui/material";
 import style from "./CardGrupoPopup.module.scss";
+import CardMeta from "../../Card/CardMeta";
+import { useState } from "react";
+import Formulario from "./Formulario";
+import { GrupoMeta } from "../../../enums/GrupoMeta/GrupoMeta";
 
 interface Props {
   nome: string;
   descricao: string;
   funcionarios: string[];
+  disable: boolean
 }
 
 export default function CardGrupoPopup({
   nome,
   descricao,
   funcionarios,
+  disable
 }: Props) {
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
   return (
     <div className={style.cardpopup}>
       <div className={style.divinput}>
@@ -54,6 +74,21 @@ export default function CardGrupoPopup({
             return <option value={dest}>{dest}</option>;
           })}
         </select>
+      </div>
+      <div className={style.botao}>
+        {disable && <Button aria-describedby={id} variant="contained" size="large" onClick={handleClick}>Enviar Meta</Button>}
+        {!disable && <Button variant="contained" size="large" disabled>Enviar Meta</Button>}
+        <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}>
+         <Formulario funcionarios={funcionarios} />
+        </Popover>
       </div>
     </div>
   );

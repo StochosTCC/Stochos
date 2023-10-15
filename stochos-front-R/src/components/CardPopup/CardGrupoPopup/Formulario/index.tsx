@@ -1,12 +1,17 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import style from "./Formulario.module.scss";
 
-export default function Formulario() {
+interface Props{
+    funcionarios: string[]
+}
+
+export default function Formulario({funcionarios}: Props){
+
   const [dados, setDados] = useState({
     nomemeta: "",
     descricao: "",
     prazo: "",
-    funcionarios: [] as string[],
+    funcionarios: funcionarios,
     urgencia: 1,
   });
 
@@ -101,9 +106,9 @@ export default function Formulario() {
             className={style.funcionarios}
             required
           >
-            <option value="Funcionário 1">Funcionário 1</option>
-            <option value="Funcionário 2">Funcionário 2</option>
-            <option value="Funcionário 3">Funcionário 3</option>
+            {funcionarios.map((func) => {
+                return <option value={func} selected>{func}</option>
+            })}
           </select>
         </div>
         <div className={style.urgenciadiv}>

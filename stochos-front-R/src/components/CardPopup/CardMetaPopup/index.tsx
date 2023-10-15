@@ -1,14 +1,16 @@
+import { Button } from "@mui/material";
 import style from "./CardPopup.module.scss";
 
 interface Props{
     remetente: string,
     nomemeta: string
     descricao: string,
-    destinatarios: string[]
+    destinatarios: string[],
+    disable: boolean
 }
 
 
-export default function CardPopup({remetente, nomemeta, descricao, destinatarios}: Props){
+export default function CardPopup({remetente, nomemeta, descricao, destinatarios, disable}: Props){
     return(
         <div className={style.cardpopup}>
             <div className={style.divinput}>
@@ -32,7 +34,9 @@ export default function CardPopup({remetente, nomemeta, descricao, destinatarios
                 </select>
             </div>
             <div className={style.botaodiv}>
-                <button className={style.botao}>Concluir</button>
+                {!disable &&    <Button variant="contained" size="large" >Concluir</Button>}
+            {disable && <Button variant="contained" size="large" disabled>Concluir</Button>
+        }                
             </div>
         </div>
     )
