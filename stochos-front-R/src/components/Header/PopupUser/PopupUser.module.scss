@@ -1,0 +1,18 @@
+@import "../../../../src/styles/variaveis";
+
+.botoes {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem;
+  .botao {
+      border-radius: 10px;
+    margin-top: 0.5rem;
+    background-color: $branco;
+    width: 8vw;
+    height: 6vh;
+  }
+}

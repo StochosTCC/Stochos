@@ -1,6 +1,6 @@
 import CardGrupo from "../../components/Card/CardGrupo";
 import grupoData from "./grupos.json";
-import userInfo from "../usuario/userinfo.json";
+import userInfo from "../Usuario/userinfo.json";
 import style from "./Grupos.module.scss";
 import { useState } from "react";
 import { Button, Popover } from "@mui/material";
