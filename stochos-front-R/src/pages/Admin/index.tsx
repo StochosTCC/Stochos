@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import AdminTab1 from "./Components";
+import AdminTab1 from "./Components/AdminTab1";
 import style from "./Admin.module.scss";
 
 export default function Admin() {

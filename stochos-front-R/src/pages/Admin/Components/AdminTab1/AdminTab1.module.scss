@@ -1,0 +1,28 @@
+@import "../../../../styles/variaveis";
+
+.CRUD{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  height: 50vh;
+  border: 1px solid $cinza-claro;
+}
+
+table{
+  border: 1px solid;
+}
+
+td{
+  border: 1px solid;
+}
+
+tr{
+  border: 1px solid;
+}
+
+.botoes{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
