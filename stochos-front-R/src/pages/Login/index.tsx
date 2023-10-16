@@ -11,7 +11,7 @@ export default function Login() {
           </div>
           <div className={style.subcontainerdiv}>
             <p className={style.descricao}>
-              Uma nova forma <br /> de organização
+              hacked by joao erik-2077
             </p>
           </div>
           <div className={style.subcontainerdiv}>
