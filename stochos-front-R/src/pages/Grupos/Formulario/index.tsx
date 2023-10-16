@@ -1,5 +1,5 @@
 import { useState } from "react";
-import userData from "../../usuario/userinfo.json";
+import userData from "../../Usuario/userinfo.json";
 import style from "./Formulario.module.scss";
 import { Avatar } from "@mui/material";
 import { teal } from "@mui/material/colors";

@@ -1,6 +1,6 @@
 import Card from "../../components/Card/CardMeta";
 import dataMeta from "./meta.json";
-import dataUser from "../usuario/userinfo.json";
+import dataUser from "../Usuario/userinfo.json";
 import style from "./Meta.module.scss";
 import React, { useState } from "react";
 import Popover from "@mui/material/Popover";
