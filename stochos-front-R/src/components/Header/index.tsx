@@ -3,7 +3,7 @@ import logo from "../../assets/longlogo.png";
 import Popup from "./Popup";
 import { GrupoMeta } from "../../enums/GrupoMeta/GrupoMeta";
 import { Avatar } from "@mui/material";
-import dataUser from "../../pages/Usuario/userinfo.json"
+import dataUser from "../../pages/Usuario/userinfo.json";
 import React from "react";
 import Popover from '@mui/material/Popover';
 import PopoverUser from "./PopupUser";
@@ -37,9 +37,9 @@ export default function Header() {
 
           <div className={style.usuarioinfo}>
             <span className={style.nomedeusuario}>{dataUser[0].nome}</span>
-            
+
             <div><Avatar aria-describedby={id} onClick={handleClick}>{dataUser[0].nome[0]}</Avatar></div>
-            <Popover 
+            <Popover
                id={id}
                open={open}
                anchorEl={anchorEl}

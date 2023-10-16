@@ -1,5 +1,5 @@
-import setores from "../../../../usuario/setor.json";
-import cargos from "../../../../usuario/cargos.json";
+import setores from "../../../../Usuario/setor.json";
+import cargos from "../../../../Usuario/cargos.json";
 
 
 export default function PopupCriarUsuario() {
