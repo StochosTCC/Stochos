@@ -11,20 +11,20 @@ interface Props{
   setor?: {
     nomesetor: string,
     id: number
-  },
-  cargos?: []
+  }
+  cargos?: number[]
 }
 
 
 export default function PopupCriarUsuario({...props}:Props) {
 
 
-  const [dados, setDados] = useState({
-    username: "",
-    email: "",
-    password: "",
-    setor: {},
-    cargos: [] as number[],
+    const [dados, setDados] = useState({
+    username: props.username || "",
+    email: props.email || "",
+    password: props.password || "",
+    setor: props.setor || {nomesetor: "Setor Nao Existe", id: 0},
+    cargos: props.cargos || [] as number[],
   });
 
   const handleInputChange = (
@@ -62,22 +62,22 @@ export default function PopupCriarUsuario({...props}:Props) {
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.divinput}>
         <label htmlFor="username">Nome de Usuário</label>
-        <input onChange={handleInputChange} type="text" name="username" id="username" defaultValue={props.username ? props.username : ""} required/>
+        <input onChange={handleInputChange} type="text" name="username" id="username" defaultValue={props.username ?? ""} required/>
       </div>
       <div className={style.divinput}>
         <label htmlFor="email">Email</label>
-        <input onChange={handleInputChange} type="email" name="email" id="email" defaultValue={props.email ? props.email : ""} required/>
+        <input onChange={handleInputChange} type="email" name="email" id="email" defaultValue={props.email ?? ""} required/>
       </div>
       <div className={style.divinput}>
         <label htmlFor="password">Senha</label>
-        <input onChange={handleInputChange} type="password" name="password" id="password" defaultValue={props.password ? props.password : ""} required />
+        <input onChange={handleInputChange} type="password" name="password" id="password" defaultValue={props.password ?? ""} required />
       </div>
       <div className={style.divinput}>
         <label htmlFor="setor">Setor</label>
         <select onChange={handleInputChange} className={style.selectcargo} name="setor" id="setor" required>
-        <option value="" selected disabled hidden>Selecione aqui</option>
+        {props.setor === undefined && <option value="" selected disabled hidden>Selecione aqui</option>}
           {setores.map( (setor) =>{
-            if( setor.id === props.setor?.id){
+            if( setor.id === Number(props.setor?.id)){
               return <option value={setor.id} selected>{setor.nomesetor}</option>
             }
             return <option value={setor.id}>{setor.nomesetor}</option>
@@ -92,7 +92,7 @@ export default function PopupCriarUsuario({...props}:Props) {
           })}
         </select>
       </div>
-      <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
+      <Button   className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
     </form>
   );
 }
