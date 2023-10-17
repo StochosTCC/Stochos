@@ -29,11 +29,22 @@
     background-color: $azul-botao;
 
     border-radius: 10px;
-
-    .selecao:hover{
-
-    }
-
-
 }
 
+.buttons{
+
+    color: $branco;
+
+    margin-top: 1vh;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    padding: 1rem;
+
+    background-color: $azul-botao;
+
+    border-radius: 10px;
+}
+
+.lb{
+    color: $branco;
+}
