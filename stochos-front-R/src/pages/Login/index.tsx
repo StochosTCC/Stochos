@@ -11,7 +11,7 @@ export default function Login() {
           </div>
           <div className={style.subcontainerdiv}>
             <p className={style.descricao}>
-              Uma nova forma <br /> de organização
+            Uma nova forma <br /> de organização
             </p>
           </div>
           <div className={style.subcontainerdiv}>
