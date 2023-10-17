@@ -36,10 +36,9 @@ function Botaos({ user }: any) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-
   const deletarUser = () => {
-    console.log(user.id)
-  }
+    console.log(user.id);
+  };
   return (
     <div>
       <Button
@@ -63,9 +62,11 @@ function Botaos({ user }: any) {
           horizontal: "center",
         }}
       >
-<PopupCriarUsuario />
+        <div>Salvar Alterações</div>
       </Popover>
-      <Button variant="contained" color="secondary" onClick={deletarUser}>EXCLUIR</Button>
+      <Button variant="contained" color="secondary" onClick={deletarUser}>
+        EXCLUIR
+      </Button>
     </div>
   );
 }
@@ -74,17 +75,20 @@ const rows = AdminDados;
 
 export default function AdminTab1() {
   return (
-    <div style={{ height: 600, width: "70%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-      />
+    <div>
+      <div style={{ height: 600, width: "70%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+        />
+      </div>
+      <Button size="large">Criar Usuario</Button>
     </div>
   );
 }
