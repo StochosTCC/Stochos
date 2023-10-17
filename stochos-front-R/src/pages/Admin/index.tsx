@@ -1,6 +1,7 @@
 import { Tab } from "@headlessui/react";
 import AdminTab1 from "./Components/AdminTab1";
 import style from "./Admin.module.scss";
+import AdminTab2 from "./Components/AdminTab2";
 
 export default function Admin() {
   return (
@@ -20,7 +21,9 @@ export default function Admin() {
           <AdminTab1 />
         </Tab.Panel>
 
-        <Tab.Panel>Content 2</Tab.Panel>
+        <Tab.Panel>
+          <AdminTab2/>
+        </Tab.Panel>
         <Tab.Panel>Content 3</Tab.Panel>
         <Tab.Panel>Content 4</Tab.Panel>
         <Tab.Panel>Content 5</Tab.Panel>
