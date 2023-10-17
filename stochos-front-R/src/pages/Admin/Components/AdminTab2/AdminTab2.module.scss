@@ -1,0 +1,39 @@
+@import "../../../../styles/variaveis";
+
+*{
+  padding: 0;
+}
+
+.botoes{
+  display: flex;
+  width: 100%;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.datagrid{
+  margin: 0 auto;
+}
+
+.table{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+
+.botaocriausuario{
+
+  width: 11rem;
+  margin: 2rem auto !important;
+
+}
+
+.botaoexcluir{
+  margin-left: 1rem !important;
+  background-color: $vermelho;
+}
+
+.cargos{
+  overflow: auto;
+}
+
+
