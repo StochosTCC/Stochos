@@ -40,9 +40,8 @@ export default function Formulario() {
     event.preventDefault();
     const formDataJSON = JSON.stringify(dados);
     console.log(formDataJSON);
-
-    // Aqui você pode fazer o que quiser com o JSON, como enviar para um servidor, exibir na página, etc.
   };
+
   const getBackgroundColor = (value: number) => {
     value = Number(value)
     if (value === 1) {

@@ -1,0 +1,44 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  justify-content: space-around;
+
+  .divinput{
+    display: flex;
+    flex-direction: column;
+
+    input, select {
+      border: 1px solid #000;
+    }
+
+    input{
+      height: 35px;
+      border-radius: 20px;
+      padding: 0 15px;
+
+    }
+
+    .selectcargo{
+      height: 35px;
+      border-radius: 20px;
+      padding: 0 15px;
+    }
+
+    select[multiple]{
+      overflow: auto;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    label{
+    }
+
+  }
+  .botao{
+    width: 15rem;
+    margin: 0 auto;
+  }
+}

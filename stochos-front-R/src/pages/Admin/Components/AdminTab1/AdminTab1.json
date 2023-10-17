@@ -5,7 +5,14 @@
     "email": "gabirelHsantos2018@hmail.com",
     "password": "Viniciusmiratorta2005",
     "phone": "40028666",
-    "idsetor": 18
+    "setor": {
+      "nomesetor": "Setor A",
+      "id": 1
+    },
+    "cargos": [
+      { "nomecargo": "Administrador", "id": 1 },
+      { "nomecargo": "Programador", "id": 2 }
+    ]
   },
 
   {
@@ -14,7 +21,14 @@
     "email": "naotomobanho@protonmail.com",
     "password": "senha321",
     "phone": "2345678",
-    "idsetor": 3
+    "setor": {
+      "nomesetor": "Setor A",
+      "id": 1
+    },
+    "cargos": [
+      { "nomecargo": "Administrador", "id": 1 },
+      { "nomecargo": "Programador", "id": 2 }
+    ]
   },
 
   {
@@ -23,7 +37,14 @@
     "email": "campeaodecomergramade2018@outook.com",
     "password": "Tamanduá",
     "phone": "98765432",
-    "idsetor": 7
+    "setor": {
+      "nomesetor": "Setor B",
+      "id": 2
+    },
+    "cargos": [
+      { "nomecargo": "Administrador", "id": 1 },
+      { "nomecargo": "Programador", "id": 2 }
+    ]
   },
 
   {
@@ -32,6 +53,13 @@
     "email": "tiktokerpro2023@baidu.com.cn",
     "password": "max123",
     "phone": "29384756",
-    "idsetor": 9
+    "setor": {
+      "nomesetor": "Setor B",
+      "id": 2
+    },
+    "cargos": [
+      { "nomecargo": "Administrador", "id": 1 },
+      { "nomecargo": "Programador", "id": 2 }
+    ]
   }
 ]
