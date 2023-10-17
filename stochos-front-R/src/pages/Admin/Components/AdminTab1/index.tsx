@@ -5,11 +5,13 @@ import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import PopupCriarUsuario from "./Popup";
 
+const largura = window.innerWidth
+
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 170 },
-  { field: "nomeusuario", headerName: "Usuário", width: 240 },
-  { field: "email", headerName: "email", width: 300 },
-  { field: "phone", headerName: "Telefone", width: 170 },
+  { field: "id", headerName: "ID", width: (largura*90/100)/5 },
+  { field: "nomeusuario", headerName: "Usuário", width: (largura*90/100)/5 },
+  { field: "email", headerName: "email", width: (largura*90/100)/5 },
+  { field: "phone", headerName: "Telefone", width: (largura*90/100)/5 },
   {
     field: "actions",
     headerName: "Actions",
@@ -64,7 +66,7 @@ function Botaos({ user }: any) {
       >
         <div>Salvar Alterações</div>
       </Popover>
-      <Button variant="contained" color="secondary" onClick={deletarUser}>
+      <Button className={style.botaoexcluir} variant="contained" color="secondary" onClick={deletarUser}>
         EXCLUIR
       </Button>
     </div>
@@ -74,12 +76,26 @@ function Botaos({ user }: any) {
 const rows = AdminDados;
 
 export default function AdminTab1() {
+
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   return (
-    <div>
-      <div style={{ height: 600, width: "70%" }}>
+    <div className={style.container}>
+      <div className={style.datagrid} style={{ height: 600, width: "90%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
+          className={style.table}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
@@ -88,7 +104,19 @@ export default function AdminTab1() {
           pageSizeOptions={[5, 10]}
         />
       </div>
-      <Button size="large">Criar Usuario</Button>
+      <Button aria-describedby="criar-user" className={style.botaocriausuario} variant="contained" size="large" onClick={handleClick}>Criar Usuario</Button>
+      <Popover
+              id="criar-user"
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+      >
+        <PopupCriarUsuario />
+      </Popover>
     </div>
   );
 }

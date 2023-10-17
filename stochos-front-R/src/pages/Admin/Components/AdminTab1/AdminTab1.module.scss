@@ -1,28 +1,28 @@
 @import "../../../../styles/variaveis";
 
-.CRUD{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 90%;
-  height: 50vh;
-  border: 1px solid $cinza-claro;
-}
-
-table{
-  border: 1px solid;
-}
-
-td{
-  border: 1px solid;
-}
-
-tr{
-  border: 1px solid;
-}
-
 .botoes{
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.datagrid{
+  margin: 0 auto;
+}
+
+.table{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+
+.botaocriausuario{
+  width: 11rem;
+  margin: 2rem auto !important;
+
+}
+
+.botaoexcluir{
+  margin-left: 1rem;
 }
