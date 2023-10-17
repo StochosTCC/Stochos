@@ -1,1 +1,51 @@
 @import "../../styles/variaveis";
+
+.itens{
+    
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    grid-gap: 6rem;
+    
+    
+}
+
+.item{
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: $branco;
+    margin-bottom: 3rem;
+    margin-top: 0.8rem;
+
+    border: 2px solid;
+
+    width: 22vw;
+
+}
+
+
+.avatar{
+    padding: 8rem;
+    
+}
+
+.letraAvatar{
+    font-size: 6rem;
+}
+
+.posicaoAvatar{
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posicaoitens{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    margin-top: 8rem;
+}
