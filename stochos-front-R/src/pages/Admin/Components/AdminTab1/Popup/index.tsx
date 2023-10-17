@@ -62,7 +62,7 @@ export default function PopupCriarUsuario({...props}:Props) {
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.divinput}>
         <label htmlFor="username">Nome de Usuário</label>
-        <input onChange={handleInputChange} type="text" name="username" id="username" defaultValue={props.username ? props.username : "nao foi"} required/>
+        <input onChange={handleInputChange} type="text" name="username" id="username" defaultValue={props.username ? props.username : ""} required/>
       </div>
       <div className={style.divinput}>
         <label htmlFor="email">Email</label>
@@ -92,7 +92,7 @@ export default function PopupCriarUsuario({...props}:Props) {
           })}
         </select>
       </div>
-      <Button className={style.botao} size="large" variant="contained" type="submit">Criar Usuario</Button>
+      <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
     </form>
   );
 }
