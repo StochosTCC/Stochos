@@ -1,5 +1,9 @@
 @import "../../../../styles/variaveis";
 
+*{
+  padding: 0;
+}
+
 .botoes{
   display: flex;
   width: 100%;
@@ -24,5 +28,12 @@
 }
 
 .botaoexcluir{
-  margin-left: 1rem;
+  margin-left: 1rem !important;
+  background-color: $vermelho;
 }
+
+.cargos{
+  overflow: auto;
+}
+
+

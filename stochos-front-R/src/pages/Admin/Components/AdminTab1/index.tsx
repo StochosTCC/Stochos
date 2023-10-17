@@ -4,17 +4,44 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import PopupCriarUsuario from "./Popup";
+import { setPriority } from "os";
 
-const largura = window.innerWidth
+const largura = window.innerWidth;
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: (largura*90/100)/5 },
-  { field: "nomeusuario", headerName: "Usuário", width: (largura*90/100)/5 },
-  { field: "email", headerName: "email", width: (largura*90/100)/5 },
-  { field: "phone", headerName: "Telefone", width: (largura*90/100)/5 },
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "nomeusuario",
+    headerName: "Usuário",
+    width: 200
+  },
+  { field: "email", headerName: "email", width: (largura * 90) / 100 / 4 },
+  { field: "phone", headerName: "Telefone", width: 150 },
+  { field: "password", headerName: "Senha", width: 200 },
+  {
+    field: "nomesetor",
+    headerName: "Setor",
+    width: 150,
+    renderCell: (params) => (
+        <div>{params.row.setor.nomesetor}</div>
+        ),
+  },
+  {
+    field: "nomecargo",
+    headerName: "Cargo",
+    width: 200,
+    renderCell: (params) => (
+      <div className={style.cargos}>
+        {params.row.cargos.map( (element: any) => {
+          return <p>{element["nomecargo"]}</p>
+        })}
+      </div>
+      ),
+  },
+
   {
     field: "actions",
-    headerName: "Actions",
+    headerName: "Ações",
     width: 220,
     renderCell: (params) => (
       <div className={style.botoes}>
@@ -36,11 +63,11 @@ function Botaos({ user }: any) {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
 
   const deletarUser = () => {
     console.log(user.id);
   };
+
   return (
     <div>
       <Button
@@ -64,9 +91,14 @@ function Botaos({ user }: any) {
           horizontal: "center",
         }}
       >
-        <div>Salvar Alterações</div>
+        <PopupCriarUsuario username={user.nomeusuario} email={user.email} password={user.password} setor={user.setor} />
       </Popover>
-      <Button className={style.botaoexcluir} variant="contained" color="secondary" onClick={deletarUser}>
+      <Button
+        className={style.botaoexcluir}
+        variant="contained"
+        color="error"
+        onClick={deletarUser}
+      >
         EXCLUIR
       </Button>
     </div>
@@ -76,7 +108,6 @@ function Botaos({ user }: any) {
 const rows = AdminDados;
 
 export default function AdminTab1() {
-
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -104,16 +135,24 @@ export default function AdminTab1() {
           pageSizeOptions={[5, 10]}
         />
       </div>
-      <Button aria-describedby="criar-user" className={style.botaocriausuario} variant="contained" size="large" onClick={handleClick}>Criar Usuario</Button>
+      <Button
+        aria-describedby="criar-user"
+        className={style.botaocriausuario}
+        variant="contained"
+        size="large"
+        onClick={handleClick}
+      >
+        Criar Usuario
+      </Button>
       <Popover
-              id="criar-user"
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
+        id="criar-user"
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
       >
         <PopupCriarUsuario />
       </Popover>
