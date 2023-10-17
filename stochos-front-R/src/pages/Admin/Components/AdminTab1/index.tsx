@@ -141,6 +141,9 @@ export default function AdminTab1() {
         variant="contained"
         size="large"
         onClick={handleClick}
+        sx={{
+          p: 3
+        }}
       >
         Criar Usuario
       </Button>
