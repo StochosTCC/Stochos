@@ -12,8 +12,6 @@ export default function Admin() {
           <Tab className={style.tabsbutton}>Usuários</Tab>
           <Tab className={style.tabsbutton}>Cargos</Tab>
           <Tab className={style.tabsbutton}>Setor</Tab>
-          <Tab className={style.tabsbutton}>Criar Meta</Tab>
-          <Tab className={style.tabsbutton}>Criar Grupo</Tab>
         </div>
       </Tab.List>
 
@@ -24,8 +22,7 @@ export default function Admin() {
 
         <Tab.Panel><AdminTab2/></Tab.Panel>
         <Tab.Panel><AdminTab3/></Tab.Panel>
-        <Tab.Panel>Content 4</Tab.Panel>
-        <Tab.Panel>Content 5</Tab.Panel>
+      
       </Tab.Panels>
     </Tab.Group>
   );

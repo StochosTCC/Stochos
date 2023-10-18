@@ -9,7 +9,7 @@ const largura = window.innerWidth;
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "nomesetor", headerName: "setor", width: (largura*220/100)/3 },
+  { field: "nomesetor", headerName: "setor", width: (largura*218/100)/3 },
   
   {
     field: "actions",
@@ -90,6 +90,9 @@ export default function AdminTab3() {
         variant="contained"
         size="large"
         onClick={handleClick}
+        sx={{
+          p: 3
+        }}
       >
         Criar setor
       </Button>

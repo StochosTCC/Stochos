@@ -10,7 +10,7 @@ const largura = window.innerWidth;
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "nomecargo", headerName: "Cargo", width: (largura*220/100)/3 },
+  { field: "nomecargo", headerName: "Cargo", width: (largura*218/100)/3 },
   
   {
     field: "actions",
@@ -114,6 +114,9 @@ export default function AdminTab2() {
         variant="contained"
         size="large"
         onClick={handleClick}
+        sx={{
+          p: 3
+        }}
       >
         Criar cargo
       </Button>

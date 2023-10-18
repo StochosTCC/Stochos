@@ -4,15 +4,19 @@
 
 
     background-color: $azul-padrao ;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    margin-left: 20vw;
-    margin-right: 20vw;
+ 
     align-items: center;
     justify-content: center;
     display: flex;
     border-radius: 20px;
+    width: 20vw;
 
+    top: 50%;
+    left: 50%;
+  
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
 
 }
