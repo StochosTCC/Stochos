@@ -38,7 +38,7 @@ export default function Header() {
           <div className={style.usuarioinfo}>
             <span className={style.nomedeusuario}>{dataUser[0].nome}</span>
 
-            <div><Avatar aria-describedby={id} onClick={handleClick}>{dataUser[0].nome[0]}</Avatar></div>
+            <div><Avatar aria-describedby={id} onClick={handleClick} sx={{fontSize: 38, width: 60, height: 60}}>{dataUser[0].nome[0]}</Avatar></div>
             <Popover
                id={id}
                open={open}

@@ -26,7 +26,7 @@ export default function Popup({type}: Props) {
 
   if( type === GrupoMeta.GRUPO){
     return  <>
-        <Button aria-describedby={id} variant="text" onClick={handleClick}>Grupos</Button>
+        <Button aria-describedby={id} variant="text" onClick={handleClick} sx={{fontSize: 24, fontWeight: 540}}>Grupos</Button>
         <Popover
             id={id}
             open={open}
@@ -42,7 +42,7 @@ export default function Popup({type}: Props) {
       </>
   }else if( type === GrupoMeta.META){
     return  <>
-        <Button aria-describedby={id} variant="text" onClick={handleClick}>Metas</Button>
+        <Button aria-describedby={id} variant="text" onClick={handleClick} sx={{fontSize: 24, fontWeight: 540}}>Metas</Button>
         <Popover
             id={id}
             open={open}

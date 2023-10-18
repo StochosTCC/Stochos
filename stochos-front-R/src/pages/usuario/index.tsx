@@ -25,7 +25,7 @@ export default function Usuario() {
           <div>
           <p>Cargo</p>
             <p className={styles.item}>{dataUser[0].cargo}</p>
-            <p>Setors</p>
+            <p>Setores</p>
             <p className={styles.item}>{dataUser[0].setor}</p>
           </div>
         </div>
