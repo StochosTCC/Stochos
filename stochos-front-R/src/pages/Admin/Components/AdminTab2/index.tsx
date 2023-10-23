@@ -1,5 +1,5 @@
 import style from "./AdminTab2.module.scss";
-import DataCargo from "../../../Usuario/cargos.json"
+import DataCargo from "../../../Usuario/cargos.json";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
@@ -10,8 +10,8 @@ const largura = window.innerWidth;
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "nomecargo", headerName: "Cargo", width: (largura*218/100)/3 },
-  
+  { field: "nomecargo", headerName: "Cargo", width: (largura * 218) / 100 / 3 },
+
   {
     field: "actions",
     headerName: "Ações",
@@ -63,9 +63,7 @@ function Botaos({ cargo }: any) {
           vertical: "top",
           horizontal: "center",
         }}
-      >
-    
-      </Popover>
+      ></Popover>
       <Button
         className={style.botaoexcluir}
         variant="contained"
@@ -81,19 +79,19 @@ function Botaos({ cargo }: any) {
 const rows = DataCargo;
 
 export default function AdminTab2() {
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-  
-    const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    return(
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  return (
     <div className={style.container}>
       <div className={style.datagrid} style={{ height: 600, width: "90%" }}>
         <DataGrid
@@ -115,7 +113,7 @@ export default function AdminTab2() {
         size="large"
         onClick={handleClick}
         sx={{
-          p: 3
+          p: 3,
         }}
       >
         Criar cargo
@@ -130,8 +128,8 @@ export default function AdminTab2() {
           horizontal: "center",
         }}
       >
-          <PopupCriarCargo/>   
+        <PopupCriarCargo />
       </Popover>
     </div>
-    )
+  );
 }
