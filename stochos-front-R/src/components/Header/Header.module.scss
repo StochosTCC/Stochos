@@ -29,7 +29,7 @@
 
 .grupometa{
   width: 33.33%;
-
+  align-items: center;
   display: flex;
   justify-content: space-around;
 }
@@ -39,6 +39,22 @@
   display: flex;
   justify-content: end;
   align-items: center;
+
+ 
+  
+}
+
+.bui{
+
+  padding: 0.5rem;
+  display: flex;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover{
+    background-color: #cccc;
+    opacity: 5;
+    transition: 0.25s;
+  }
 }
 
 .nomedeusuario{

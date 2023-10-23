@@ -35,11 +35,15 @@ export default function Header() {
             <Popup type={GrupoMeta.META} />
           </div>
 
-          <div className={style.usuarioinfo}>
+          <div   className={style.usuarioinfo}>
+             <div aria-describedby={id} onClick={handleClick} className={style.bui}>
             <span className={style.nomedeusuario}>{dataUser[0].nome}</span>
 
-            <div><Avatar aria-describedby={id} onClick={handleClick} sx={{fontSize: 38, width: 60, height: 60}}>{dataUser[0].nome[0]}</Avatar></div>
-            <Popover
+            <div><Avatar   >{dataUser[0].nome[0]}</Avatar></div>
+            </div>
+            
+          </div>
+          <Popover
                id={id}
                open={open}
                anchorEl={anchorEl}
@@ -50,7 +54,6 @@ export default function Header() {
                }}>
                  <PopoverUser/>
         </Popover>
-          </div>
         </div>
       </header>
     </>

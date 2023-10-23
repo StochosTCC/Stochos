@@ -50,10 +50,10 @@
 
   .botao{
     background-color: $azul-escuro;
-    padding: 1.5vh 2vw;
+    padding: 1vh 1vw;
     border-radius: 18px;
     color: $branco;
-    font-size: 1.25vw;
+    font-size: 1vw;
     font-weight: lighter;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;  }
     
@@ -68,7 +68,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: $branco;
-   border-radius:  0px 25px 25px 0px;
+   border-radius:  0px 20px 20px 0px;
 }
 
 
@@ -102,7 +102,7 @@
 
       }
       .formulariolabel{
-        font-size: 20px;
+        font-size: 1.25vw;
       }
       .formularioinput{
         background-color: $branco;
@@ -125,8 +125,10 @@
     padding: 1.5vh 3vw;
     border-radius: 18px;
     color: $branco;
-    font-size: 1.25vw;
+    font-size: 1.5vh;
     font-weight: lighter;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;  }
 
   }
+
+
