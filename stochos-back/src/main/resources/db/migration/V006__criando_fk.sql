@@ -1,10 +1,6 @@
 alter table usuario add constraint fk_usuario_setor foreign key (idsetor) references setor(id);
 alter table meta add constraint fk_meta_grupo foreign key (idgrupo) references grupo(id);
 
-insert into cargo values(0, "SECRETARIO GERAL");
-insert into cargo values(0, "PROGRAMADOR");
-insert into cargo values(0, "GERENTE");
-
 insert into grupo values(0, "bla bla bla", "grupo1");
 insert into grupo values(0, "ble ble ble", "grupo2");
 insert into grupo values(0, "bli bli bli", "grupo3");
