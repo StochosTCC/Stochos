@@ -43,8 +43,9 @@ export default function PopupCriarCargo({...props}:Props) {
         <input onChange={handleInputChange} type="text" name="nomecargo" id="nomecargo" defaultValue={props.nomecargo ? props.nomecargo : ""} required/>
         </div>
 
-       
+        <h1> Esse cargo terá permissão sobre:</h1>
         <table className={style.tabela} >
+          
             <tr>
         <input type="checkbox" id="permissoes" name="caixadeselecao" value="opcao1"/>
         <td><label htmlFor="permissoes"> permissão 1</label></td>
@@ -52,7 +53,7 @@ export default function PopupCriarCargo({...props}:Props) {
         </table>
         </div>
       
-      <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
+      <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Cargo</Button>
     </form>
   );
 }

@@ -64,7 +64,7 @@ function Botaos({ cargo }: any) {
           horizontal: "center",
         }}
       >
-    
+    <PopupCriarCargo/> 
       </Popover>
       <Button
         className={style.botaoexcluir}
