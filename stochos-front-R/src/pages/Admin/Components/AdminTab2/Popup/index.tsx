@@ -37,10 +37,21 @@ export default function PopupCriarCargo({...props}:Props) {
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
+      <div >
       <div className={style.divinput}>
         <label htmlFor="nomecargo">Nome do Cargo</label>
         <input onChange={handleInputChange} type="text" name="nomecargo" id="nomecargo" defaultValue={props.nomecargo ? props.nomecargo : ""} required/>
-      </div>
+        </div>
+
+       
+        <table className={style.tabela} >
+            <tr>
+        <input type="checkbox" id="permissoes" name="caixadeselecao" value="opcao1"/>
+        <td><label htmlFor="permissoes"> permissão 1</label></td>
+        </tr>
+        </table>
+        </div>
+      
       <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
     </form>
   );

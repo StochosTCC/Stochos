@@ -2,29 +2,27 @@
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 300px;
-  padding: 20px;
+  height: 225px;
   justify-content: space-around;
 
+  
+}
   .divinput{
     display: flex;
     flex-direction: column;
 
+    label{
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
     input, select {
       border: 1px solid #000;
-    }
-
-    input{
       height: 35px;
       border-radius: 20px;
-      padding: 0 15px;
-
-    }
-
-    .selectcargo{
-      height: 35px;
-      border-radius: 20px;
-      padding: 0 15px;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      padding: 1rem;
     }
 
     select[multiple]{
@@ -33,12 +31,25 @@
       padding: 10px;
     }
 
-    label{
-    }
+  
 
   }
   .botao{
-    width: 15rem;
+    height: 3rem;
+    width: 12rem;
     margin: 0 auto;
+    border-radius: 15px;
   }
-}
+
+
+  .tabela{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    overflow: auto;
+
+    label{
+      margin-left: 1rem;
+    }
+
+  }
+
