@@ -1,16 +1,32 @@
 import Card from "../../components/Card/CardMeta";
-import dataMeta from "./meta.json";
+import dataMeta from "./meta.json"
 import dataUser from "../Usuario/userinfo.json";
 import style from "./Meta.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import Formulario from "./components/Formulario";
 import { Modal } from "@mui/material";
 import { GrupoMeta } from "../../enums/GrupoMeta/GrupoMeta";
 import CardMeta from "../../components/Card/CardMeta";
+import {getData} from "../../services/hooks/"
 
 export default function Metas() {
+  const {getMetasTodos} = getData();
+  const [metas,setMetas] = useState([])
+
+  const callGetData = async () => {
+    const metaResponse = await getMetasTodos()
+
+    if(!metaResponse.error){
+      setMetas(metaResponse)
+    }
+  }
+
+  useEffect( () => {
+    callGetData()
+  }, [])
+  console.log(metas)
   let userinfo = dataUser[0];
 
 

@@ -9,9 +9,9 @@ insert into grupo values(0, "bla bla bla", "grupo1");
 insert into grupo values(0, "ble ble ble", "grupo2");
 insert into grupo values(0, "bli bli bli", "grupo3");
 
-insert into meta values(0, "meta1", "adsdadsa", "2006-01-13", 3, 1);
-insert into meta values(0, "meta2", "BBBBBBBB", "2007-01-13", 1, 2);
-insert into meta values(0, "meta3", "CCCCCCCC", "2008-01-13", 2, 3);
+insert into meta values(0, "meta1", "adsdadsa", "2006-01-13", 3, 1, 1);
+insert into meta values(0, "meta2", "BBBBBBBB", "2007-01-13", 1, 2, 2);
+insert into meta values(0, "meta3", "CCCCCCCC", "2008-01-13", 2, 3, 3);
 
 insert into setor values(0, "setor a");
 insert into setor values(0, "setor b");

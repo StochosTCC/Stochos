@@ -10,7 +10,7 @@
     },
 
     {
-        
+
         "id": 4,
         "nome": "Crie a Pagina de admin Vinicius",
         "remetente": "Raul Dangio",
@@ -21,7 +21,7 @@
 
     },
     {
-        
+
         "id": 5,
         "nome": "Crie a Pargina de admin Vinicius",
         "remetente": "Raul Dangio",
@@ -29,10 +29,9 @@
         "data": "17/09/2023",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis. M",
         "destinatarios": ["Vinicius Nogueira"]
-
     },
     {
-        
+
         "id": 6,
         "nome": "Raul faça a pagina de configuração de usuario",
         "remetente": "Vinicius Nogueira",
@@ -40,8 +39,5 @@
         "data": "22/12/2023",
         "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis tempor nisi id varius. Nunc luctus tincidunt dolor, sit amet molestie odio tincidunt vel. In eu tortor sed nunc ornare ultrices tincidunt sit amet eros. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Donec tempor scelerisque elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec eros massa. Mauris vitae rutrum felis. M",
         "destinatarios": ["Raul Dangio"]
-
     }
-
-    
 ]
