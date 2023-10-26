@@ -19,22 +19,29 @@ import java.util.List;
 @RequestMapping("/cargo")
 public class CargoController {
 
-    @Autowired
-    private CargoRepository cargoRepository;
+  @Autowired
+  private CargoRepository cargoRepository;
 
-    @GetMapping()
-    public Page<Cargo> paginafiltrada(CargoFilter cargoFilter, Pageable pageable)
-    {
-        return cargoRepository.filtrar(cargoFilter, pageable);
-    }
+  @Autowired
+  private CargoService
+  @GetMapping()
+  public Page<Cargo> paginafiltrada(CargoFilter cargoFilter, Pageable pageable) {
+    return cargoRepository.filtrar(cargoFilter, pageable);
+  }
 
-    @GetMapping("/todos")
-    public List<Cargo> listarTodosOsCargos(){
-        return cargoRepository.findAll();
-    }
+  @GetMapping("/todos")
+  public List<Cargo> listarTodosOsCargos() {
+    return cargoRepository.findAll();
+  }
 
-    @PostMapping("/criar-cargo")
-    public ResponseEntity<Cargo> criarCargo(@RequestBody Cargo cargo){
-      return new ResponseEntity<>(cargoRepository.save(cargo), HttpStatus.CREATED);
-    }
+  @PostMapping("/criar-cargo")
+  public ResponseEntity<Cargo> criarCargo(@RequestBody Cargo cargo) {
+    return new ResponseEntity<>(cargoRepository.save(cargo), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarCargo(@PathVariable("id") Integer id) {
+
+
+  }
 }
