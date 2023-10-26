@@ -1,8 +1,7 @@
 .form{
-  display: flex;
-  flex-direction: column;
+  
   width: 400px;
-  height: 300px;
+  height: 325px;
   justify-content: space-around;
 
   h1{
@@ -14,6 +13,7 @@
   
 }
   .divinput{
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -31,31 +31,26 @@
       padding: 1rem;
     }
 
-    select[multiple]{
-      overflow: auto;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
+    
   
 
   }
   .botao{
-    display: flex;
-    justify-content: center;
-    height: 3rem;
-    width: 12rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
-      
-  }
+    
+    width: 15rem;
+    border-radius: 10px;
 
+    position: absolute;
+    left: 20%;
+    bottom: 0.1%;
+  }
 
   .tabela{
     margin-top: 1.5rem;
     margin-left: 1rem;
     margin-bottom: 2rem;
     overflow: auto;
+
 
     label{
       margin-left: 1rem;

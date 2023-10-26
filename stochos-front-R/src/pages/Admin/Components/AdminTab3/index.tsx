@@ -103,7 +103,7 @@ export default function AdminTab3() {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "center",
+          horizontal: "right",
         }}
       >
           <Popupsetor/>

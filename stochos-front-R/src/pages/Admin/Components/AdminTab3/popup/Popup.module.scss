@@ -1,69 +1,48 @@
 .form{
+  
+  width: 400px;
+  height: 150px;
+  justify-content: space-around;
+
+  h1{
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-top: 1px solid #000;
+  }
+  
+}
+  .divinput{
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 300px;
-    justify-content: space-around;
-  
-    h1{
-      margin-top: 2rem;
+
+    label{
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input, select {
+      border: 1px solid #000;
+      height: 35px;
+      border-radius: 20px;
       margin-left: 1rem;
       margin-right: 1rem;
-      border-top: 1px solid #000;
+      padding: 1rem;
     }
-    
-  }
-    .divinput{
-      display: flex;
-      flex-direction: column;
-  
-      label{
-        margin-left: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-  
-      input, select {
-        border: 1px solid #000;
-        height: 35px;
-        border-radius: 20px;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        padding: 1rem;
-      }
-  
-      select[multiple]{
-        overflow: auto;
-        border-radius: 10px;
-        padding: 10px;
-      }
-  
-    
-  
-    }
-    .botao{
-      height: 3rem;
-      width: 12rem;
-      margin: 0 auto;
-      border-radius: 15px;
-      margin-bottom: 1rem;
 
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      margin: 0 auto;
-    }
+    
   
+
+  }
+  .botao{
+    
+    width: 15rem;
+    border-radius: 10px;
+
+    position: absolute;
+    left: 20%;
+    top: 10%;
   
-    .tabela{
-      margin-top: 1.5rem;
-      margin-left: 1rem;
-      margin-bottom: 2rem;
-      overflow: auto;
-  
-      label{
-        margin-left: 1rem;
-      }
-  
-    }
-  
+
+  }

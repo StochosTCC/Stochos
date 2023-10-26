@@ -1,15 +1,29 @@
-import cargos from "../../../../Usuario/cargos.json";
+import DataCargos from "../../../../Usuario/cargos.json";
 import style from "./Popup.module.scss";
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import { type } from "os";
 
 interface Props{
   nomecargo?: string
   
 }
+type Cargos = typeof DataCargos[0];
 
 
-export default function PopupCriarCargo({...props}:Props) {
+export default function PopupCriarCargo({...props}:Props, cargo:Cargos ) {
+
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checkboxId = parseInt(event.target.value, 10);
+    if (event.target.checked) {
+      setSelectedItems([...selectedItems, checkboxId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== checkboxId));
+    }
+  };
+
 
 
   const [dados, setDados] = useState({
@@ -40,17 +54,22 @@ export default function PopupCriarCargo({...props}:Props) {
       <div >
       <div className={style.divinput}>
         <label htmlFor="nomecargo">Nome do Cargo</label>
-        <input onChange={handleInputChange} type="text" name="nomecargo" id="nomecargo" defaultValue={props.nomecargo ? props.nomecargo : ""} required/>
+        <input onChange={handleInputChange} type="text" name="nomecargo" id="nomecargo" defaultValue={props.nomecargo ?? ""} required/>
         </div>
 
         <h1> Esse cargo terá permissão sobre:</h1>
-        <table className={style.tabela} >
+        <div className={style.tabela}>
+        <table  >
           
-            <tr>
-        <input type="checkbox" id="permissoes" name="caixadeselecao" value="opcao1"/>
-        <td><label htmlFor="permissoes"> permissão 1</label></td>
+            <tr key={cargo.id}>
+        <input type="checkbox" value={cargo.id}  checked={selectedItems.includes(cargo.id)}
+                  onChange={handleCheckboxChange}/>
+        <td>
+          {cargo.nomecargo}
+        </td>
         </tr>
         </table>
+        </div>
         </div>
       
       <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Cargo</Button>
