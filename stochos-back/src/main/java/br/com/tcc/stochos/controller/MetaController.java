@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @Data
-@RequestMapping("/meta")
+@RequestMapping("/metas")
 public class MetaController {
 
     @Autowired

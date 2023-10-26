@@ -23,5 +23,9 @@ public class Meta {
     @JoinColumn(name = "idgrupo")
     private Grupo grupo;
 
+    @ManyToOne
+    @JoinColumn(name = "idusuario")
+    private Usuario usuario;
+
 
 }
