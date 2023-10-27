@@ -4,6 +4,7 @@ package br.com.tcc.stochos.controller;
 import br.com.tcc.stochos.model.Cargo;
 import br.com.tcc.stochos.repository.CargoRepository;
 import br.com.tcc.stochos.repository.filter.CargoFilter;
+import br.com.tcc.stochos.service.CargoService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,18 +13,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @RestController
 @Data
-@RequestMapping("/cargo")
+@RequestMapping("/cargos")
 public class CargoController {
 
   @Autowired
   private CargoRepository cargoRepository;
 
   @Autowired
-  private CargoService
+  private CargoService cargoService;
   @GetMapping()
   public Page<Cargo> paginafiltrada(CargoFilter cargoFilter, Pageable pageable) {
     return cargoRepository.filtrar(cargoFilter, pageable);
@@ -41,7 +43,12 @@ public class CargoController {
 
   @DeleteMapping("/{id}")
   public HttpStatus deletarCargo(@PathVariable("id") Integer id) {
-
-
+    try {
+      cargoRepository.deleteById(id);
+    } catch (Exception e){
+      return HttpStatus.IM_USED;
+    }
+    return HttpStatus.ACCEPTED;
   }
 }
+
