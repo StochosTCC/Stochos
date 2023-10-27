@@ -40,4 +40,10 @@ public class UsuarioController {
     return new ResponseEntity<>(usuarioRepository.save(usuario), HttpStatus.CREATED);
   }
 
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarUsuario(@PathVariable("id") Integer id){
+    usuarioRepository.deleteById(id);
+    return HttpStatus.ACCEPTED;
+  }
+
 }

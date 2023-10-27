@@ -46,6 +46,7 @@ public class CargoController {
     try {
       cargoRepository.deleteById(id);
     } catch (Exception e){
+
       return HttpStatus.IM_USED;
     }
     return HttpStatus.ACCEPTED;
