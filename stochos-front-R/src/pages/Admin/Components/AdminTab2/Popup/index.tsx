@@ -3,26 +3,32 @@ import style from "./Popup.module.scss";
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { type } from "os";
+import React from 'react';
 
 interface Props{
-  nomecargo?: string
+  nomecargo?: string,
   
 }
-type Cargos = typeof DataCargos[0];
 
+interface Cargo {
+  id: number;
+  nomecargo: string;
+}
 
-export default function PopupCriarCargo({...props}:Props, cargo:Cargos ) {
+export default function PopupCriarCargo({...props}:Props) {
 
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const cargos: Cargo[] = DataCargos;
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const checkboxId = parseInt(event.target.value, 10);
-    if (event.target.checked) {
-      setSelectedItems([...selectedItems, checkboxId]);
-    } else {
-      setSelectedItems(selectedItems.filter(id => id !== checkboxId));
-    }
-  };
+    const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  
+    const handleCheckboxChange = (cargoId: number) => {
+      if (selectedItems.includes(cargoId)) {
+        setSelectedItems(selectedItems.filter(id => id !== cargoId));
+      } else {
+        setSelectedItems([...selectedItems, cargoId]);
+      }
+    };
+
 
 
 
@@ -59,16 +65,31 @@ export default function PopupCriarCargo({...props}:Props, cargo:Cargos ) {
 
         <h1> Esse cargo terá permissão sobre:</h1>
         <div className={style.tabela}>
-        <table  >
-          
+        <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Selected</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cargos.map((cargo) => (
             <tr key={cargo.id}>
-        <input type="checkbox" value={cargo.id}  checked={selectedItems.includes(cargo.id)}
-                  onChange={handleCheckboxChange}/>
-        <td>
-          {cargo.nomecargo}
-        </td>
-        </tr>
-        </table>
+              <td>{cargo.id}</td>
+              <td>{cargo.nomecargo}</td>
+              <td>
+                <input type="checkbox" 
+                checked={selectedItems.includes(cargo.id)}
+                onChange ={() => handleCheckboxChange(cargo.id) }
+                />
+              </td>
+            </tr>
+
+          ))}
+        </tbody>
+      </table>
+      <div><h1> Cargos selecionados: {selectedItems.join(',')}</h1></div>
         </div>
         </div>
       
@@ -76,3 +97,4 @@ export default function PopupCriarCargo({...props}:Props, cargo:Cargos ) {
     </form>
   );
 }
+
