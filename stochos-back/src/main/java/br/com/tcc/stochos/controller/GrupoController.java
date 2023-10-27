@@ -42,12 +42,7 @@ public class GrupoController {
 
   @DeleteMapping("/{id}")
   public HttpStatus deletarGrupo(@PathVariable("id") Long id){
-     try{
-       grupoRepository.deleteById(id);
-    }catch (Exception e)
-     {
-       return HttpStatus.IM_USED; // mudar lógica
-     }
+     grupoRepository.deleteById(id);
      return HttpStatus.ACCEPTED;
   }
 }
