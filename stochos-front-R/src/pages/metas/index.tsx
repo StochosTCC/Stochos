@@ -13,7 +13,7 @@ import CardMeta from "../../components/Card/CardMeta";
 export default function Metas() {
   let userinfo = dataUser[0];
 
-
+//criar modo de ver que a meta pertence a um grupo!!!
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
