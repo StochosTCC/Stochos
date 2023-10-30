@@ -4,10 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
 import java.time.LocalDateTime;
->>>>>>> backend
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,11 +17,7 @@ public class Meta {
     private long id;
     private String nomemeta;
     private String descricao;
-<<<<<<< HEAD
-    private LocalDate tempo_para_cabar;
-=======
     private LocalDateTime tempo_para_cabar;
->>>>>>> backend
     private int urgencia;
 
     @ManyToOne

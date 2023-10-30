@@ -35,4 +35,6 @@ public class UsuarioCargoController {
   public ResponseEntity<UsuarioCargo> criarSetor(@RequestBody UsuarioCargo usuarioCargo){
     return new ResponseEntity<>(usuarioCargoRepository.save(usuarioCargo), HttpStatus.CREATED);
   }
+
+
 }
