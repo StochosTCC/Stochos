@@ -55,4 +55,15 @@ public class SetorController {
         });
 
     }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarSetor(@PathVariable("id") Integer id){
+    try{
+      setorRepository.deleteById(id);
+    }catch (Exception e)
+    {
+      return HttpStatus.IM_USED; // mudar lógica
+    }
+    return HttpStatus.ACCEPTED;
+  }
 }

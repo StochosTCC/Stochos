@@ -36,7 +36,13 @@ public class GrupoController {
     }
 
   @PostMapping("/criar-grupo")
-  public ResponseEntity<Grupo> criarSetor(@RequestBody Grupo grupo){
+  public ResponseEntity<Grupo> criarGrupo(@RequestBody Grupo grupo){
     return new ResponseEntity<>(grupoRepository.save(grupo), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarGrupo(@PathVariable("id") Long id){
+     grupoRepository.deleteById(id);
+     return HttpStatus.ACCEPTED;
   }
 }
