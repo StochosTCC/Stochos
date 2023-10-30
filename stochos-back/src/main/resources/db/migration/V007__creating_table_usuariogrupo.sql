@@ -19,6 +19,7 @@ alter table usuario_cargo add constraint fk_usuario_cargo_cargo foreign key(idca
 
 
 insert into usuario_grupo values(0, 1, 1),(0, 1, 2);
+insert into usuario_grupo values(0, 2, 1),(0, 1, 3);
 insert into usuario_cargo values(0, 2, 1),(0, 2,2);
 insert into usuario_cargo values(0, 2, 3);
 
