@@ -1,7 +1,8 @@
 .form{
   
+  overflow: hidden;
   width: 400px;
-  height: 325px;
+  height: 400px;
   justify-content: space-around;
 
   h1{
@@ -40,17 +41,17 @@
     width: 15rem;
     border-radius: 10px;
 
-    position: absolute;
+    position: relative;
+
     left: 20%;
-    bottom: 0.1%;
+    top:5%
+
   }
 
-  .tabela{
-    margin-top: 1.5rem;
+  .tabelaA{
+    
     margin-left: 1rem;
     margin-bottom: 2rem;
-    overflow: auto;
-
 
     label{
       margin-left: 1rem;
@@ -58,3 +59,14 @@
 
   }
 
+  .tabelaB{
+    overflow: auto;
+    height: 75px;
+    width: 385px;
+
+    td{
+     padding: 8px;
+    }
+  }
+
+ 

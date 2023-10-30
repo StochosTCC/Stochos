@@ -64,15 +64,23 @@ export default function PopupCriarCargo({...props}:Props) {
         </div>
 
         <h1> Esse cargo terá permissão sobre:</h1>
-        <div className={style.tabela}>
-        <table>
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Selected</th>
-          </tr>
-        </thead>
+            <tr>
+              <td>
+                ID
+              </td>
+              <td>
+                Cargo
+              </td>
+              <td>
+                selecionar
+              </td>
+            </tr>
+          </thead>
+        <div className={style.tabelaA}>
+        <table>
+        
+      <div className={style.tabelaB}>
         <tbody>
           {cargos.map((cargo) => (
             <tr key={cargo.id}>
@@ -88,10 +96,12 @@ export default function PopupCriarCargo({...props}:Props) {
 
           ))}
         </tbody>
+        </div>
       </table>
-      <div><h1> Cargos selecionados: {selectedItems.join(',')}</h1></div>
         </div>
         </div>
+        <h1> Cargos selecionados: {selectedItems.join(',')}</h1>
+        <h1></h1>
       
       <Button className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Cargo</Button>
     </form>
