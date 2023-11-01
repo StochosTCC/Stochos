@@ -41,8 +41,14 @@ public class GrupoController {
   }
 
   @DeleteMapping("/{id}")
-  public HttpStatus deletarGrupo(@PathVariable("id") Long id){
-     grupoRepository.deleteById(id);
-     return HttpStatus.ACCEPTED;
+  public ResponseEntity deletarGrupo(@PathVariable("id") Long id){
+    {
+      if (grupoRepository.existsById(id)){
+        grupoRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+      }
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 }
