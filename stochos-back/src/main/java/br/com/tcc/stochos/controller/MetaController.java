@@ -1,7 +1,6 @@
 package br.com.tcc.stochos.controller;
 
 import br.com.tcc.stochos.model.Meta;
-import br.com.tcc.stochos.model.Setor;
 import br.com.tcc.stochos.repository.MetaRepository;
 import br.com.tcc.stochos.repository.filter.MetaFilter;
 import br.com.tcc.stochos.repository.projections.MetaDTO;
@@ -34,8 +33,18 @@ public class MetaController {
         return metaRepository.findAll();
     }
 
-  @PostMapping("/criar-meta")
-  public ResponseEntity<Meta> criarSetor(@RequestBody Meta meta){
+  @PostMapping()
+  public ResponseEntity<Meta> criar(@RequestBody Meta meta){
     return new ResponseEntity<>(metaRepository.save(meta), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity deletarMeta(@PathVariable Long id){
+      if (metaRepository.existsById(id)){
+        metaRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+      }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 }

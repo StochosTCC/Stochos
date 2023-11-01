@@ -32,9 +32,16 @@ public class UsuarioCargoController {
         return usuarioCargoRepository.filtrar(usuarioCargoFilter, pageable);
     }
   @PostMapping("/criar-usuariocargo")
-  public ResponseEntity<UsuarioCargo> criarSetor(@RequestBody UsuarioCargo usuarioCargo){
+  public ResponseEntity<UsuarioCargo> criarUsuarioCargo(@RequestBody UsuarioCargo usuarioCargo){
     return new ResponseEntity<>(usuarioCargoRepository.save(usuarioCargo), HttpStatus.CREATED);
   }
 
-
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarUsuarioCargo(@PathVariable Integer id){
+      if (usuarioCargoRepository.existsById(id)) {
+        usuarioCargoRepository.deleteById(id);
+        return HttpStatus.ACCEPTED;
+      }
+      return HttpStatus.NOT_FOUND;
+  }
 }

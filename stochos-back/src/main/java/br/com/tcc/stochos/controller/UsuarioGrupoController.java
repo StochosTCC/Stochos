@@ -37,4 +37,13 @@ public class UsuarioGrupoController {
   public ResponseEntity<UsuarioGrupo> criarSetor(@RequestBody UsuarioGrupo usuarioGrupo){
     return new ResponseEntity<>(usuarioGrupoRepository.save(usuarioGrupo), HttpStatus.CREATED);
   }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarUsuarioGrupo(@PathVariable Integer id){
+      if (usuarioGrupoRepository.existsById(id)) {
+        usuarioGrupoRepository.deleteById(id);
+        return HttpStatus.ACCEPTED;
+      }
+    return HttpStatus.NOT_FOUND;
+  }
 }

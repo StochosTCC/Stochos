@@ -41,9 +41,11 @@ public class UsuarioController {
   }
 
   @DeleteMapping("/{id}")
-  public HttpStatus deletarUsuario(@PathVariable("id") Integer id){
-    usuarioRepository.deleteById(id);
-    return HttpStatus.ACCEPTED;
+  public HttpStatus deletarUsuario(@PathVariable("id") Integer id) {
+    if (usuarioRepository.existsById(id)) {
+      usuarioRepository.deleteById(id);
+      return HttpStatus.ACCEPTED;
+    }
+    return HttpStatus.NOT_FOUND;
   }
-
 }
