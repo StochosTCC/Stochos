@@ -29,7 +29,7 @@ export default function Metas() {
   console.log(metas)
   let userinfo = dataUser[0];
 
-
+//criar modo de ver que a meta pertence a um grupo!!!
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

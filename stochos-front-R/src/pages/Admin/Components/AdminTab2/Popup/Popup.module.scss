@@ -1,44 +1,76 @@
-.form{
-  display: flex;
-  flex-direction: column;
+.form {
+  overflow: hidden;
   width: 400px;
-  height: 300px;
-  padding: 20px;
+  height: 400px;
   justify-content: space-around;
 
-  .divinput{
-    display: flex;
-    flex-direction: column;
-
-    input, select {
-      border: 1px solid #000;
-    }
-
-    input{
-      height: 35px;
-      border-radius: 20px;
-      padding: 0 15px;
-
-    }
-
-    .selectcargo{
-      height: 35px;
-      border-radius: 20px;
-      padding: 0 15px;
-    }
-
-    select[multiple]{
-      overflow: auto;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    label{
-    }
-
+  h1 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-top: 1px solid #000;
   }
-  .botao{
-    width: 15rem;
-    margin: 0 auto;
+}
+.divinput {
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    border: 1px solid #000;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+  }
+}
+.botao {
+  width: 15rem;
+  border-radius: 10px;
+
+  position: relative;
+
+  left: 20%;
+  top: 5%;
+}
+
+.tabelaA {
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+
+  label {
+    margin-left: 1rem;
+  }
+}
+
+.tabelaB {
+  overflow: auto;
+  height: 75px;
+  width: 385px;
+
+  td {
+    padding: 8px;
+  }
+}
+.tabelaC {
+  margin-left: 1rem;
+
+  td {
+    padding: 10px;
+  }
+}
+
+.selecao {
+  p{
+    margin-left: 1rem;
+    overflow: auto;
+    margin-bottom: 1rem;
   }
 }

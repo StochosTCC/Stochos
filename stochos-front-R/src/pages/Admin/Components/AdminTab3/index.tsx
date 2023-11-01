@@ -3,7 +3,7 @@ import DataSetor from "../../../Usuario/setor.json"
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
-import { setPriority } from "os";
+import Popupsetor from "./popup";
 
 const largura = window.innerWidth;
 
@@ -103,10 +103,10 @@ export default function AdminTab3() {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "center",
+          horizontal: "right",
         }}
       >
-          <div>criar setor</div>
+          <Popupsetor/>
       </Popover>
     </div>
     )
