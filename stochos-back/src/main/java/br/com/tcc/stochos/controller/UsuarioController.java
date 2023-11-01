@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.controller;
 
+import br.com.tcc.stochos.model.Cargo;
 import br.com.tcc.stochos.model.Usuario;
 import br.com.tcc.stochos.repository.UsuarioRepository;
 import br.com.tcc.stochos.repository.filter.UsuarioFilter;
@@ -8,6 +9,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +35,15 @@ public class UsuarioController {
         return usuarioRepository.filtrar(usuarioFilter, pageable);
     }
 
-    @PostMapping()
-     public Usuario adicionarUsuario(@RequestBody Usuario usuario)
-    {
-        return usuarioRepository.save(usuario);
-    }
+  @PostMapping("/criar-usuario")
+  public ResponseEntity<Usuario> criarCargo(@RequestBody Usuario usuario){
+    return new ResponseEntity<>(usuarioRepository.save(usuario), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarUsuario(@PathVariable("id") Integer id){
+    usuarioRepository.deleteById(id);
+    return HttpStatus.ACCEPTED;
+  }
 
 }

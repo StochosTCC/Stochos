@@ -33,6 +33,7 @@ public class MetaRepositoryImpl implements MetaRepositoryQuery{
                 root.get("id"),
                 root.get("nomemeta"),
                 root.get("grupo").get("nomegrupo"),
+                root.get("usuario").get("nomeusuario"),
                 root.get("urgencia"),
                 root.get("tempo_para_cabar")
         ));
@@ -61,6 +62,11 @@ public class MetaRepositoryImpl implements MetaRepositoryQuery{
             predicates.add(builder.like(builder.lower(root.get("grupo").get("nomegrupo")),
                     "%" + metaFilter.getNomemeta() + "%"));
         }
+
+      if (!StringUtils.isEmpty(metaFilter.getRementente())){
+        predicates.add(builder.like(builder.lower(root.get("usuario").get("nomeusuario")),
+          "%" + metaFilter.getNomemeta() + "%"));
+      }
 
         if (metaFilter.getUrgencia() != 0 && metaFilter.getUrgencia() < 4){
             predicates.add(builder.like(builder.lower(root.get("urgencia")),

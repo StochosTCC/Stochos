@@ -1,21 +1,22 @@
 package br.com.tcc.stochos.controller;
 
 import br.com.tcc.stochos.model.Grupo;
+import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.repository.GrupoRepository;
 import br.com.tcc.stochos.repository.filter.GrupoFilter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @Data
-@RequestMapping("/grupo")
+@RequestMapping("/grupos")
 public class GrupoController {
 
     @Autowired
@@ -34,4 +35,14 @@ public class GrupoController {
         return grupoRepository.findAll();
     }
 
+  @PostMapping("/criar-grupo")
+  public ResponseEntity<Grupo> criarGrupo(@RequestBody Grupo grupo){
+    return new ResponseEntity<>(grupoRepository.save(grupo), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/{id}")
+  public HttpStatus deletarGrupo(@PathVariable("id") Long id){
+     grupoRepository.deleteById(id);
+     return HttpStatus.ACCEPTED;
+  }
 }

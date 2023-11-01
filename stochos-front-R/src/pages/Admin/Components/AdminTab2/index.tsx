@@ -63,9 +63,13 @@ function Botaos({ cargo }: any) {
           vertical: "top",
           horizontal: "center",
         }}
+
       >
         <PopupCriarCargo />
       </Popover>
+
+      ></Popover>
+
       <Button
         className={style.botaoexcluir}
         variant="contained"
@@ -87,9 +91,16 @@ export default function AdminTab2() {
     setAnchorEl(event.currentTarget);
   };
 
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   const open = Boolean(anchorEl);
 
@@ -130,7 +141,11 @@ export default function AdminTab2() {
           horizontal: "center",
         }}
       >
+
         <PopupCriarCargo  />
+
+        <PopupCriarCargo />
+
       </Popover>
     </div>
   );

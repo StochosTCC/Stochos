@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.controller;
 
+import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.model.UsuarioCargo;
 import br.com.tcc.stochos.model.UsuarioGrupo;
 import br.com.tcc.stochos.repository.UsuarioCargoRepository;
@@ -8,9 +9,9 @@ import br.com.tcc.stochos.repository.filter.UsuarioGrupoFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +31,10 @@ public class UsuarioCargoController {
     {
         return usuarioCargoRepository.filtrar(usuarioCargoFilter, pageable);
     }
+  @PostMapping("/criar-usuariocargo")
+  public ResponseEntity<UsuarioCargo> criarSetor(@RequestBody UsuarioCargo usuarioCargo){
+    return new ResponseEntity<>(usuarioCargoRepository.save(usuarioCargo), HttpStatus.CREATED);
+  }
+
+
 }

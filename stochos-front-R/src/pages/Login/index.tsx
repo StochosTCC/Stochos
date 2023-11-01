@@ -11,7 +11,7 @@ export default function Login() {
           </div>
           <div className={style.subcontainerdiv}>
             <p className={style.descricao}>
-            Uma nova forma <br /> de organização
+              Uma nova forma <br /> de organização
             </p>
           </div>
           <div className={style.subcontainerdiv}>
@@ -27,22 +27,33 @@ export default function Login() {
           </div>
           <div className={style.login}>
             <div className={style.formulariodiv}>
-              <form className={style.formulario} action="">
+              <form
+                className={style.formulario}
+                action="http://localhost:3000/metas"
+              >
                 <div className={style.miniform}>
                   <label className={style.formulariolabel}>Usuario</label>
-                  <input className={style.formularioinput} type="text" />
+                  <input
+                    className={style.formularioinput}
+                    type="text"
+                    required
+                  />
                 </div>
                 <div className={style.miniform}>
                   <label className={style.formulariolabel}> Senha</label>
-                  <input className={style.formularioinput} type="password" />
+                  <input
+                    className={style.formularioinput}
+                    type="password"
+                    required
+                  />
                 </div>
+              <div className={style.botaologindiv}>
+                <button className={style.botaologin} type="submit">
+                  Login
+                </button>
+              </div>
               </form>
             </div>
-          </div>
-          <div className={style.botaologindiv}>
-            <a href="/metas">
-              <button className={style.botaologin}>Login</button>
-            </a>
           </div>
         </div>
       </div>

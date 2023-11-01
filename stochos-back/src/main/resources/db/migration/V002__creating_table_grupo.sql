@@ -5,6 +5,6 @@ create table grupo(
 );
 
 
-insert into grupo values(0, "bla bla bla", "grupo1");
-insert into grupo values(0, "ble ble ble", "grupo2");
-insert into grupo values(0, "bli bli bli", "grupo3");
+insert into grupo values(0, "bla bla bla", "Grupo 1");
+insert into grupo values(0, "ble ble ble", "Grupo 2");
+insert into grupo values(0, "bli bli bli", "Grupo 3");
