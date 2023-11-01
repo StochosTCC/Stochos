@@ -46,6 +46,6 @@ public class UsuarioController {
       usuarioRepository.deleteById(id);
       return HttpStatus.ACCEPTED;
     }
-    return HttpStatus.NOT_ACCEPTABLE;
+    return HttpStatus.NOT_FOUND;
   }
 }

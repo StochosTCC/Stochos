@@ -38,7 +38,10 @@ public class UsuarioCargoController {
 
   @DeleteMapping("/{id}")
   public HttpStatus deletarUsuarioCargo(@PathVariable Integer id){
-      usuarioCargoRepository.deleteById(id);
-      return HttpStatus.ACCEPTED;
+      if (usuarioCargoRepository.existsById(id)) {
+        usuarioCargoRepository.deleteById(id);
+        return HttpStatus.ACCEPTED;
+      }
+      return HttpStatus.NOT_FOUND;
   }
 }
