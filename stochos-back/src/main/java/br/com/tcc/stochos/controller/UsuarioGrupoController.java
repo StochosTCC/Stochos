@@ -47,6 +47,7 @@ public class UsuarioGrupoController {
     return HttpStatus.NOT_FOUND;
   }
 
+  @PutMapping("/{id}")
   public HttpStatus mudarUsuarioGrupo(@PathVariable Integer id, @RequestBody UsuarioGrupo usuarioGrupoDetail){
 
     return usuarioGrupoRepository.findById(id).map(

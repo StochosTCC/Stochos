@@ -101,6 +101,48 @@ export const getData = () => {
     }
   }
 
+  const getUsuarioCargo = async () => {
+    try {
+      const response = await app.get("/usuariosCargos")
+      return response.data
+    } catch (error){
+      console.log( {error} )
+      return {error}
+    }
+  }
+
+  const getUsuarioCargoTodos = async () => {
+    try {
+      const response = await app.get("/usuariosCargos/todos")
+      return response.data
+    } catch (error){
+      console.log( {error} )
+      return {error}
+    }
+  }
+
+  const getUsuarioGrupo = async () => {
+    try {
+      const response = await app.get("/usuariosGrupos")
+      return response.data
+    } catch (error){
+      console.log( {error} )
+      return {error}
+    }
+  }
+
+  const getUsuarioGrupoTodos = async () => {
+    try {
+      const response = await app.get("/usuariosGrupos/todos")
+      return response.data
+    } catch (error){
+      console.log( {error} )
+      return {error}
+    }
+  }
+
+
+
   return {
     getCargo,
     getCargoTodos,
@@ -111,6 +153,10 @@ export const getData = () => {
     getUsuario,
     getUsuarioTodos,
     getSetor,
-    getSetorTodos
+    getSetorTodos,
+    getUsuarioCargo,
+    getUsuarioCargoTodos,
+    getUsuarioGrupo,
+    getUsuarioGrupoTodos
   }
 }
