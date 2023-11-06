@@ -57,9 +57,9 @@ public class CargoController {
   public HttpStatus mudarCargo(@PathVariable Integer id, @RequestBody Cargo cargoDetail){
 
     return cargoRepository.findById(id).map(
-      setor -> {
-        setor.setNomecargo(cargoDetail.getNomecargo());
-        cargoRepository.save(setor);
+      cargo -> {
+        cargo.setNomecargo(cargoDetail.getNomecargo());
+        cargoRepository.save(cargo);
         return HttpStatus.OK;
       }
     ).orElseGet(() -> {
