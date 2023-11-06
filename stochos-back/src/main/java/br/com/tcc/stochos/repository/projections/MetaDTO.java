@@ -10,6 +10,7 @@ public class MetaDTO {
     private Long id;
     private String nomemeta;
     private String nomegrupo;
+    private String remetente;
     private int urgencia;
     private LocalDateTime tempo_para_acabar;
 
@@ -17,6 +18,7 @@ public class MetaDTO {
         this.id = id;
         this.nomemeta = nomemeta;
         this.nomegrupo = nomegrupo;
+        this.remetente = remetente;
         this.urgencia = urgencia;
         this.tempo_para_acabar = tempo_para_acabar;
     }

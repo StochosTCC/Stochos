@@ -5,9 +5,9 @@ alter table meta add constraint fk_meta_grupo foreign key (idgrupo) references g
 
 
 
-insert into meta values(0, "meta1", "adsdadsa", "2006-01-13", 3, 1);
-insert into meta values(0, "meta2", "BBBBBBBB", "2007-01-13", 1, 2);
-insert into meta values(0, "meta3", "CCCCCCCC", "2008-01-13", 2, 3);
+insert into meta values(0, "meta1", "adsdadsa", "2006-01-13", 3, 1, 1);
+insert into meta values(0, "meta2", "BBBBBBBB", "2007-01-13", 1, 2, 2);
+insert into meta values(0, "meta3", "CCCCCCCC", "2008-01-13", 2, 3, 3);
 
 insert into setor values(0, "Setor A");
 insert into setor values(0, "Setor B");

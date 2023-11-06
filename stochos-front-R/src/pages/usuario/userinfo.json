@@ -4,7 +4,7 @@
         "nome": "Raul Dangio",
         "email": "emailaleatorio@domain.tld",
         "telefone": "99999-9999",
-        "setor": "setor a",
-        "cargo": "cargo c"
+        "setor": "Setor A",
+        "cargo": ["Cargo C"]
     }
 ]

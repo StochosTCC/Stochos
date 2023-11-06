@@ -18,11 +18,16 @@ public class Meta {
     private String nomemeta;
     private String descricao;
     private LocalDateTime tempo_para_cabar;
+
     private int urgencia;
 
     @ManyToOne
     @JoinColumn(name = "idgrupo")
     private Grupo grupo;
+
+    @ManyToOne
+    @JoinColumn(name = "idusuario")
+    private Usuario usuario;
 
 
 }
