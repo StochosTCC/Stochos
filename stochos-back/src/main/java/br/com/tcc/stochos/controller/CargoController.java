@@ -53,7 +53,7 @@ public class CargoController {
     return HttpStatus.ACCEPTED;
   }
 
-  @PutMapping("{id}")
+  @PutMapping("/{id}")
   public HttpStatus mudarCargo(@PathVariable Integer id, @RequestBody Cargo cargoDetail){
 
     return cargoRepository.findById(id).map(

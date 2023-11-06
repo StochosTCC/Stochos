@@ -46,4 +46,18 @@ public class UsuarioGrupoController {
       }
     return HttpStatus.NOT_FOUND;
   }
+
+  public HttpStatus mudarUsuarioGrupo(@PathVariable Integer id, @RequestBody UsuarioGrupo usuarioGrupoDetail){
+
+    return usuarioGrupoRepository.findById(id).map(
+      usuarioGrupo -> {
+        usuarioGrupo.setGrupo(usuarioGrupoDetail.getGrupo());
+        usuarioGrupo.setUsuario(usuarioGrupoDetail.getUsuario());
+        usuarioGrupoRepository.save(usuarioGrupo);
+        return HttpStatus.OK;
+      }
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
+  }
 }

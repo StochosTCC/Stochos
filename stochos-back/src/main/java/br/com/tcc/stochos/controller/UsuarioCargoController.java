@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.controller;
 
+import br.com.tcc.stochos.model.Grupo;
 import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.model.UsuarioCargo;
 import br.com.tcc.stochos.model.UsuarioGrupo;
@@ -43,5 +44,20 @@ public class UsuarioCargoController {
         return HttpStatus.ACCEPTED;
       }
       return HttpStatus.NOT_FOUND;
+  }
+
+  @PutMapping("/{id}")
+  public HttpStatus mudarUsuarioCargo(@PathVariable Integer id, @RequestBody UsuarioCargo usuarioCargoDetail){
+
+    return usuarioCargoRepository.findById(id).map(
+      usuarioCargo -> {
+        usuarioCargo.setCargo(usuarioCargoDetail.getCargo());
+        usuarioCargo.setUsuario(usuarioCargoDetail.getUsuario());
+        usuarioCargoRepository.save(usuarioCargo);
+        return HttpStatus.OK;
+      }
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
   }
 }

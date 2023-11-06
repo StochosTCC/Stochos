@@ -53,7 +53,7 @@ public class GrupoController {
     }
   }
 
-  @PutMapping("{id}")
+  @PutMapping("/{id}")
   public HttpStatus mudarGrupo(@PathVariable Long id, @RequestBody Grupo grupoDetail){
 
     return grupoRepository.findById(id).map(
