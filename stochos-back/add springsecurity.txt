@@ -1,0 +1,7 @@
+1- adicionar spring boot
+2- implementar UserDetail
+3- criar enums das roles
+4- criar repository extendendo jpa com função findByLogin
+5- criar serviço de autorização
+6- implementar security filter chain
+7- configurar autenticação e autorização
