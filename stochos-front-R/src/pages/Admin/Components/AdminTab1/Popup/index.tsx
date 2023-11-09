@@ -92,7 +92,7 @@ export default function PopupCriarUsuario({...props}:Props) {
           })}
         </select>
       </div>
-      <Button   className={style.botao} size="large" variant="contained" type="submit">{props ? "Editar": "Criar"} Usuario</Button>
+      <Button   className={style.botao} size="large" variant="contained" type="submit">{props.email ? "Editar": "Criar"} Usuario</Button>
     </form>
   );
 }
