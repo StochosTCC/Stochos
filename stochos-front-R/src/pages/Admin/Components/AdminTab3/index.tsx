@@ -106,7 +106,7 @@ export default function AdminTab3() {
           horizontal: "right",
         }}
       >
-          <Popupsetor/>
+          <Popupsetor id={0}/>
       </Popover>
     </div>
     )

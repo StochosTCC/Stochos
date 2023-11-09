@@ -65,7 +65,7 @@ function Botaos({ cargo }: any) {
         }}
 
       >
-        <PopupCriarCargo />
+        <PopupCriarCargo nomecargo={cargo.nomecargo} />
       </Popover>
 
      

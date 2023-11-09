@@ -15,6 +15,7 @@ interface Cargo {
 }
 
 export default function PopupCriarCargo({ ...props }: Props) {
+  
   const cargos: Cargo[] = DataCargos;
 
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -28,7 +29,7 @@ export default function PopupCriarCargo({ ...props }: Props) {
   };
 
   const [dados, setDados] = useState({
-    nomecargo: "",
+    nomecargo: props.nomecargo || ""
   });
 
   const handleInputChange = (
