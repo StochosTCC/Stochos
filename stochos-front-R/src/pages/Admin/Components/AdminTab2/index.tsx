@@ -68,7 +68,7 @@ function Botaos({ cargo }: any) {
         <PopupCriarCargo />
       </Popover>
 
-      ></Popover>
+     
 
       <Button
         className={style.botaoexcluir}
@@ -91,10 +91,6 @@ export default function AdminTab2() {
     setAnchorEl(event.currentTarget);
   };
 
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
 
   const handleClose = () => {
@@ -142,7 +138,7 @@ export default function AdminTab2() {
         }}
       >
 
-        <PopupCriarCargo  />
+        
 
         <PopupCriarCargo />
 
