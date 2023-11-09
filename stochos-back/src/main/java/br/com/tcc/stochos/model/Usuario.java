@@ -31,4 +31,8 @@ public class Usuario {
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioGrupo> usuarioGrupos = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idcargo"))
+    private List<Cargo> cargo;
 }

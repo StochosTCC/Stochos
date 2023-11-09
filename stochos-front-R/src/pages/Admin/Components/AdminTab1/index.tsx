@@ -27,18 +27,21 @@ const columns: GridColDef[] = [
         <div>{params.row.setor.nomesetor}</div>
         ),
   },
-  // {
-  //   field: "nomecargo",
-  //   headerName: "Cargo",
-  //   width: 200,
-  //   renderCell: (params) => (
-  //     <div className={style.cargos}>
-  //       {params.row.cargos.map( (element: any) => {
-  //         return <p>{element["nomecargo"]}</p>
-  //       })}
-  //     </div>
-  //     ),
-  // },
+  {
+    field: "nomecargo",
+    headerName: "Cargo",
+    width: 200,
+    renderCell: (params) => (
+      console.log(params.row)
+
+      )
+      // <div className={style.cargos}>
+        //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
+          // <p>{element["nomecargo"]}</p>
+        // }) : <p>não possui cargo</p> }
+     // {/* </div> */}
+      // ),
+  },
 
   {
     field: "actions",
