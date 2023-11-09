@@ -31,10 +31,22 @@ const columns: GridColDef[] = [
     field: "nomecargo",
     headerName: "Cargo",
     width: 200,
-    renderCell: (params) => (
-      console.log(params.row)
+    renderCell: (params) => {
+      if(params.row.cargo){
+        params.row.cargo.map((element: any) => console.log(element.nomecargo))
+        return (
+          <div className={style.cargos}>
+          {params.row.cargo.map( (element: any) =>
+          <p>{element.nomecargo}</p>
+        )}
+        </div>
+        )
+      }
+      return ( <div className={style.cargos}>
+        <p>Não Tem Cargo</p>
+      </div>)
 
-      )
+    }
       // <div className={style.cargos}>
         //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
           // <p>{element["nomecargo"]}</p>
