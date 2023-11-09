@@ -1,10 +1,11 @@
 import style from "./AdminTab1.module.scss";
-import AdminDados from "./AdminTab1.json";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import PopupCriarUsuario from "./Popup";
 import { setPriority } from "os";
+import {useQuery} from "react-query";
+import axios from "axios";
 
 const largura = window.innerWidth;
 
@@ -26,18 +27,18 @@ const columns: GridColDef[] = [
         <div>{params.row.setor.nomesetor}</div>
         ),
   },
-  {
-    field: "nomecargo",
-    headerName: "Cargo",
-    width: 200,
-    renderCell: (params) => (
-      <div className={style.cargos}>
-        {params.row.cargos.map( (element: any) => {
-          return <p>{element["nomecargo"]}</p>
-        })}
-      </div>
-      ),
-  },
+  // {
+  //   field: "nomecargo",
+  //   headerName: "Cargo",
+  //   width: 200,
+  //   renderCell: (params) => (
+  //     <div className={style.cargos}>
+  //       {params.row.cargos.map( (element: any) => {
+  //         return <p>{element["nomecargo"]}</p>
+  //       })}
+  //     </div>
+  //     ),
+  // },
 
   {
     field: "actions",
@@ -105,8 +106,6 @@ function Botaos({ user }: any) {
   );
 }
 
-const rows = AdminDados;
-
 export default function AdminTab1() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -120,11 +119,22 @@ export default function AdminTab1() {
 
   const open = Boolean(anchorEl);
 
+  const {data, isLoading} = useQuery("usuarios", () =>
+    axios.get("http://localhost:8080/usuarios/todos").then((resp) => resp.data),
+    {
+      retry: 5
+    }
+  )
+
+  if(isLoading){
+    return <div>carregando</div>
+  }
+
   return (
     <div className={style.container}>
       <div className={style.datagrid} style={{ height: 600, width: "90%" }}>
         <DataGrid
-          rows={rows}
+          rows={data}
           columns={columns}
           className={style.table}
           initialState={{
