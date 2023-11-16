@@ -32,5 +32,9 @@ public class Grupo {
     @JoinColumn(name = "idcriador")
     private Usuario criador;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "idgrupo"), inverseJoinColumns = @JoinColumn(name = "idusuario"))
+    private List<Usuario> usuarios;
 
+    // pode fazer isso?????????
 }
