@@ -2,6 +2,7 @@ package br.com.tcc.stochos.controller;
 
 
 import br.com.tcc.stochos.model.Cargo;
+import br.com.tcc.stochos.model.Setor;
 import br.com.tcc.stochos.repository.CargoRepository;
 import br.com.tcc.stochos.repository.filter.CargoFilter;
 import br.com.tcc.stochos.service.CargoService;
@@ -50,6 +51,20 @@ public class CargoController {
       return HttpStatus.IM_USED;
     }
     return HttpStatus.ACCEPTED;
+  }
+
+  @PutMapping("/{id}")
+  public HttpStatus mudarCargo(@PathVariable Integer id, @RequestBody Cargo cargoDetail){
+
+    return cargoRepository.findById(id).map(
+      cargo -> {
+        cargo.setNomecargo(cargoDetail.getNomecargo());
+        cargoRepository.save(cargo);
+        return HttpStatus.OK;
+      }
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
   }
 }
 

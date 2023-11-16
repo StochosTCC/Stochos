@@ -53,7 +53,6 @@ public class SetorController {
         ).orElseGet(() -> {
           return HttpStatus.NOT_FOUND;
         });
-
     }
 
   @DeleteMapping("/{id}")

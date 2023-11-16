@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.controller;
 
+import br.com.tcc.stochos.model.Cargo;
 import br.com.tcc.stochos.model.Grupo;
 import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.repository.GrupoRepository;
@@ -50,5 +51,22 @@ public class GrupoController {
       }
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
+
+  @PutMapping("/{id}")
+  public HttpStatus mudarGrupo(@PathVariable Long id, @RequestBody Grupo grupoDetail){
+
+    return grupoRepository.findById(id).map(
+      grupo -> {
+        grupo.setNomegrupo(grupoDetail.getNomegrupo());
+        grupo.setDescricao(grupoDetail.getDescricao());
+        grupo.setUsuarioGrupos(grupoDetail.getUsuarioGrupos());
+        grupo.setMetas(grupoDetail.getMetas());
+        grupoRepository.save(grupo);
+        return HttpStatus.OK;
+      }
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
   }
 }

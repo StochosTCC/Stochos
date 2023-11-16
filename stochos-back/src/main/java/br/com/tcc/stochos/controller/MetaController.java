@@ -1,5 +1,6 @@
 package br.com.tcc.stochos.controller;
 
+import br.com.tcc.stochos.model.Grupo;
 import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.repository.MetaRepository;
 import br.com.tcc.stochos.repository.filter.MetaFilter;
@@ -46,5 +47,24 @@ public class MetaController {
 
       }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @PutMapping("/{id}")
+  public HttpStatus mudarMeta(@PathVariable Long id, @RequestBody Meta metaDetail){
+
+    return metaRepository.findById(id).map(
+      meta -> {
+        meta.setDescricao(metaDetail.getDescricao());
+        meta.setNomemeta(metaDetail.getNomemeta());
+        meta.setGrupo(metaDetail.getGrupo());
+        meta.setUsuario(metaDetail.getUsuario());
+        meta.setUrgencia(metaDetail.getUrgencia());
+        meta.setTempo_para_cabar(metaDetail.getTempo_para_cabar());
+        metaRepository.save(meta);
+        return HttpStatus.OK;
+      }
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
   }
 }
