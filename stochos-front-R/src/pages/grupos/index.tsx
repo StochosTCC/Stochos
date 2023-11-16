@@ -5,6 +5,8 @@ import style from "./Grupos.module.scss";
 import { useState } from "react";
 import { Button, Popover } from "@mui/material";
 import Formulario from "./Formulario";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 export default function Grupos() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -19,6 +21,21 @@ export default function Grupos() {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  const { data, isLoading } = useQuery(
+    "metas",
+    () =>
+      axios
+        .get("http://localhost:8080/metas/todos")
+        .then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <div className={style.page}>

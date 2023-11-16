@@ -3,8 +3,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import PopupCriarUsuario from "./Popup";
-import { setPriority } from "os";
-import {useQuery} from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 
 const largura = window.innerWidth;
@@ -14,7 +13,7 @@ const columns: GridColDef[] = [
   {
     field: "nomeusuario",
     headerName: "Usuário",
-    width: 200
+    width: 200,
   },
   { field: "email", headerName: "email", width: (largura * 90) / 100 / 4 },
   { field: "phone", headerName: "Telefone", width: 150 },
@@ -23,36 +22,35 @@ const columns: GridColDef[] = [
     field: "nomesetor",
     headerName: "Setor",
     width: 150,
-    renderCell: (params) => (
-        <div>{params.row.setor.nomesetor}</div>
-        ),
+    renderCell: (params) => <div>{params.row.setor.nomesetor}</div>,
   },
   {
     field: "nomecargo",
     headerName: "Cargo",
     width: 200,
     renderCell: (params) => {
-      if(params.row.cargo){
-        params.row.cargo.map((element: any) => console.log(element.nomecargo))
+      if (params.row.cargo) {
+        params.row.cargo.map((element: any) => console.log(element.nomecargo));
         return (
           <div className={style.cargos}>
-          {params.row.cargo.map( (element: any) =>
-          <p>{element.nomecargo}</p>
-        )}
-        </div>
-        )
+            {params.row.cargo.map((element: any) => (
+              <p>{element.nomecargo}</p>
+            ))}
+          </div>
+        );
       }
-      return ( <div className={style.cargos}>
-        <p>Não Tem Cargo</p>
-      </div>)
-
-    }
-      // <div className={style.cargos}>
-        //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
-          // <p>{element["nomecargo"]}</p>
-        // }) : <p>não possui cargo</p> }
-     // {/* </div> */}
-      // ),
+      return (
+        <div className={style.cargos}>
+          <p>Não Tem Cargo</p>
+        </div>
+      );
+    },
+    // <div className={style.cargos}>
+    //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
+    // <p>{element["nomecargo"]}</p>
+    // }) : <p>não possui cargo</p> }
+    // {/* </div> */}
+    // ),
   },
 
   {
@@ -107,7 +105,12 @@ function Botaos({ user }: any) {
           horizontal: "center",
         }}
       >
-        <PopupCriarUsuario username={user.nomeusuario} email={user.email} password={user.password} setor={user.setor} />
+        <PopupCriarUsuario
+          username={user.nomeusuario}
+          email={user.email}
+          password={user.password}
+          setor={user.setor}
+        />
       </Popover>
       <Button
         className={style.botaoexcluir}
@@ -134,15 +137,19 @@ export default function AdminTab1() {
 
   const open = Boolean(anchorEl);
 
-  const {data, isLoading} = useQuery("usuarios", () =>
-    axios.get("http://localhost:8080/usuarios/todos").then((resp) => resp.data),
+  const { data, isLoading } = useQuery(
+    "usuarios",
+    () =>
+      axios
+        .get("http://localhost:8080/usuarios/todos")
+        .then((resp) => resp.data),
     {
-      retry: 5
+      retry: 5,
     }
-  )
+  );
 
-  if(isLoading){
-    return <div>carregando</div>
+  if (isLoading) {
+    return <div>Carregando...</div>;
   }
 
   return (
@@ -167,7 +174,7 @@ export default function AdminTab1() {
         size="large"
         onClick={handleClick}
         sx={{
-          p: 3
+          p: 3,
         }}
       >
         Criar Usuario

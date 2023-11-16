@@ -4,6 +4,8 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { deepOrange, deepPurple, pink, red, teal } from "@mui/material/colors";
 import { useState } from "react";
 import CardPopup from "../../CardPopup/CardMetaPopup";
+import { format } from 'date-fns';
+
 
 interface Props {
   nome: string;
@@ -49,6 +51,37 @@ export default function CardMeta({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  function randomColor(remetente: string): JSX.Element {
+    let size = 46;
+    let fontSize = 25;
+  
+    // Verifique se remetente é uma string válida e não está vazia
+    if (remetente && remetente.length > 0) {
+      // Array de cores disponíveis
+      const colors = [teal[500], deepOrange[500], deepPurple[500], pink[500], red[500]];
+  
+      // Gere um índice aleatório para escolher uma cor
+      const randomIndex = Math.floor(Math.random() * colors.length);
+  
+      return (
+        <Avatar
+          sx={{
+            bgcolor: colors[randomIndex],
+            width: size,
+            height: size,
+            fontSize: fontSize,
+          }}
+        >
+          {remetente[0]}
+        </Avatar>
+      );
+    } else {
+      // Caso remetente seja inválido, retorne algo apropriado, por exemplo:
+      return <Avatar>?</Avatar>;
+    }
+    
+  }
+
   return (
     <>
       <div className={style.card} aria-describedby={id} onClick={handleClick}>
@@ -59,7 +92,7 @@ export default function CardMeta({
           </div>
           <div>{randomColor(remetente)}</div>
         </div>
-
+  
         <div className={`${config ? style.cardbaixoconfig : style.cardbaixo}`}>
           {config && (
             <SettingsOutlinedIcon
@@ -69,7 +102,8 @@ export default function CardMeta({
           )}
           <div className={style.urg_e_data}>
             <div className={color}></div>
-            <p>{data}</p>
+            {/* Formate a data antes de renderizá-la */}
+            <p>{format(new Date(data), 'dd/MM/yyyy')}</p>
           </div>
         </div>
       </div>
@@ -95,15 +129,3 @@ export default function CardMeta({
   );
 }
 
-function randomColor(remetente: string) {
-  let size = 46;
-  let fontSize = 25;
-
-  return (
-    <Avatar
-      sx={{ bgcolor: teal[500], width: size, height: size, fontSize: fontSize }}
-    >
-      {remetente[0]}
-    </Avatar>
-  );
-}

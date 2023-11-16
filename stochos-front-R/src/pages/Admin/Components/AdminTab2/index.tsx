@@ -5,6 +5,8 @@ import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import { setPriority } from "os";
 import PopupCriarCargo from "./Popup";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const largura = window.innerWidth;
 
@@ -100,11 +102,22 @@ export default function AdminTab2() {
 
   const open = Boolean(anchorEl);
 
+  const {data, isLoading} = useQuery("cargos", () =>
+  axios.get("http://localhost:8080/cargos/todos").then((resp) => resp.data),
+  {
+    retry: 5
+  }
+)
+
+if(isLoading){
+  return <div>Carregando...</div>
+}
+
   return (
     <div className={style.container}>
       <div className={style.datagrid} style={{ height: 600, width: "90%" }}>
         <DataGrid
-          rows={rows}
+          rows={data}
           columns={columns}
           className={style.table}
           initialState={{

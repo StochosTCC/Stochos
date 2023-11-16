@@ -1,15 +1,15 @@
 import Card from "../../components/Card/CardMeta";
-import dataMeta from "./meta.json"
 import dataUser from "../Usuario/userinfo.json";
 import style from "./Meta.module.scss";
 import React, { useEffect, useState } from "react";
 import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import Formulario from "./components/Formulario";
-import { Modal } from "@mui/material";
-import { GrupoMeta } from "../../enums/GrupoMeta/GrupoMeta";
+
 import CardMeta from "../../components/Card/CardMeta";
 import {getData} from "../../services/hooks/"
+import { useQuery } from "react-query";
+import axios from "axios";
 
 export default function Metas() {
   const {getMetasTodos} = getData();
@@ -43,56 +43,76 @@ export default function Metas() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const { data, isLoading } = useQuery(
+    "metas",
+    () =>
+      axios
+        .get("http://localhost:8080/metas/todos")
+        .then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+  
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+  
+  // Verifique se data é uma array antes de mapear
+  const metasCriadas = Array.isArray(data) ? (
+    data.map((meta: any) => {
+      if (meta.remetente === userinfo.nome) {
+        return (
+          <div className={style.meta} key={meta.nome}>
+            <CardMeta
+              data={meta.data}
+              nome={meta.nome}
+              remetente={meta.remetente}
+              urgencia={meta.urgencia}
+              descricao={meta.descricao}
+              destinatarios={meta.destinatarios}
+              config={true}
+            />
+          </div>
+        );
+      }
+      return null;
+    })
+  ) : null;
+  
+  const metasParaFazer = Array.isArray(data) ? (
+    data.map((meta: any) => {
+      if (meta.remetente !== userinfo.nome) {
+        return (
+          <div className={style.meta} key={meta.nome}>
+            <CardMeta
+              data={meta.data}
+              nome={meta.nome}
+              remetente={meta.remetente}
+              urgencia={meta.urgencia}
+              descricao={meta.descricao}
+              destinatarios={meta.destinatarios}
+              config={false}
+            />
+          </div>
+        );
+      }
+      return null;
+    })
+  ) : null;
+  
   return (
     <div className={style.page}>
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Metas Criadas</h1>
-        <div className={style.metas}>
-          {dataMeta.map((value) => {
-            if (value.remetente === userinfo.nome) {
-              return (
-                <div className={style.meta}>
-                  <CardMeta
-                    data={value.data}
-                    nome={value.nome}
-                    remetente={value.remetente}
-                    urgencia={value.urgencia}
-                    descricao={value.descricao}
-                    destinatarios={value.destinatarios}
-                    config={true}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
-        </div>
+        <div className={style.metas}>{metasCriadas}</div>
       </div>
-
+  
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Metas Para Fazer</h1>
-        <div className={style.metas}>
-          {dataMeta.map((value) => {
-            if (value.remetente !== userinfo.nome) {
-              return (
-                <div className={style.meta}>
-                  <CardMeta
-                    data={value.data}
-                    nome={value.nome}
-                    remetente={value.remetente}
-                    urgencia={value.urgencia}
-                    descricao={value.descricao}
-                    destinatarios={value.destinatarios}
-                    config={false}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
-        </div>
+        <div className={style.metas}>{metasParaFazer}</div>
       </div>
-
+  
       <div className={style.divbotao}>
         <Button
           className={style.botao}

@@ -1,16 +1,18 @@
 import style from "./AdminTab3.module.scss";
-import DataSetor from "../../../Usuario/setor.json"
+import DataSetor from "../../../Usuario/setor.json";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Button, Popover } from "@mui/material";
 import { useState } from "react";
 import Popupsetor from "./popup";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const largura = window.innerWidth;
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "nomesetor", headerName: "setor", width: (largura*218/100)/3 },
-  
+  { field: "nomesetor", headerName: "setor", width: (largura * 218) / 100 / 3 },
+
   {
     field: "actions",
     headerName: "Ações",
@@ -57,23 +59,36 @@ function Botaos({ cargo }: any) {
 const rows = DataSetor;
 
 export default function AdminTab3() {
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-  
-    const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    return(
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  const { data, isLoading } = useQuery(
+    "setor",
+    () =>
+      axios.get("http://localhost:8080/setor/todos").then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+
+  return (
     <div className={style.container}>
       <div className={style.datagrid} style={{ height: 600, width: "90%" }}>
         <DataGrid
-          rows={rows}
+          rows={data}
           columns={columns}
           className={style.table}
           initialState={{
@@ -91,7 +106,7 @@ export default function AdminTab3() {
         size="large"
         onClick={handleClick}
         sx={{
-          p: 3
+          p: 3,
         }}
       >
         Criar setor
@@ -106,8 +121,8 @@ export default function AdminTab3() {
           horizontal: "right",
         }}
       >
-          <Popupsetor/>
+        <Popupsetor />
       </Popover>
     </div>
-    )
+  );
 }

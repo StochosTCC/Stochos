@@ -48,6 +48,8 @@ export default function Formulario() {
     // Aqui você pode fazer o que quiser com o JSON, como enviar para um servidor, exibir na página, etc.
   };
 
+  
+
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <div className={style.formdiv}>
