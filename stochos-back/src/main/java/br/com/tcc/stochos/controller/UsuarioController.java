@@ -58,7 +58,7 @@ public class UsuarioController {
         usuario.setEmail(usuarioDetail.getEmail());
         usuario.setSetor(usuarioDetail.getSetor());
         usuario.setPhone(usuarioDetail.getPhone());
-        usuario.setNomeusuario(usuarioDetail.getNomeusuario());
+        usuario.setLogin(usuarioDetail.getLogin());
         usuario.setUsuarioGrupos(usuarioDetail.getUsuarioGrupos());
         usuario.setPassword(usuarioDetail.getPassword());
         usuarioRepository.save(usuario);

@@ -5,3 +5,5 @@
 5- criar serviço de autorização
 6- implementar security filter chain
 7- configurar autenticação e autorização
+
+-- perguntar pro bidu se as permissões vao se conectar ao usuario ou ao cargo
