@@ -5,6 +5,7 @@ import br.com.tcc.stochos.model.Grupo;
 import br.com.tcc.stochos.model.Meta;
 import br.com.tcc.stochos.repository.GrupoRepository;
 import br.com.tcc.stochos.repository.filter.GrupoFilter;
+import br.com.tcc.stochos.repository.projections.GrupoDTO;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class GrupoController {
     private GrupoRepository grupoRepository;
 
     @GetMapping()
-    public Page<Grupo> filtro(GrupoFilter grupoFilter, Pageable pageable)
+    public Page<GrupoDTO> filtro(GrupoFilter grupoFilter, Pageable pageable)
     {
         return grupoRepository.filtrar(grupoFilter, pageable);
     }

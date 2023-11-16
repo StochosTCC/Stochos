@@ -26,7 +26,7 @@ export default function Grupos() {
     "metas",
     () =>
       axios
-        .get("http://localhost:8080/metas/todos")
+        .get("http://localhost:8080/grupos/todos")
         .then((resp) => resp.data),
     {
       retry: 5,
@@ -36,13 +36,13 @@ export default function Grupos() {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
-
+  console.log(data)
   return (
     <div className={style.page}>
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Grupos Criados</h1>
         <div className={style.metas}>
-          {grupoData.map((grupo) => {
+          {data.map((grupo: any) => {
             if (grupo.criador === userInfo[0].nome) {
               return (
                 <div className={style.meta}>
@@ -63,7 +63,7 @@ export default function Grupos() {
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Seus Grupos</h1>
         <div className={style.metas}>
-          {grupoData.map((grupo) => {
+          {data.map((grupo: any) => {
             if (grupo.criador !== userInfo[0].nome) {
               return (
                 <div className={style.meta}>

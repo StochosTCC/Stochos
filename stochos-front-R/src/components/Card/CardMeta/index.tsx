@@ -26,9 +26,9 @@ export default function CardMeta({
   descricao,
   destinatarios,
 }: Props) {
-  
+
   let color = "";
-  
+
     if (urgencia === 1) {
       color = style.urgencia1;
     } else if (urgencia === 2) {
@@ -36,7 +36,7 @@ export default function CardMeta({
     } else if (urgencia === 3) {
       color = style.urgencia3;
     }
-  
+
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
@@ -54,15 +54,15 @@ export default function CardMeta({
   function randomColor(remetente: string): JSX.Element {
     let size = 46;
     let fontSize = 25;
-  
+
     // Verifique se remetente é uma string válida e não está vazia
     if (remetente && remetente.length > 0) {
       // Array de cores disponíveis
       const colors = [teal[500], deepOrange[500], deepPurple[500], pink[500], red[500]];
-  
+
       // Gere um índice aleatório para escolher uma cor
       const randomIndex = Math.floor(Math.random() * colors.length);
-  
+
       return (
         <Avatar
           sx={{
@@ -79,7 +79,7 @@ export default function CardMeta({
       // Caso remetente seja inválido, retorne algo apropriado, por exemplo:
       return <Avatar>?</Avatar>;
     }
-    
+
   }
 
   return (
@@ -92,7 +92,7 @@ export default function CardMeta({
           </div>
           <div>{randomColor(remetente)}</div>
         </div>
-  
+
         <div className={`${config ? style.cardbaixoconfig : style.cardbaixo}`}>
           {config && (
             <SettingsOutlinedIcon

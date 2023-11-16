@@ -24,6 +24,7 @@ public class MetaRepositoryImpl implements MetaRepositoryQuery{
 
     @Override
     public Page<MetaDTO> filtrar(Pageable pageable, MetaFilter metaFilter) {
+
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<MetaDTO> criteria = builder.createQuery(MetaDTO.class);
         Root<Meta> root = criteria.from(Meta.class);

@@ -28,5 +28,9 @@ public class Grupo {
     @OneToMany(mappedBy = "grupo")
     private List<UsuarioGrupo> usuarioGrupos = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "idcriador")
+    private Usuario criador;
+
 
 }
