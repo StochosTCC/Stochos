@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,10 +35,11 @@ public class Usuario {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idcargo"))
-    private List<Cargo> cargo;
+    private Set<Cargo> cargo = new HashSet<>();
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "criador")
-    private List<Grupo> gruposCriados;
+    private List<Grupo> gruposCriados = new ArrayList<>();
 
 }

@@ -53,11 +53,11 @@ export default function Metas() {
       retry: 5,
     }
   );
-  
+
   if (isLoading) {
     return <div>Carregando...</div>;
   }
-  
+
   // Verifique se data é uma array antes de mapear
   const metasCriadas = Array.isArray(data) ? (
     data.map((meta: any) => {
@@ -79,7 +79,7 @@ export default function Metas() {
       return null;
     })
   ) : null;
-  
+
   const metasParaFazer = Array.isArray(data) ? (
     data.map((meta: any) => {
       if (meta.remetente !== userinfo.nome) {
@@ -100,19 +100,19 @@ export default function Metas() {
       return null;
     })
   ) : null;
-  
+
   return (
     <div className={style.page}>
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Metas Criadas</h1>
         <div className={style.metas}>{metasCriadas}</div>
       </div>
-  
+
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Metas Para Fazer</h1>
         <div className={style.metas}>{metasParaFazer}</div>
       </div>
-  
+
       <div className={style.divbotao}>
         <Button
           className={style.botao}

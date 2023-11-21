@@ -10,6 +10,15 @@ create table usuario_cargo(
     idcargo int not null
 );
 
+create table usuario_meta(
+  id int not null auto_increment primary key,
+  idusuario int not null,
+  idmeta int not null
+);
+
+alter table usuario_meta add constraint fk_usuario_meta_usuario foreign key(idusuario) references usuario(id) on delete cascade;
+alter table usuario_meta add constraint fk_usuario_meta_meta foreign key(idusuario) references meta(id) on delete cascade;
+
 alter table usuario_grupo add constraint fk_usuario_grupo_usuario foreign key(idusuario) references usuario(id) on delete cascade;
 alter table usuario_grupo add constraint fk_usuario_grupo_grupo foreign key(idgrupo) references grupo(id) on delete cascade;
 
@@ -20,8 +29,12 @@ alter table usuario_cargo add constraint fk_usuario_cargo_cargo foreign key(idca
 
 insert into usuario_grupo values(0, 1, 1),(0, 1, 2);
 insert into usuario_grupo values(0, 2, 1),(0, 1, 3);
+
 insert into usuario_cargo values(0, 1, 1),(0, 2,2);
 insert into usuario_cargo values(0, 3, 3);
+
+insert into usuario_meta values(0, 1, 1),(0, 1, 2);
+insert into usuario_meta values(0, 2, 1),(0, 1, 3);
 
 
 

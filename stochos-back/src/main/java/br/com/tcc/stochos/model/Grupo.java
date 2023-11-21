@@ -34,7 +34,7 @@ public class Grupo {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "idgrupo"), inverseJoinColumns = @JoinColumn(name = "idusuario"))
-    private List<Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
 
-    // pode fazer isso?????????
+    // pode fazer isso ?????????
 }
