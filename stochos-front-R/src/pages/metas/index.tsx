@@ -61,13 +61,14 @@ export default function Metas() {
   // Verifique se data é uma array antes de mapear
   const metasCriadas = Array.isArray(data) ? (
     data.map((meta: any) => {
-      if (meta.remetente === userinfo.nome) {
+      console.log(meta)
+      if (meta.remetente.nomeusuario === userinfo.nome) {
         return (
           <div className={style.meta} key={meta.nome}>
             <CardMeta
-              data={meta.data}
-              nome={meta.nome}
-              remetente={meta.remetente}
+              data={meta.tempo_para_cabar}
+              nome={meta.nomemeta}
+              remetente={meta.remetente.nomeusuario}
               urgencia={meta.urgencia}
               descricao={meta.descricao}
               destinatarios={meta.destinatarios}
@@ -82,13 +83,13 @@ export default function Metas() {
 
   const metasParaFazer = Array.isArray(data) ? (
     data.map((meta: any) => {
-      if (meta.remetente !== userinfo.nome) {
+      if (meta.remetente.nomeusuario !== userinfo.nome) {
         return (
           <div className={style.meta} key={meta.nome}>
             <CardMeta
-              data={meta.data}
-              nome={meta.nome}
-              remetente={meta.remetente}
+              data={meta.tempo_para_cabar}
+              nome={meta.nomemeta}
+              remetente={meta.remetente.nomeusuario}
               urgencia={meta.urgencia}
               descricao={meta.descricao}
               destinatarios={meta.destinatarios}

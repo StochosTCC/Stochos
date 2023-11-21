@@ -30,10 +30,10 @@ public class Meta {
 
     @ManyToOne
     @JoinColumn(name = "idusuario")
-    private Usuario usuario;
+    private Usuario remetente;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "usuario_meta", joinColumns = @JoinColumn(name = "idmeta"), inverseJoinColumns = @JoinColumn(name = "idusuario"))
-  private Set<Usuario> usuarios = new HashSet<>();
+  private Set<Usuario> destinatarios = new HashSet<>();
 
 }

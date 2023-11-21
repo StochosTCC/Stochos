@@ -10,7 +10,7 @@ insert into setor values(0, "Setor B");
 insert into setor values(0, "Setor C");
 
 
-insert into usuario values(0, "thed4rkl3tch", "email@domain.tld", "senha", "1111111111", 1);
+insert into usuario values(0, "Raul Dangio", "email@domain.tld", "senha", "1111111111", 1);
 insert into usuario values(0, "gabrielHsantos", "email2@domain.tld", "password", "11111122222", 3);
 insert into usuario values(0, "aaaaaaaaaaaaaaa", "email3@domain.tld", "123123", "3333333333", 2);
 

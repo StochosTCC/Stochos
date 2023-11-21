@@ -103,7 +103,7 @@ export default function CardMeta({
           <div className={style.urg_e_data}>
             <div className={color}></div>
             {/* Formate a data antes de renderizá-la */}
-            <p>{format(new Date(data), 'dd/MM/yyyy')}</p>
+            <p>{data}</p>
           </div>
         </div>
       </div>
