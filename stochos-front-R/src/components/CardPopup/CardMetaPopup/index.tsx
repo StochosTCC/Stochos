@@ -5,7 +5,7 @@ interface Props{
     remetente: string,
     nomemeta: string
     descricao: string,
-    destinatarios: string[],
+    destinatarios: [],
     disable: boolean
 }
 
@@ -36,7 +36,7 @@ export default function CardPopup({remetente, nomemeta, descricao, destinatarios
             <div className={style.botaodiv}>
                 {!disable &&    <Button variant="contained" size="large" >Concluir</Button>}
             {disable && <Button variant="contained" size="large" disabled>Concluir</Button>
-        }                
+        }
             </div>
         </div>
     )
