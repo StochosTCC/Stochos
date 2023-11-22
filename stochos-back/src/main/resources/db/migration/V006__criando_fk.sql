@@ -1,5 +1,5 @@
 alter table usuario add constraint fk_usuario_setor foreign key (idsetor) references setor(id);
-alter table grupo add constraint fk_grupo_criador foreign key (idcriador) references usuario(id);
+alter table grupo add constraint fk_grupo_criador foreign key (idcriador) references usuario(id) on delete cascade;
 
 
 
