@@ -35,7 +35,7 @@ public class Usuario {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idcargo"))
-    private Set<Cargo> cargo = new HashSet<>();
+    private Set<Cargo> cargos = new HashSet<>();
 
 
     @JsonIgnore

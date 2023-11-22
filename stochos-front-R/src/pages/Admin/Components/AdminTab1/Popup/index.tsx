@@ -3,28 +3,34 @@ import cargos from "../../../../Usuario/cargos.json";
 import style from "./Popup.module.scss";
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import axios from "axios";
 
 interface Props{
-  username?: string,
+  refetch?: any,
+  nomeusuario?: string,
   email?: string,
+  phone?: string,
   password?: string,
   setor?: {
     nomesetor: string,
     id: number
   }
-  cargos?: number[]
+  cargos?: Array<Cargo>
+}
+interface Cargo{
+  id: number
 }
 
-
-export default function PopupCriarUsuario({...props}:Props) {
+export default function PopupCriarUsuario({refetch, ...props}:Props) {
 
 
     const [dados, setDados] = useState({
-    username: props.username || "",
+    nomeusuario: props.nomeusuario || "",
     email: props.email || "",
+    phone: props.phone || "",
     password: props.password || "",
-    setor: props.setor || {nomesetor: "Setor Nao Existe", id: 0},
-    cargos: props.cargos || [] as number[],
+    setor: props.setor || {id: 0},
+    cargos: props.cargos || {id: 0},
   });
 
   const handleInputChange = (
@@ -35,41 +41,50 @@ export default function PopupCriarUsuario({...props}:Props) {
     const { name, value } = event.target;
     setDados({
       ...dados,
-      [name]: name === "urgency" ? parseInt(value, 10) : value,
+      [name]: name === "setor" ? {id: value} : value,
+
     });
   };
 
   const handleCargoChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    let cargoSelect: { id: number; }[] = []
     const selectedOptions = Array.from(
       event.target.selectedOptions,
-      (option) => Number(option.value)
-    ) as number[];
+      (option) => cargoSelect.push({id: Number(option.value)})
+    )
+    console.log(cargoSelect)
     setDados({
       ...dados,
-      cargos: selectedOptions,
+      cargos: cargoSelect,
     });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify(dados);
-    console.log(formDataJSON);
+    axios.post("http://localhost:8080/usuarios/criar-usuario/", dados)
+    .then((res) => {
+      refetch()
+    })
   };
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.divinput}>
-        <label htmlFor="username">Nome de Usuário</label>
-        <input onChange={handleInputChange} type="text" name="username" id="username" defaultValue={props.username ?? ""} required/>
+        <label htmlFor="nomeusuario">Nome de Usuário</label>
+        <input onChange={handleInputChange} type="text" name="nomeusuario" id="nomeusuario" defaultValue={props.nomeusuario ?? ""} required/>
       </div>
       <div className={style.divinput}>
         <label htmlFor="email">Email</label>
         <input onChange={handleInputChange} type="email" name="email" id="email" defaultValue={props.email ?? ""} required/>
       </div>
       <div className={style.divinput}>
-        <label htmlFor="password">Senha</label>
+        <label htmlFor="email">Telefone</label>
+        <input onChange={handleInputChange} type="tel" name="phone" id="phone" defaultValue={props.phone ?? ""} required/>
+      </div>
+      <div className={style.divinput}>
+        <label htmlFor="password">password</label>
         <input onChange={handleInputChange} type="password" name="password" id="password" defaultValue={props.password ?? ""} required />
       </div>
       <div className={style.divinput}>

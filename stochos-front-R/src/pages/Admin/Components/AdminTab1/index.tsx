@@ -8,64 +8,7 @@ import axios from "axios";
 
 const largura = window.innerWidth;
 
-const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
-  {
-    field: "nomeusuario",
-    headerName: "Usuário",
-    width: 200,
-  },
-  { field: "email", headerName: "email", width: (largura * 90) / 100 / 4 },
-  { field: "phone", headerName: "Telefone", width: 150 },
-  { field: "password", headerName: "Senha", width: 200 },
-  {
-    field: "nomesetor",
-    headerName: "Setor",
-    width: 150,
-    renderCell: (params) => <div>{params.row.setor.nomesetor}</div>,
-  },
-  {
-    field: "nomecargo",
-    headerName: "Cargo",
-    width: 200,
-    renderCell: (params) => {
-      if (params.row.cargo) {
-        params.row.cargo.map((element: any) => console.log(element.nomecargo));
-        return (
-          <div className={style.cargos}>
-            {params.row.cargo.map((element: any) => (
-              <p>{element.nomecargo}</p>
-            ))}
-          </div>
-        );
-      }
-      return (
-        <div className={style.cargos}>
-          <p>Não Tem Cargo</p>
-        </div>
-      );
-    },
-    // <div className={style.cargos}>
-    //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
-    // <p>{element["nomecargo"]}</p>
-    // }) : <p>não possui cargo</p> }
-    // {/* </div> */}
-    // ),
-  },
-
-  {
-    field: "actions",
-    headerName: "Ações",
-    width: 220,
-    renderCell: (params) => (
-      <div className={style.botoes}>
-        <Botaos user={params.row} />
-      </div>
-    ),
-  },
-];
-
-function Botaos({ user }: any) {
+function Botaos({ user, refetch }: any) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -80,6 +23,10 @@ function Botaos({ user }: any) {
 
   const deletarUser = () => {
     console.log(user.id);
+    axios.delete(`http://localhost:8080/usuarios/${user.id}`)
+    .then((res) => {
+      refetch()
+    })
   };
 
   return (
@@ -106,7 +53,7 @@ function Botaos({ user }: any) {
         }}
       >
         <PopupCriarUsuario
-          username={user.nomeusuario}
+          nomeusuario={user.nomeusuario}
           email={user.email}
           password={user.password}
           setor={user.setor}
@@ -127,6 +74,7 @@ function Botaos({ user }: any) {
 export default function AdminTab1() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -137,7 +85,7 @@ export default function AdminTab1() {
 
   const open = Boolean(anchorEl);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     "usuarios",
     () =>
       axios
@@ -147,6 +95,62 @@ export default function AdminTab1() {
       retry: 5,
     }
   );
+
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "nomeusuario",
+      headerName: "Usuário",
+      width: 200,
+    },
+    { field: "email", headerName: "email", width: (largura * 90) / 100 / 4 },
+    { field: "phone", headerName: "Telefone", width: 150 },
+    { field: "password", headerName: "password", width: 200 },
+    {
+      field: "nomesetor",
+      headerName: "Setor",
+      width: 150,
+      renderCell: (params) => <div>{params.row.setor.nomesetor}</div>,
+    },
+    {
+      field: "nomecargo",
+      headerName: "Cargo",
+      width: 200,
+      renderCell: (params) => {
+        if (params.row.cargo) {
+          return (
+            <div className={style.cargos}>
+              {params.row.cargo.map((element: any) => (
+                <p>{element.nomecargo}</p>
+              ))}
+            </div>
+          );
+        }
+        return (
+          <div className={style.cargos}>
+            <p>Não Tem Cargo</p>
+          </div>
+        );
+      },
+      // <div className={style.cargos}>
+      //{/* {params.row.cargo ? params.row.cargo.map( (element: any) => { */}
+      // <p>{element["nomecargo"]}</p>
+      // }) : <p>não possui cargo</p> }
+      // {/* </div> */}
+      // ),
+    },
+
+    {
+      field: "actions",
+      headerName: "Ações",
+      width: 220,
+      renderCell: (params) => (
+        <div className={style.botoes}>
+          <Botaos user={params.row} refetch={refetch}/>
+        </div>
+      ),
+    },
+  ];
 
   if (isLoading) {
     return <div>Carregando...</div>;
@@ -189,7 +193,7 @@ export default function AdminTab1() {
           horizontal: "center",
         }}
       >
-        <PopupCriarUsuario />
+        <PopupCriarUsuario refetch={refetch}/>
       </Popover>
     </div>
   );
