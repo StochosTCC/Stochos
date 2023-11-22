@@ -59,6 +59,7 @@ function Botaos({ user, refetch }: any) {
           email={user.email}
           password={user.password}
           setor={user.setor}
+          cargos={user.cargos}
         />
       </Popover>
       <Button
@@ -119,10 +120,10 @@ export default function AdminTab1() {
       headerName: "Cargo",
       width: 200,
       renderCell: (params) => {
-        if (params.row.cargo) {
+        if (params.row.cargos) {
           return (
             <div className={style.cargos}>
-              {params.row.cargo.map((element: any) => (
+              {params.row.cargos.map((element: any) => (
                 <p>{element.nomecargo}</p>
               ))}
             </div>

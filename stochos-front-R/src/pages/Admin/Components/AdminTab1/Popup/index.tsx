@@ -1,9 +1,10 @@
-import setores from "../../../../Usuario/setor.json";
-import cargos from "../../../../Usuario/cargos.json";
+// import setores from "../../../../Usuario/setor.json";
+// import cargos from "../../../../Usuario/cargos.json";
 import style from "./Popup.module.scss";
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import axios from "axios";
+import { useQuery } from "react-query";
 
 interface Props{
   refetch?: any,
@@ -80,6 +81,35 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
     })
   };
 
+  const getSetores = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {data, isLoading} = useQuery(
+      "setores",
+
+      () => axios
+        .get("http://localhost:8080/setor/todos")
+        .then((res) => res.data)
+    )
+    console.log(data)
+    return data
+  }
+
+  const getCargos = (): any => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {data} = useQuery(
+      "cargos",
+
+     () => axios
+        .get("http://localhost:8080/cargos/todos")
+        .then((res) => res.data)
+    )
+
+    return data
+  }
+
+  const setores = getSetores()
+  const cargos = getCargos()
+
   return (
     <form onSubmit={props.email ? handleSubmitPut : handleSubmitPost} className={style.form}>
       <div className={style.divinput}>
@@ -102,7 +132,7 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
         <label htmlFor="setor">Setor</label>
         <select onChange={handleInputChange} className={style.selectcargo} name="setor" id="setor" required>
         {props.setor === undefined && <option value="" selected disabled hidden>Selecione aqui</option>}
-          {setores.map( (setor) =>{
+          {setores && setores.map( (setor: any) =>{
             if( setor.id === Number(props.setor?.id)){
               return <option value={setor.id} selected>{setor.nomesetor}</option>
             }
@@ -113,7 +143,7 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
       <div className={style.divinput}>
         <label htmlFor="cargos">Cargo</label>
         <select onChange={handleCargoChange} name="cargos" id="cargos"  multiple required>
-          {cargos.map( (cargo) =>{
+          {cargos && cargos.map( (cargo: any) =>{
             return <option value={cargo.id}>{cargo.nomecargo}</option>
           })}
         </select>
