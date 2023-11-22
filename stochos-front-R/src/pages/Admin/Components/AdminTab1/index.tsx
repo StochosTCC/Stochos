@@ -53,6 +53,7 @@ function Botaos({ user, refetch }: any) {
         }}
       >
         <PopupCriarUsuario
+        refetch={refetch}
           id={user.id}
           nomeusuario={user.nomeusuario}
           email={user.email}
