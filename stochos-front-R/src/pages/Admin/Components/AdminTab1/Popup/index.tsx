@@ -7,6 +7,7 @@ import axios from "axios";
 
 interface Props{
   refetch?: any,
+  id?: number,
   nomeusuario?: string,
   email?: string,
   phone?: string,
@@ -25,6 +26,7 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
 
 
     const [dados, setDados] = useState({
+    id: props.id || 0,
     nomeusuario: props.nomeusuario || "",
     email: props.email || "",
     phone: props.phone || "",
@@ -61,7 +63,7 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitPost = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios.post("http://localhost:8080/usuarios/criar-usuario/", dados)
     .then((res) => {
@@ -69,8 +71,17 @@ export default function PopupCriarUsuario({refetch, ...props}:Props) {
     })
   };
 
+  const handleSubmitPut = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(dados)
+    axios.put(`http://localhost:8080/usuarios/${dados.id}`, dados)
+    .then((res) => {
+      refetch()
+    })
+  };
+
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form onSubmit={props.email ? handleSubmitPut : handleSubmitPost} className={style.form}>
       <div className={style.divinput}>
         <label htmlFor="nomeusuario">Nome de Usuário</label>
         <input onChange={handleInputChange} type="text" name="nomeusuario" id="nomeusuario" defaultValue={props.nomeusuario ?? ""} required/>
