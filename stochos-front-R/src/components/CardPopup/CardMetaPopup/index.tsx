@@ -5,7 +5,7 @@ interface Props{
     remetente: string,
     nomemeta: string
     descricao: string,
-    destinatarios: [],
+    destinatarios: any[],
     disable: boolean
 }
 
@@ -29,7 +29,7 @@ export default function CardPopup({remetente, nomemeta, descricao, destinatarios
                 <label className={style.label} htmlFor="destinatarios">Destinatario</label>
                 <select className={style.select} multiple name="destinatarios" id="destinatarios">
                     {destinatarios.map((dest) => {
-                        return <option value={dest} >{dest}</option>
+                        return <option value={dest.id} >{dest.nomeusuario}</option>
                     })}
                 </select>
             </div>
@@ -41,3 +41,4 @@ export default function CardPopup({remetente, nomemeta, descricao, destinatarios
         </div>
     )
 }
+

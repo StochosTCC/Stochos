@@ -62,7 +62,6 @@ public class GrupoController {
         grupo.setNomegrupo(grupoDetail.getNomegrupo());
         grupo.setDescricao(grupoDetail.getDescricao());
         grupo.setUsuarioGrupos(grupoDetail.getUsuarioGrupos());
-        grupo.setMetas(grupoDetail.getMetas());
         grupoRepository.save(grupo);
         return HttpStatus.OK;
       }

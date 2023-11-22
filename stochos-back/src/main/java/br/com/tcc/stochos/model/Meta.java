@@ -25,10 +25,6 @@ public class Meta {
     private int urgencia;
 
     @ManyToOne
-    @JoinColumn(name = "idgrupo")
-    private Grupo grupo;
-
-    @ManyToOne
     @JoinColumn(name = "idusuario")
     private Usuario remetente;
 

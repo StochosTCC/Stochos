@@ -7,7 +7,7 @@ import CardGrupoPopup from "../../CardPopup/CardGrupoPopup";
 interface Props {
   nomegrupo: string;
   descricao: string;
-  funcionariosgrupo: string[];
+  funcionariosgrupo: any[];
   config: boolean;
 }
 
@@ -30,6 +30,8 @@ export default function CardGrupo({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  console.log(nomegrupo, descricao, funcionariosgrupo, config)
+
   return (
     <div>
       <div className={style.card} onClick={handleClick}>
@@ -38,7 +40,7 @@ export default function CardGrupo({
             <h1 className={style.titulo}>{nomegrupo}</h1>
             <div className={`${config ? style.funclimitado : ""}`}>
               {funcionariosgrupo.map((func) => {
-                return <p className={style.func}>{func}</p>;
+                return <p className={style.func}>{func.nomeusuario}</p>;
               })}
             </div>
           </div>

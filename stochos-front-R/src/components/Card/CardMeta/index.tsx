@@ -13,7 +13,7 @@ interface Props {
   urgencia: number;
   data: string;
   descricao: string;
-  destinatarios: [];
+  destinatarios: any[];
   config: boolean;
 }
 

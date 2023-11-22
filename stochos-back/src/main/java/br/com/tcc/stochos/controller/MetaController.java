@@ -56,7 +56,6 @@ public class MetaController {
       meta -> {
         meta.setDescricao(metaDetail.getDescricao());
         meta.setNomemeta(metaDetail.getNomemeta());
-        meta.setGrupo(metaDetail.getGrupo());
         meta.setRemetente(metaDetail.getRemetente());
         meta.setDestinatarios(metaDetail.getDestinatarios());
         meta.setUrgencia(metaDetail.getUrgencia());

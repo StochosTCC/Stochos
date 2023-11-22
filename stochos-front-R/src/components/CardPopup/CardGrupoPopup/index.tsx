@@ -8,7 +8,7 @@ import { GrupoMeta } from "../../../enums/GrupoMeta/GrupoMeta";
 interface Props {
   nome: string;
   descricao: string;
-  funcionarios: string[];
+  funcionarios: any[];
   disable: boolean
 }
 
@@ -71,7 +71,7 @@ export default function CardGrupoPopup({
           id="funcionarios"
         >
           {funcionarios.map((dest) => {
-            return <option value={dest}>{dest}</option>;
+            return <option value={dest.id}>{dest.nomeusuario}</option>;
           })}
         </select>
       </div>

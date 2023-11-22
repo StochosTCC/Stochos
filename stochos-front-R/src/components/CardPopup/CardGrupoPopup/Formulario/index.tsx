@@ -2,7 +2,7 @@ import { useState } from "react";
 import style from "./Formulario.module.scss";
 
 interface Props{
-    funcionarios: string[]
+    funcionarios: any[]
 }
 
 export default function Formulario({funcionarios}: Props){
@@ -107,7 +107,7 @@ export default function Formulario({funcionarios}: Props){
             required
           >
             {funcionarios.map((func) => {
-                return <option value={func} selected>{func}</option>
+                return <option value={func.id} selected>{func.nomeusuario}</option>
             })}
           </select>
         </div>

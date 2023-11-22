@@ -20,9 +20,6 @@ public class Grupo {
     private String descricao;
     private String nomegrupo;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "grupo")
-    private List<Meta> metas = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "grupo")

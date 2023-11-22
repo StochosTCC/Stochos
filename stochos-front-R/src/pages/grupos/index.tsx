@@ -23,7 +23,7 @@ export default function Grupos() {
   const id = open ? "simple-popover" : undefined;
 
   const { data, isLoading } = useQuery(
-    "metas",
+    "grupos",
     () =>
       axios
         .get("http://localhost:8080/grupos/todos")
@@ -36,48 +36,58 @@ export default function Grupos() {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
-  console.log(data)
+  const gruposCriados = Array.isArray(data) ? (
+    data.map( (grupo: any) => {
+      console.log(grupo)
+      if (grupo.criador.nomeusuario === userInfo[0].nome) {
+        return (
+          <div className={style.meta}>
+            <CardGrupo
+              nomegrupo={grupo.nomegrupo}
+              descricao={grupo.descricao}
+              funcionariosgrupo={grupo.usuarios}
+              config={true}
+            />
+          </div>
+        );
+    }
+    return null
+  })
+  ) : null
+
+  const gruposInseridos = Array.isArray(data) ? (
+    data.map( (grupo: any) => {
+      console.log(grupo)
+
+      if (grupo.criador.nomeusuario !== userInfo[0].nome) {
+        return (
+          <div className={style.meta}>
+            <CardGrupo
+              nomegrupo={grupo.nomegrupo}
+              descricao={grupo.descricao}
+              funcionariosgrupo={grupo.usuarios}
+              config={false}
+            />
+          </div>
+        );
+    }
+    return null
+  })
+  ) : null
+
   return (
     <div className={style.page}>
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Grupos Criados</h1>
         <div className={style.metas}>
-          {data.map((grupo: any) => {
-            if (grupo.criador === userInfo[0].nome) {
-              return (
-                <div className={style.meta}>
-                  <CardGrupo
-                    nomegrupo={grupo.nome}
-                    descricao={grupo.descricao}
-                    funcionariosgrupo={grupo.funcionarios}
-                    config={true}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
+          {gruposCriados}
         </div>
       </div>
 
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Seus Grupos</h1>
         <div className={style.metas}>
-          {data.map((grupo: any) => {
-            if (grupo.criador !== userInfo[0].nome) {
-              return (
-                <div className={style.meta}>
-                  <CardGrupo
-                    nomegrupo={grupo.nome}
-                    descricao={grupo.descricao}
-                    funcionariosgrupo={grupo.funcionarios}
-                    config={false}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
+          {gruposInseridos}
         </div>
       </div>
 
