@@ -3,14 +3,17 @@ import userData from "../../Usuario/userinfo.json";
 import style from "./Formulario.module.scss";
 import { Avatar } from "@mui/material";
 import { teal } from "@mui/material/colors";
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 
 
-export default function Formulario() {
+export default function Formulario({refetch}: any) {
   const [dados, setDados] = useState({
     nomegrupo: "",
     descricao: "",
-    funcionarios: [] as string[],
+    criador: {id: 1},
+    usuarios: [{id: 0}],
   });
 
   const handleInputChange = (
@@ -28,25 +31,36 @@ export default function Formulario() {
   const handleEmployeesChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    let funcionariosId: {id: number}[] = []
     const selectedOptions = Array.from(
       event.target.selectedOptions,
-      (option) => option.value
-    ) as string[];
+      (option) => funcionariosId.push({id: Number(option.value)})
+    );
     setDados({
       ...dados,
-      funcionarios: selectedOptions,
+      usuarios: funcionariosId,
     });
   };
 
-  const criador = userData[0].nome;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify({ dados, criador });
-    console.log(formDataJSON);
+    axios.post("http://localhost:8080/grupos/criar-grupo", dados).then( () => refetch())
 
     // Aqui você pode fazer o que quiser com o JSON, como enviar para um servidor, exibir na página, etc.
   };
+
+  const {data, isLoading} = useQuery(
+    "usuarios",
+    () => axios.get("http://localhost:8080/usuarios/todos").then( (res) => res.data),
+    {
+      retry: 5
+    }
+  )
+
+  if(isLoading){
+    return <p>carregando...</p>
+  }
 
   return (
     <form className={style.form} onSubmit={handleSubmit}>
@@ -92,15 +106,14 @@ export default function Formulario() {
           <select
             id="funcionarios"
             name="funcionarios"
-            value={dados.funcionarios}
             multiple
             onChange={handleEmployeesChange}
             required
             className={style.select}
           >
-            <option value="Funcionário 1">Funcionário 1</option>
-            <option value="Funcionário 2">Funcionário 2</option>
-            <option value="Funcionário 3">Funcionário 3</option>
+            {data.map( (usuario: any) => {
+              return <option value={usuario.id}> {usuario.nomeusuario} </option>
+            })}
           </select>
         </div>
       </div>

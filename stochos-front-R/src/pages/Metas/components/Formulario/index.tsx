@@ -1,14 +1,44 @@
 import { ChangeEvent, useState } from "react";
 import style from "./Formulario.module.scss";
+import { useQuery } from 'react-query';
+import axios from "axios";
+import Usuario from '../../../Usuario/index';
 
-export default function Formulario() {
+
+interface Usuario{
+  id: number
+}
+
+
+export default function Formulario({refetch}: any) {
+
+
+
+
+
   const [dados, setDados] = useState({
     nomemeta: "",
     descricao: "",
     prazo: "",
-    funcionarios: [] as string[],
+    remetente: {id: 1},
+    destinatarios: [{id: 0}],
     urgencia: 1,
   });
+
+  const { data, isLoading } = useQuery(
+    "usuarios",
+    () =>
+      axios
+        .get("http://localhost:8080/usuarios/todos")
+        .then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+
+  if(isLoading){
+    return <p>carregando...</p>
+  }
 
   const handleInputChange = (
     event: React.ChangeEvent<
@@ -16,9 +46,15 @@ export default function Formulario() {
     >
   ) => {
     const { name, value } = event.target;
+    if(name === "urgencia"){
+      setDados({
+        ...dados,
+        urgencia: Number(value)
+      })
+    }
     setDados({
       ...dados,
-      [name]: name === "urgency" ? parseInt(value, 10) : value,
+      [name]: name === "urgencia" ? parseInt(value, 10) : value,
     });
     getBackgroundColor(dados.urgencia)
   };
@@ -26,20 +62,24 @@ export default function Formulario() {
   const handleEmployeesChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    let funcionariosId: {id: number}[] = []
     const selectedOptions = Array.from(
       event.target.selectedOptions,
-      (option) => option.value
-    ) as string[];
+      (option) => funcionariosId.push({id: Number(option.value)})
+    );
     setDados({
       ...dados,
-      funcionarios: selectedOptions,
+      destinatarios: funcionariosId,
     });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify(dados);
-    console.log(formDataJSON);
+    console.log(dados)
+    axios.post("http://localhost:8080/metas", dados).then( (res) => {
+      refetch()
+    })
+    window.location.reload()
   };
 
   const getBackgroundColor = (value: number) => {
@@ -53,6 +93,8 @@ export default function Formulario() {
     }
     return '#ffffff'
   };
+
+
 
   return (
       <form onSubmit={handleSubmit} className={style.form}>
@@ -94,15 +136,14 @@ export default function Formulario() {
           <select
             id="funcionarios"
             name="funcionarios"
-            value={dados.funcionarios}
             multiple
             onChange={handleEmployeesChange}
             className={style.funcionarios}
             required
           >
-            <option value="Funcionário 1">Funcionário 1</option>
-            <option value="Funcionário 2">Funcionário 2</option>
-            <option value="Funcionário 3">Funcionário 3</option>
+            {data && data.map( (usuario: any) => {
+              return <option value={usuario.id}>{usuario.nomeusuario} </option>
+            })}
           </select>
         </div>
         <div className={style.urgenciadiv}>

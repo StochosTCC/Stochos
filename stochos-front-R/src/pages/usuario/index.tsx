@@ -1,8 +1,26 @@
 import { Avatar } from "@mui/material";
 import dataUser from "./userinfo.json";
 import styles from "./Usuario.module.scss";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 export default function Usuario() {
+
+  const { data, isLoading } = useQuery(
+    "usuarios",
+    () =>
+      axios
+        .get("http://localhost:8080/usuarios/todos")
+        .then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <>
       <div className={styles.posicaoAvatar}>

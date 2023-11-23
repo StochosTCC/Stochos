@@ -4,8 +4,11 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { type } from "os";
 import React from "react";
+import axios from "axios";
 
 interface Props {
+  refetch: any,
+  id?: number
   nomecargo?: string;
 }
 
@@ -14,7 +17,7 @@ interface Cargo {
   nomecargo: string;
 }
 
-export default function PopupCriarCargo({ ...props }: Props) {
+export default function PopupCriarCargo({refetch, ...props }: Props) {
   const cargos: Cargo[] = DataCargos;
 
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -43,12 +46,18 @@ export default function PopupCriarCargo({ ...props }: Props) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify(dados);
-    console.log(formDataJSON);
+    console.log(dados)
+    axios.post("http://localhost:8080/cargos/criar-cargo", dados).then( () => refetch())
+  };
+
+  const handleSubmitPut = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(dados)
+    axios.put(`http://localhost:8080/cargos/${props.id}`, dados).then( () => refetch())
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form onSubmit={props.nomecargo ? handleSubmitPut : handleSubmit} className={style.form}>
       <div>
         <div className={style.divinput}>
           <label htmlFor="nomecargo">Nome do Cargo</label>

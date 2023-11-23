@@ -4,18 +4,24 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { deepOrange, deepPurple, pink, red, teal } from "@mui/material/colors";
 import { useState } from "react";
 import CardPopup from "../../CardPopup/CardMetaPopup";
+import { format } from 'date-fns';
+
 
 interface Props {
+  id: number;
+  refetch: any;
   nome: string;
   remetente: string;
   urgencia: number;
   data: string;
   descricao: string;
-  destinatarios: string[];
+  destinatarios: any[];
   config: boolean;
 }
 
 export default function CardMeta({
+  id,
+  refetch,
   nome,
   remetente,
   data,
@@ -24,9 +30,9 @@ export default function CardMeta({
   descricao,
   destinatarios,
 }: Props) {
-  
+
   let color = "";
-  
+
     if (urgencia === 1) {
       color = style.urgencia1;
     } else if (urgencia === 2) {
@@ -34,7 +40,7 @@ export default function CardMeta({
     } else if (urgencia === 3) {
       color = style.urgencia3;
     }
-  
+
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
@@ -47,11 +53,42 @@ export default function CardMeta({
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const id2 = open ? "simple-popover" : undefined;
+
+  function randomColor(remetente: string): JSX.Element {
+    let size = 46;
+    let fontSize = 25;
+
+    // Verifique se remetente é uma string válida e não está vazia
+    if (remetente && remetente.length > 0) {
+      // Array de cores disponíveis
+      const colors = [teal[500], deepOrange[500], deepPurple[500], pink[500], red[500]];
+
+      // Gere um índice aleatório para escolher uma cor
+      const randomIndex = Math.floor(Math.random() * colors.length);
+
+      return (
+        <Avatar
+          sx={{
+            bgcolor: colors[randomIndex],
+            width: size,
+            height: size,
+            fontSize: fontSize,
+          }}
+        >
+          {remetente[0]}
+        </Avatar>
+      );
+    } else {
+      // Caso remetente seja inválido, retorne algo apropriado, por exemplo:
+      return <Avatar>?</Avatar>;
+    }
+
+  }
 
   return (
     <>
-      <div className={style.card} aria-describedby={id} onClick={handleClick}>
+      <div className={style.card} aria-describedby={id2} onClick={handleClick}>
         <div className={style.cardcima}>
           <div>
             <p className={`${style.nomemeta} ${style.textolimitado}`}>{nome}</p>
@@ -69,12 +106,13 @@ export default function CardMeta({
           )}
           <div className={style.urg_e_data}>
             <div className={color}></div>
+            {/* Formate a data antes de renderizá-la */}
             <p>{data}</p>
           </div>
         </div>
       </div>
       <Popover
-        id={id}
+        id={id2}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -84,6 +122,8 @@ export default function CardMeta({
         }}
       >
         <CardPopup
+          id={id}
+          refetch={refetch}
           remetente={remetente}
           nomemeta={nome}
           descricao={descricao}
@@ -95,15 +135,3 @@ export default function CardMeta({
   );
 }
 
-function randomColor(remetente: string) {
-  let size = 46;
-  let fontSize = 25;
-
-  return (
-    <Avatar
-      sx={{ bgcolor: teal[500], width: size, height: size, fontSize: fontSize }}
-    >
-      {remetente[0]}
-    </Avatar>
-  );
-}

@@ -56,10 +56,10 @@ public class MetaController {
       meta -> {
         meta.setDescricao(metaDetail.getDescricao());
         meta.setNomemeta(metaDetail.getNomemeta());
-        meta.setGrupo(metaDetail.getGrupo());
-        meta.setUsuario(metaDetail.getUsuario());
+        meta.setRemetente(metaDetail.getRemetente());
+        meta.setDestinatarios(metaDetail.getDestinatarios());
         meta.setUrgencia(metaDetail.getUrgencia());
-        meta.setTempo_para_cabar(metaDetail.getTempo_para_cabar());
+        meta.setPrazo(metaDetail.getPrazo());
         metaRepository.save(meta);
         return HttpStatus.OK;
       }

@@ -5,6 +5,8 @@ import style from "./Grupos.module.scss";
 import { useState } from "react";
 import { Button, Popover } from "@mui/material";
 import Formulario from "./Formulario";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 export default function Grupos() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -20,47 +22,70 @@ export default function Grupos() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const { data, isLoading, refetch } = useQuery(
+    "grupos",
+    () =>
+      axios
+        .get("http://localhost:8080/grupos/todos")
+        .then((resp) => resp.data),
+    {
+      retry: 5,
+    }
+  );
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+  const gruposCriados = Array.isArray(data) ? (
+    data.map( (grupo: any) => {
+      if (grupo.criador.nomeusuario === userInfo[0].nome) {
+        return (
+          <div className={style.meta}>
+            <CardGrupo
+              nomegrupo={grupo.nomegrupo}
+              descricao={grupo.descricao}
+              funcionariosgrupo={grupo.usuarios}
+              config={true}
+            />
+          </div>
+        );
+    }
+    return null
+  })
+  ) : null
+
+  const gruposInseridos = Array.isArray(data) ? (
+    data.map( (grupo: any) => {
+
+      if ((grupo.criador.nomeusuario !== userInfo[0].nome && grupo.usuarios.length !== 0) || (grupo.criador.nomeusuario === userInfo[0].nome && grupo.usuarios[0].nomeusuario === userInfo[0].nome)) {
+        return (
+          <div className={style.meta}>
+            <CardGrupo
+              nomegrupo={grupo.nomegrupo}
+              descricao={grupo.descricao}
+              funcionariosgrupo={grupo.usuarios}
+              config={false}
+            />
+          </div>
+        );
+    }
+    return null
+  })
+  ) : null
+
   return (
     <div className={style.page}>
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Grupos Criados</h1>
         <div className={style.metas}>
-          {grupoData.map((grupo) => {
-            if (grupo.criador === userInfo[0].nome) {
-              return (
-                <div className={style.meta}>
-                  <CardGrupo
-                    nomegrupo={grupo.nome}
-                    descricao={grupo.descricao}
-                    funcionariosgrupo={grupo.funcionarios}
-                    config={true}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
+          {gruposCriados}
         </div>
       </div>
 
       <div className={style.metascriadas}>
         <h1 className={style.titulo}>Seus Grupos</h1>
         <div className={style.metas}>
-          {grupoData.map((grupo) => {
-            if (grupo.criador !== userInfo[0].nome) {
-              return (
-                <div className={style.meta}>
-                  <CardGrupo
-                    nomegrupo={grupo.nome}
-                    descricao={grupo.descricao}
-                    funcionariosgrupo={grupo.funcionarios}
-                    config={false}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
+          {gruposInseridos}
         </div>
       </div>
 
@@ -82,7 +107,7 @@ export default function Grupos() {
             horizontal: "left",
           }}
         >
-          <Formulario />
+          <Formulario refetch={refetch} />
         </Popover>
       </div>
     </div>

@@ -61,6 +61,7 @@ public class UsuarioController {
         usuario.setNomeusuario(usuarioDetail.getNomeusuario());
         usuario.setUsuarioGrupos(usuarioDetail.getUsuarioGrupos());
         usuario.setPassword(usuarioDetail.getPassword());
+        usuario.setCargos(usuarioDetail.getCargos());
         usuarioRepository.save(usuario);
         return HttpStatus.OK;
       }
