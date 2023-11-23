@@ -9,23 +9,7 @@ import axios from "axios";
 
 const largura = window.innerWidth;
 
-const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "nomesetor", headerName: "setor", width: (largura * 218) / 100 / 3 },
-
-  {
-    field: "actions",
-    headerName: "Ações",
-    width: 220,
-    renderCell: (params) => (
-      <div className={style.botoes}>
-        <Botaos cargo={params.row} />
-      </div>
-    ),
-  },
-];
-
-function Botaos({ cargo }: any) {
+function Botaos({ cargo, refetch }: any) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,8 +23,8 @@ function Botaos({ cargo }: any) {
   const open = Boolean(anchorEl);
 
   const deletarSetor = () => {
-    console.log(cargo.id);
-  };
+  axios.delete(`http://localhost:8080/setor/${cargo.id}`).then( () => refetch())
+ };
 
   return (
     <div>
@@ -56,22 +40,9 @@ function Botaos({ cargo }: any) {
   );
 }
 
-const rows = DataSetor;
-
 export default function AdminTab3() {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     "setor",
     () =>
       axios.get("http://localhost:8080/setor/todos").then((resp) => resp.data),
@@ -83,6 +54,36 @@ export default function AdminTab3() {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
+
+
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "nomesetor", headerName: "setor", width: (largura * 218) / 100 / 3 },
+
+    {
+      field: "actions",
+      headerName: "Ações",
+      width: 220,
+      renderCell: (params) => (
+        <div className={style.botoes}>
+          <Botaos cargo={params.row} refetch={refetch} />
+        </div>
+      ),
+    },
+  ];
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   return (
     <div className={style.container}>
@@ -121,7 +122,7 @@ export default function AdminTab3() {
           horizontal: "right",
         }}
       >
-        <Popupsetor />
+        <Popupsetor refetch={refetch}/>
       </Popover>
     </div>
   );
