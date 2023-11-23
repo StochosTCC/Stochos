@@ -20,8 +20,7 @@ public class Meta {
     private Long id;
     private String nomemeta;
     private String descricao;
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime tempo_para_cabar;
+    private LocalDateTime prazo;
     private int urgencia;
 
     @ManyToOne

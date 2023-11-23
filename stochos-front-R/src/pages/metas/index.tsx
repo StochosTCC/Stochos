@@ -26,7 +26,6 @@ export default function Metas() {
   useEffect( () => {
     callGetData()
   }, [])
-  console.log(metas)
   let userinfo = dataUser[0];
 
 //criar modo de ver que a meta pertence a um grupo!!!
@@ -43,7 +42,7 @@ export default function Metas() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     "metas",
     () =>
       axios
@@ -61,11 +60,12 @@ export default function Metas() {
   // Verifique se data é uma array antes de mapear
   const metasCriadas = Array.isArray(data) ? (
     data.map((meta: any) => {
-      console.log(meta)
       if (meta.remetente.nomeusuario === userinfo.nome) {
         return (
           <div className={style.meta} key={meta.nome}>
             <CardMeta
+              id={meta.id}
+              refetch={refetch}
               data={meta.tempo_para_cabar}
               nome={meta.nomemeta}
               remetente={meta.remetente.nomeusuario}
@@ -83,10 +83,13 @@ export default function Metas() {
 
   const metasParaFazer = Array.isArray(data) ? (
     data.map((meta: any) => {
-      if (meta.remetente.nomeusuario !== userinfo.nome) {
+      if (meta.remetente.nomeusuario !== userinfo.nome || (meta.remetente.nomeusuario === userinfo.nome && meta.destinatarios[0].nomeusuario === userinfo.nome)) {
+        console.log(meta)
         return (
           <div className={style.meta} key={meta.nome}>
             <CardMeta
+              id={meta.id}
+              refetch={refetch}
               data={meta.tempo_para_cabar}
               nome={meta.nomemeta}
               remetente={meta.remetente.nomeusuario}
@@ -132,7 +135,7 @@ export default function Metas() {
             horizontal: "left",
           }}
         >
-          <Formulario />
+          <Formulario refetch={refetch} />
         </Popover>
       </div>
     </div>

@@ -21,7 +21,7 @@ public class MetaDTO {
     private int urgencia;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime tempo_para_acabar;
-    public MetaDTO(Long id, String nomemeta, String nomegrupo, int urgencia, LocalDateTime tempo_para_acabar) {
+    public MetaDTO(Long id, String nomemeta, String nomegrupo, int urgencia, String remetente, LocalDateTime tempo_para_acabar) {
         this.id = id;
         this.nomemeta = nomemeta;
         this.nomegrupo = nomegrupo;

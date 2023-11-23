@@ -59,7 +59,7 @@ public class MetaController {
         meta.setRemetente(metaDetail.getRemetente());
         meta.setDestinatarios(metaDetail.getDestinatarios());
         meta.setUrgencia(metaDetail.getUrgencia());
-        meta.setTempo_para_cabar(metaDetail.getTempo_para_cabar());
+        meta.setPrazo(metaDetail.getPrazo());
         metaRepository.save(meta);
         return HttpStatus.OK;
       }

@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 
 
 interface Props {
+  id: number;
+  refetch: any;
   nome: string;
   remetente: string;
   urgencia: number;
@@ -18,6 +20,8 @@ interface Props {
 }
 
 export default function CardMeta({
+  id,
+  refetch,
   nome,
   remetente,
   data,
@@ -49,7 +53,7 @@ export default function CardMeta({
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const id2 = open ? "simple-popover" : undefined;
 
   function randomColor(remetente: string): JSX.Element {
     let size = 46;
@@ -84,7 +88,7 @@ export default function CardMeta({
 
   return (
     <>
-      <div className={style.card} aria-describedby={id} onClick={handleClick}>
+      <div className={style.card} aria-describedby={id2} onClick={handleClick}>
         <div className={style.cardcima}>
           <div>
             <p className={`${style.nomemeta} ${style.textolimitado}`}>{nome}</p>
@@ -108,7 +112,7 @@ export default function CardMeta({
         </div>
       </div>
       <Popover
-        id={id}
+        id={id2}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -118,6 +122,8 @@ export default function CardMeta({
         }}
       >
         <CardPopup
+          id={id}
+          refetch={refetch}
           remetente={remetente}
           nomemeta={nome}
           descricao={descricao}

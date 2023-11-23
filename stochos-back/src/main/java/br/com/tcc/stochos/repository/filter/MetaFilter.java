@@ -9,7 +9,6 @@ import java.util.Date;
 @Data
 public class MetaFilter {
     private String nomemeta;
-    private String nomegrupo;
     private String rementente;
     private int urgencia;
     private LocalDateTime tempo_para_acabar;
