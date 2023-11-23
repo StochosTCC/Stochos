@@ -23,7 +23,7 @@ function Botaos({ cargo, refetch }: any) {
   const open = Boolean(anchorEl);
 
   const deletarSetor = () => {
-  axios.delete(`http://localhost:8080/setor/${cargo.id}`).then( () => refetch())
+  axios.delete(`http://localhost:8080/setor/${cargo.id}`).then( (res) => refetch())
  };
 
   return (

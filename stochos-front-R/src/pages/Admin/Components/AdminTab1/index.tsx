@@ -113,11 +113,7 @@ export default function AdminTab1() {
       field: "nomesetor",
       headerName: "Setor",
       width: 150,
-      renderCell: (params) => {
-      refetch()
-      console.log(params.row.setor)
-      return <div>{params.row.setor.nomesetor}</div>
-      }
+      renderCell: (params) => <div>{params.row.setor.nomesetor}</div>,
     },
     {
       field: "nomecargo",

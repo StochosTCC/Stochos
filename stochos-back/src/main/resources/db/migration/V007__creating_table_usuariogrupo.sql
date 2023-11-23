@@ -17,7 +17,7 @@ create table usuario_meta(
 );
 
 alter table usuario_meta add constraint fk_usuario_meta_usuario foreign key(idusuario) references usuario(id) on delete cascade;
-alter table usuario_meta add constraint fk_usuario_meta_meta foreign key(idusuario) references meta(id) on delete cascade;
+alter table usuario_meta add constraint fk_usuario_meta_meta foreign key(idmeta) references meta(id) on delete cascade;
 
 alter table usuario_grupo add constraint fk_usuario_grupo_usuario foreign key(idusuario) references usuario(id) on delete cascade;
 alter table usuario_grupo add constraint fk_usuario_grupo_grupo foreign key(idgrupo) references grupo(id) on delete cascade;
