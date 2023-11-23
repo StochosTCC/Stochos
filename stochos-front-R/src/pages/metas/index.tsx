@@ -42,7 +42,7 @@ export default function Metas() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const { data, isLoading, refetch } = useQuery(
+  const { data, refetch } = useQuery(
     "metas",
     () =>
       axios
@@ -53,9 +53,7 @@ export default function Metas() {
     }
   );
 
-  if (isLoading) {
-    return <div>Carregando...</div>;
-  }
+
 
   // Verifique se data é uma array antes de mapear
   const metasCriadas = Array.isArray(data) ? (
@@ -83,7 +81,7 @@ export default function Metas() {
 
   const metasParaFazer = Array.isArray(data) ? (
     data.map((meta: any) => {
-      if (meta.remetente.nomeusuario !== userinfo.nome || (meta.remetente.nomeusuario === userinfo.nome && meta.destinatarios[0].nomeusuario === userinfo.nome)) {
+      if ((meta.remetente.nomeusuario !== userinfo.nome || (meta.remetente.nomeusuario === userinfo.nome && meta.destinatarios[0].nomeusuario === userinfo.nome))) {
         console.log(meta)
         return (
           <div className={style.meta} key={meta.nome}>

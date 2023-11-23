@@ -22,7 +22,7 @@ export default function Grupos() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     "grupos",
     () =>
       axios
@@ -38,7 +38,6 @@ export default function Grupos() {
   }
   const gruposCriados = Array.isArray(data) ? (
     data.map( (grupo: any) => {
-      console.log(grupo)
       if (grupo.criador.nomeusuario === userInfo[0].nome) {
         return (
           <div className={style.meta}>
@@ -57,9 +56,8 @@ export default function Grupos() {
 
   const gruposInseridos = Array.isArray(data) ? (
     data.map( (grupo: any) => {
-      console.log(grupo)
 
-      if (grupo.criador.nomeusuario !== userInfo[0].nome) {
+      if ((grupo.criador.nomeusuario !== userInfo[0].nome && grupo.usuarios.length !== 0) || (grupo.criador.nomeusuario === userInfo[0].nome && grupo.usuarios[0].nomeusuario === userInfo[0].nome)) {
         return (
           <div className={style.meta}>
             <CardGrupo
@@ -109,7 +107,7 @@ export default function Grupos() {
             horizontal: "left",
           }}
         >
-          <Formulario />
+          <Formulario refetch={refetch} />
         </Popover>
       </div>
     </div>

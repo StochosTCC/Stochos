@@ -79,6 +79,7 @@ export default function Formulario({refetch}: any) {
     axios.post("http://localhost:8080/metas", dados).then( (res) => {
       refetch()
     })
+    window.location.reload()
   };
 
   const getBackgroundColor = (value: number) => {

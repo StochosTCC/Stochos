@@ -30,7 +30,6 @@ export default function CardGrupo({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  console.log(nomegrupo, descricao, funcionariosgrupo, config)
 
   return (
     <div>

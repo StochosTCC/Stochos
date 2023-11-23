@@ -30,7 +30,6 @@ export default function CardGrupoPopup({
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
   return (
     <div className={style.cardpopup}>
       <div className={style.divinput}>

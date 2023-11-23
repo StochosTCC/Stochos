@@ -9,7 +9,7 @@ import axios from "axios";
 
 const largura = window.innerWidth;
 
-function Botaos({ cargo, refetch }: any) {
+function Botaos({ setor, refetch }: any) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -23,8 +23,16 @@ function Botaos({ cargo, refetch }: any) {
   const open = Boolean(anchorEl);
 
   const deletarSetor = () => {
-  axios.delete(`http://localhost:8080/setor/${cargo.id}`).then( (res) => refetch())
- };
+  console.log(setor.id)
+  const status = axios.delete(`http://localhost:8080/setor/${setor.id}`).then(
+    (res) => {
+      if( res.data === "IM_USED"){
+        window.alert("SETOR ESTA SENDO USADO")
+      }
+      refetch()
+  })
+  console.log(status)
+  };
 
   return (
     <div>
@@ -42,20 +50,22 @@ function Botaos({ cargo, refetch }: any) {
 
 export default function AdminTab3() {
 
+
   const { data, isLoading, refetch } = useQuery(
     "setor",
     () =>
-      axios.get("http://localhost:8080/setor/todos").then((resp) => resp.data),
+    axios.get("http://localhost:8080/setor/todos").then((resp) => resp.data),
     {
       retry: 5,
     }
-  );
-
-  if (isLoading) {
-    return <div>Carregando...</div>;
-  }
+    );
 
 
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+    if (isLoading) {
+      return <div>Carregando...</div>;
+    }
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "nomesetor", headerName: "setor", width: (largura * 218) / 100 / 3 },
@@ -64,16 +74,14 @@ export default function AdminTab3() {
       field: "actions",
       headerName: "Ações",
       width: 220,
-      renderCell: (params) => (
+      renderCell: (params) => params.row.id && (
         <div className={style.botoes}>
-          <Botaos cargo={params.row} refetch={refetch} />
+          <Botaos setor={params.row} refetch={refetch} />
         </div>
       ),
     },
   ];
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

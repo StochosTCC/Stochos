@@ -1,5 +1,7 @@
 import { useState } from "react";
 import style from "./Formulario.module.scss";
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 interface Props{
     funcionarios: any[]
@@ -11,7 +13,8 @@ export default function Formulario({funcionarios}: Props){
     nomemeta: "",
     descricao: "",
     prazo: "",
-    funcionarios: funcionarios,
+    remetente: {id: 1},
+    destinatarios: funcionarios,
     urgencia: 1,
   });
 
@@ -31,20 +34,23 @@ export default function Formulario({funcionarios}: Props){
   const handleEmployeesChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    let funcionariosId: any[] = []
     const selectedOptions = Array.from(
       event.target.selectedOptions,
-      (option) => option.value
-    ) as string[];
+      (option) => funcionariosId.push({id: Number(option.value)})
+    )
     setDados({
       ...dados,
-      funcionarios: selectedOptions,
+      destinatarios: funcionariosId,
     });
   };
 
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataJSON = JSON.stringify(dados);
-    console.log(formDataJSON);
+    axios.post("http://localhost:8080/metas", dados)
+    window.location.reload()
+
 
     // Aqui você pode fazer o que quiser com o JSON, como enviar para um servidor, exibir na página, etc.
   };
@@ -100,14 +106,13 @@ export default function Formulario({funcionarios}: Props){
           <select
             id="funcionarios"
             name="funcionarios"
-            value={dados.funcionarios}
             multiple
             onChange={handleEmployeesChange}
             className={style.funcionarios}
             required
           >
             {funcionarios.map((func) => {
-                return <option value={func.id} selected>{func.nomeusuario}</option>
+                return <option value={func.id}>{func.nomeusuario}</option>
             })}
           </select>
         </div>
