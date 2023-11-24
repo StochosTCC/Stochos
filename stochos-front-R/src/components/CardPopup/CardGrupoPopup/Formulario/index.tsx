@@ -7,7 +7,7 @@ interface Props{
     funcionarios: any[]
 }
 
-export default function FormularioMeta({funcionarios}: Props){
+export default function Formulario({funcionarios}: Props){
 
   const [dados, setDados] = useState({
     nomemeta: "",

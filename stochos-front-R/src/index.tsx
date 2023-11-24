@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Header />
     <QueryClientProvider client={queryClient}>
+    <Header />
     <App />
     </QueryClientProvider>
   </React.StrictMode>

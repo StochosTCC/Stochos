@@ -10,6 +10,7 @@ import { useState } from "react";
 
 import React from "react";
 import FormularioMeta from "../../CardPopup/CardGrupoPopup/Formulario/index";
+import FormularioGrupo from "../../../pages/Grupos/Formulario"
 
 interface Props {
   type: GrupoMeta;
@@ -78,7 +79,7 @@ export default function HeaderPopover({ type }: Props) {
                     horizontal: "right",
                   }}
                 >
-                  
+                  <FormularioGrupo/>
                 </Popover>
               </div>
             </>
