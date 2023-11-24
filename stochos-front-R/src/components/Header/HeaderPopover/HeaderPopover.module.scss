@@ -1,8 +1,8 @@
 @import "../../../styles/variaveis";
 
 .card {
-  width: 400px;
-  height: 450px;
+  width: 300px;
+  height: 250px;
   background-color: $azul-padrao;
   border-radius: 5%;
   display: flex;
@@ -24,13 +24,7 @@
       justify-content: start;
       align-items: center;
       margin-left: 10px;
-      .icon {
-        width: 70px;
-        height: 70px;
-        background-color: $cinza-texto;
-        border-radius: 10%;
-        margin-right: 10px;
-      }
+      
       .font{
         font-size: 2vh;
       }
@@ -40,5 +34,11 @@
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.23) 0px 6px 6px;
     cursor: pointer;
+    }
+
+    .icon{
+      
+      margin-right: 5rem;
+
     }
 }
